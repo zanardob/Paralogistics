@@ -18,7 +18,7 @@
       <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn prefWidth="200.0" text="CNPJ" />
-          <TableColumn prefWidth="540.0" text="Nome" />
+          <TableColumn prefWidth="540.0" text="Razão Social" />
             <TableColumn prefWidth="540.0" text="Nome Fantasia" />
         </columns>
       </TableView>
