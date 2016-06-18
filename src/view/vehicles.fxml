@@ -15,7 +15,7 @@
       </Text>
    </top>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="vhcViewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn prefWidth="200.0" text="Placa" />
           <TableColumn prefWidth="540.0" text="Início da Concessão" />

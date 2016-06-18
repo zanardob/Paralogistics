@@ -28,7 +28,7 @@
             </Text>
          </top>
          <center>
-            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="nschCpnPickerTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn prefWidth="180.0" text="CNPJ" />
                 <TableColumn prefWidth="540.0" text="Razão Social" />
@@ -39,13 +39,13 @@
          <bottom>
             <BorderPane prefHeight="62.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <left>
-                  <Button mnemonicParsing="false" text="Cancelar" BorderPane.alignment="CENTER" />
+                  <Button fx:id="nschCancelButton" mnemonicParsing="false" onAction="#cancelNewScheduling" text="Cancelar" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Confirma Seleção" BorderPane.alignment="CENTER" />
+                  <Button fx:id="nschConfirmButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#confirmNewScheduling" text="Confirma Seleção" BorderPane.alignment="CENTER" />
                </right>
                <top>
-                  <TextField promptText="Buscar por CNPJ, Razão Social ou CNPJ" BorderPane.alignment="CENTER" />
+                  <TextField fx:id="nschCpnPickerTextField" onAction="#searchCpn" promptText="Buscar por CNPJ, Razão Social ou Nome Fantasia" BorderPane.alignment="CENTER" />
                </top>
             </BorderPane>
          </bottom>

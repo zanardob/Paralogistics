@@ -15,7 +15,7 @@
       </Text>
    </top>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="rcvViewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn prefWidth="200.0" text="CPF" />
           <TableColumn prefWidth="880.0" text="Nome" />

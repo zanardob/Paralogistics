@@ -7,7 +7,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Novo Agendamento" BorderPane.alignment="CENTER">
@@ -31,7 +30,7 @@
                   </Text>
                </top>
                <center>
-                  <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="nschLccViewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
                       <TableColumn prefWidth="180.0" text="Nome do Entregador" />
                       <TableColumn prefWidth="170.0" text="Placa do Veículo" />
@@ -39,7 +38,7 @@
                   </TableView>
                </center>
                <bottom>
-                  <Button mnemonicParsing="false" text="Adicionar Licença" BorderPane.alignment="CENTER" />
+                  <Button fx:id="addLccButton" mnemonicParsing="false" onAction="#addLicence" text="Adicionar Licença" BorderPane.alignment="CENTER" />
                </bottom>
                <HBox.margin>
                   <Insets />
@@ -47,7 +46,7 @@
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="900.0">
                <center>
-                  <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="nschDlvViewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <columns>
                         <TableColumn prefWidth="140.0" text="Local" />
                         <TableColumn prefWidth="140.0" text="Início da Entrega" />
@@ -65,7 +64,7 @@
                   </Text>
                </top>
                <bottom>
-                  <Button mnemonicParsing="false" text="Adicionar Entrega" BorderPane.alignment="CENTER" />
+                  <Button fx:id="addDlvButton" mnemonicParsing="false" onAction="#addDelivery" text="Adicionar Entrega" BorderPane.alignment="CENTER" />
                </bottom>
             </BorderPane>
          </children>
@@ -74,10 +73,10 @@
    <bottom>
       <BorderPane prefHeight="31.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <left>
-            <Button mnemonicParsing="false" text="Cancelar" BorderPane.alignment="CENTER" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelNewScheduling" text="Cancelar" BorderPane.alignment="CENTER" />
          </left>
          <right>
-            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Confirma Seleção" BorderPane.alignment="CENTER" />
+            <Button fx:id="confirmButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#confirmNewScheduling" text="Confirma Seleção" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
    </bottom>

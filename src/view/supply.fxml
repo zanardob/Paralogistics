@@ -15,7 +15,7 @@
       </Text>
    </top>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="splViewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn prefWidth="640.0" text="#Material" />
           <TableColumn prefWidth="640.0" text="CNPJ da Empresa" />
