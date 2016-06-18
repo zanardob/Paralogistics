@@ -222,4 +222,7 @@ pip-log.txt
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/vcs.xml
+.idea/dataSources.xml
+.idea/dataSources.ids
+.idea/dataSoucres.local.xml
 out/
