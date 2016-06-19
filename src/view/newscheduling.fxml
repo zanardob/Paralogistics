@@ -28,24 +28,24 @@
             </Text>
          </top>
          <center>
-            <TableView fx:id="nschCpnPickerTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="CompanyPickerTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn prefWidth="180.0" text="CNPJ" />
-                <TableColumn prefWidth="540.0" text="Razão Social" />
-                  <TableColumn prefWidth="540.0" text="Nome Fantasia" />
+                <TableColumn fx:id="CompanyCNPJ" prefWidth="180.0" text="CNPJ" />
+                <TableColumn fx:id="CompanyName" prefWidth="540.0" text="Razão Social" />
+                  <TableColumn fx:id="CompanyFantasy" prefWidth="540.0" text="Nome Fantasia" />
               </columns>
             </TableView>
          </center>
          <bottom>
             <BorderPane prefHeight="62.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <left>
-                  <Button fx:id="nschCancelButton" mnemonicParsing="false" onAction="#cancelNewScheduling" text="Cancelar" BorderPane.alignment="CENTER" />
+                  <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#Cancel" text="Cancelar" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Button fx:id="nschConfirmButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#confirmNewScheduling" text="Confirma Seleção" BorderPane.alignment="CENTER" />
+                  <Button fx:id="ConfirmButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#Confirm" text="Confirma Seleção" BorderPane.alignment="CENTER" />
                </right>
                <top>
-                  <TextField fx:id="nschCpnPickerTextField" onAction="#searchCpn" promptText="Buscar por CNPJ, Razão Social ou Nome Fantasia" BorderPane.alignment="CENTER" />
+                  <TextField fx:id="CompanyPickerTextField" onAction="#SearchCompanies" promptText="Buscar por CNPJ, Razão Social ou Nome Fantasia" BorderPane.alignment="CENTER" />
                </top>
             </BorderPane>
          </bottom>

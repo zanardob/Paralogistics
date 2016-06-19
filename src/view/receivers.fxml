@@ -7,24 +7,30 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReceiversController">
-   <top>
-   	<HBox BorderPane.alignment="CENTER" alignment="CENTER">
-		<Button onAction="#gotoMainMenu" text="Início"/>
-      <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Receptores" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      		<Button onAction="#refreshTable" text="Atualizar"/>
-	</HBox>
-   </top>
    <center>
-      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="Table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="200.0" text="CPF" />
-          <TableColumn prefWidth="880.0" text="Nome" />
-            <TableColumn prefWidth="200.0" text="RG" />
+          <TableColumn fx:id="CPF" prefWidth="200.0" text="CPF" />
+          <TableColumn fx:id="Name" prefWidth="880.0" text="Nome" />
+            <TableColumn fx:id="RG" prefWidth="200.0" text="RG" />
         </columns>
       </TableView>
    </center>
+   <top>
+      <BorderPane prefHeight="25.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Receptores" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </center>
+         <left>
+            <Button onAction="#GotoMainMenu" text="Início" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Button onAction="#Refresh" text="Atualizar" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+   </top>
 </BorderPane>

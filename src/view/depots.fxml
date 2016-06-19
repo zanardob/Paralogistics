@@ -7,25 +7,31 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DepotsController">
-   <top>
-   	<HBox BorderPane.alignment="CENTER" alignment="CENTER">
-		<Button onAction="#gotoMainMenu" text="Início"/>
-      <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Depósitos" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      		<Button onAction="#refreshTable" text="Atualizar"/>
-	</HBox>
-   </top>
    <center>
-      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="Table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="200.0" text="#Local" />
-          <TableColumn prefWidth="200.0" text="Número" />
-            <TableColumn prefWidth="440.0" text="Capacidade" />
-            <TableColumn prefWidth="440.0" text="Dimensões" />
+          <TableColumn fx:id="SiteID" prefWidth="200.0" text="#Local" />
+          <TableColumn fx:id="Number" prefWidth="200.0" text="Número" />
+            <TableColumn fx:id="Capacity" prefWidth="440.0" text="Capacidade" />
+            <TableColumn fx:id="Dimensions" prefWidth="440.0" text="Dimensões" />
         </columns>
       </TableView>
    </center>
+   <top>
+      <BorderPane prefHeight="25.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Depósitos" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </center>
+         <left>
+            <Button onAction="#GotoMainMenu" text="Início" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Button onAction="#Refresh" text="Atualizar" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+   </top>
 </BorderPane>

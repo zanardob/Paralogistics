@@ -30,11 +30,11 @@
                   </Text>
                </top>
                <center>
-                  <TableView fx:id="nlccDlvrPickerTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="DelivererPickerTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
-                      <TableColumn prefWidth="150.0" text="CPF do Entregador" />
-                      <TableColumn prefWidth="325.0" text="Nome do Entregador" />
-                        <TableColumn prefWidth="150.0" text="RG do Entregador" />
+                      <TableColumn fx:id="DelivererCPF" prefWidth="150.0" text="CPF do Entregador" />
+                      <TableColumn fx:id="DelivererName" prefWidth="325.0" text="Nome do Entregador" />
+                        <TableColumn fx:id="DelivererRG" prefWidth="150.0" text="RG do Entregador" />
                     </columns>
                   </TableView>
                </center>
@@ -42,16 +42,16 @@
                   <Insets />
                </HBox.margin>
                <bottom>
-                  <TextField fx:id="nlccDlvrPickerTextField" onAction="#searchDlvr" promptText="Buscar por CPF, Nome ou RG" BorderPane.alignment="CENTER" />
+                  <TextField fx:id="DelivererPickerTextField" onAction="#SearchDeliverers" promptText="Buscar por CPF, Nome ou RG" BorderPane.alignment="CENTER" />
                </bottom>
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="625.0">
                <center>
-                  <TableView fx:id="nlccVhcPickerTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="VehiclePickerTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <columns>
-                        <TableColumn prefWidth="225.0" text="Placa do Veículo" />
-                        <TableColumn prefWidth="200.0" text="Início da Entrega" />
-                        <TableColumn prefWidth="200.0" text="Fim da Entrega" />
+                        <TableColumn fx:id="VehiclePlate" prefWidth="225.0" text="Placa do Veículo" />
+                        <TableColumn fx:id="VehicleConcessionStart" prefWidth="200.0" text="Início da Concessão" />
+                        <TableColumn fx:id="VehicleConcessionEnd" prefWidth="200.0" text="Fim da Concessão" />
                      </columns>
                   </TableView>
                </center>
@@ -63,7 +63,7 @@
                   </Text>
                </top>
                <bottom>
-                  <TextField fx:id="nlccVhcPickerTextField" onAction="#searchVhc" promptText="Buscar por Placa" BorderPane.alignment="CENTER" />
+                  <TextField fx:id="VehiclePickerTextField" onAction="#SearchVehicles" promptText="Buscar por Placa" BorderPane.alignment="CENTER" />
                </bottom>
             </BorderPane>
          </children>
@@ -72,10 +72,10 @@
    <bottom>
       <BorderPane prefHeight="31.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <left>
-            <Button fx:id="nlccCancelButton" mnemonicParsing="false" onAction="#cancelNewLicence" text="Cancelar" BorderPane.alignment="CENTER" />
+            <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#Cancel" text="Cancelar" BorderPane.alignment="CENTER" />
          </left>
          <right>
-            <Button fx:id="nlccConfirmButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#confirmNewLicence" text="Confirma Seleção" BorderPane.alignment="CENTER" />
+            <Button fx:id="ConfirmButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#Confirm" text="Confirma Seleção" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
    </bottom>
