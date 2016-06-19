@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="controller.MainMenuController">
    <top>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paralogistics - Logística da Entrega dos Materiais: Olimpiadas e Paralimpíadas Rio 2016™" BorderPane.alignment="CENTER">
          <font>
@@ -25,67 +25,67 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Hyperlink prefWidth="400.0" text="Agendamentos" underline="true">
+                  <Hyperlink onAction="#showScheduling" prefWidth="400.0" text="Agendamentos" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink prefWidth="400.0" text="Depósitos" underline="true">
+                  <Hyperlink onAction="#showDepots" prefWidth="400.0" text="Depósitos" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink prefWidth="400.0" text="Discriminações" underline="true">
+                  <Hyperlink onAction="#showEnumerations" prefWidth="400.0" text="Discriminações" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink prefWidth="400.0" text="Empresas" underline="true">
+                  <Hyperlink onAction="#showCompanies" prefWidth="400.0" text="Empresas" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink prefWidth="400.0" text="Entregas" underline="true">
+                  <Hyperlink onAction="#showDeliveries" prefWidth="400.0" text="Entregas" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink prefWidth="400.0" text="Entregadores" underline="true">
+                  <Hyperlink onAction="#showDeliverers" prefWidth="400.0" text="Entregadores" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink prefWidth="400.0" text="Fornecimentos" underline="true">
+                  <Hyperlink onAction="#showSuplies" prefWidth="400.0" text="Fornecimentos" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink prefWidth="400.0" text="Licenças" underline="true">
+                  <Hyperlink onAction="#showLicenses" prefWidth="400.0" text="Licenças" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink prefWidth="400.0" text="Locais" underline="true">
+                  <Hyperlink onAction="#showSites" prefWidth="400.0" text="Locais" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink prefWidth="400.0" text="Materiais" underline="true">
+                  <Hyperlink onAction="#showMaterials" prefWidth="400.0" text="Materiais" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink prefWidth="400.0" text="Períodos" underline="true">
+                  <Hyperlink onAction="#showPeriods" prefWidth="400.0" text="Períodos" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink prefWidth="400.0" text="Receptores" underline="true">
+                  <Hyperlink onAction="#showReceivers" prefWidth="400.0" text="Receptores" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink prefWidth="400.0" text="Veículos" underline="true">
+                  <Hyperlink onAction="#showVehicles" prefWidth="400.0" text="Veículos" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -99,7 +99,7 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Hyperlink prefWidth="400.0" text="Novo Agendamento" underline="true">
+                  <Hyperlink onAction="#newScheduling" prefWidth="400.0" text="Novo Agendamento" underline="true">
                      <font>
                         <Font size="24.0" />
                      </font>

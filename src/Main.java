@@ -1,35 +1,26 @@
+import controller.MainMenuController;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class Main {
+public class Main extends Application {
     public static void main(String[] argv) {
-
-        System.out.println("-------- Oracle JDBC Connection Testing ------");
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Couldn't find Oracle JDBC Driver.");
-            e.printStackTrace();
-            return;
-        }
-        System.out.println("Oracle JDBC Driver Registered!");
-
-        Connection connection = null;
-
-        try {
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@grad.icmc.usp.br:15215:orcl", "n8937250", "n8937250");
-        } catch (SQLException e) {
-            System.out.println("Connection Failed! Check output console");
-            e.printStackTrace();
-            return;
-        }
-
-        if (connection != null) {
-            System.out.println("You made it, take control of your database now!");
-        } else {
-            System.out.println("Failed to make connection!");
-        }
+        launch(argv);
     }
 
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/mainmenu.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Paralogistics");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 }

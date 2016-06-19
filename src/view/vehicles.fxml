@@ -6,16 +6,20 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Veículos" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-   </top>
-   <center>
-      <TableView fx:id="vhcViewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.VehiclesController">
+    <top>
+|        <HBox BorderPane.alignment="CENTER" alignment="CENTER">
+            <Button onAction="#gotoInicio" text="Início" alignment="CENTER_LEFT"/>
+            <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Veículos" BorderPane.alignment="CENTER">
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </Text>
+        <Button onAction="#refreshTable" text="Atualizar"/>
+        </HBox>
+    </top>
+    <center>
+      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn prefWidth="200.0" text="Placa" />
           <TableColumn prefWidth="540.0" text="Início da Concessão" />
