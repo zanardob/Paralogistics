@@ -1,14 +1,14 @@
 package model;
 
 public class Supplies {
-  private String material;
+  private Integer material;
   private String company;
 
-  public String getMaterial() {
+  public Integer getMaterial() {
     return material;
   }
 
-  public void setMaterial(String material) {
+  public void setMaterial(Integer material) {
     this.material = material;
   }
 

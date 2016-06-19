@@ -2,10 +2,10 @@ package model;
 
 public class Deliveries {
   private Integer id;
-  private String site;
+  private Integer site;
   private java.sql.Date start;
   private java.sql.Date end;
-  private String scheduling;
+  private Integer scheduling;
   private String receiver;
 
   public Integer getId() {
@@ -16,11 +16,11 @@ public class Deliveries {
     this.id = id;
   }
 
-  public String getSite() {
+  public Integer getSite() {
     return site;
   }
 
-  public void setSite(String site) {
+  public void setSite(Integer site) {
     this.site = site;
   }
 
@@ -40,11 +40,11 @@ public class Deliveries {
     this.end = end;
   }
 
-  public String getScheduling() {
+  public Integer getScheduling() {
     return scheduling;
   }
 
-  public void setScheduling(String scheduling) {
+  public void setScheduling(Integer scheduling) {
     this.scheduling = scheduling;
   }
 

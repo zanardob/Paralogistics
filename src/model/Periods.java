@@ -1,15 +1,15 @@
 package model;
 
 public class Periods {
-  private String site;
+  private Integer site;
   private java.sql.Date start;
   private java.sql.Date end;
 
-  public String getSite() {
+  public Integer getSite() {
     return site;
   }
 
-  public void setSite(String site) {
+  public void setSite(Integer site) {
     this.site = site;
   }
 

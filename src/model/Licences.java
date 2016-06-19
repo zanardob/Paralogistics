@@ -2,7 +2,7 @@ package model;
 
 public class Licences {
   private String deliverer;
-  private String scheduling;
+  private Integer scheduling;
   private String vehicle;
 
   public String getDeliverer() {
@@ -13,11 +13,11 @@ public class Licences {
     this.deliverer = deliverer;
   }
 
-  public String getScheduling() {
+  public Integer getScheduling() {
     return scheduling;
   }
 
-  public void setScheduling(String scheduling) {
+  public void setScheduling(Integer scheduling) {
     this.scheduling = scheduling;
   }
 

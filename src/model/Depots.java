@@ -1,16 +1,16 @@
 package model;
 
 public class Depots {
-  private String site;
+  private Integer site;
   private Integer number;
   private String capacity;
   private String dimensions;
 
-  public String getSite() {
+  public Integer getSite() {
     return site;
   }
 
-  public void setSite(String site) {
+  public void setSite(Integer site) {
     this.site = site;
   }
 

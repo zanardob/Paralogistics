@@ -1,23 +1,23 @@
 package model;
 
 public class Enumerations {
-  private String delivery;
-  private String material;
+  private Integer delivery;
+  private Integer material;
   private Integer quantity;
 
-  public String getDelivery() {
+  public Integer getDelivery() {
     return delivery;
   }
 
-  public void setDelivery(String delivery) {
+  public void setDelivery(Integer delivery) {
     this.delivery = delivery;
   }
 
-  public String getMaterial() {
+  public Integer getMaterial() {
     return material;
   }
 
-  public void setMaterial(String material) {
+  public void setMaterial(Integer material) {
     this.material = material;
   }
 
