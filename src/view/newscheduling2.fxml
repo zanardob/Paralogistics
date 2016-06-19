@@ -30,15 +30,15 @@
                   </Text>
                </top>
                <center>
-                  <TableView fx:id="nschLccViewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="AddLicenceTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
-                      <TableColumn prefWidth="180.0" text="Nome do Entregador" />
-                      <TableColumn prefWidth="170.0" text="Placa do Veículo" />
+                      <TableColumn fx:id="DelivererName" prefWidth="180.0" text="Nome do Entregador" />
+                      <TableColumn fx:id="VehiclePlate" prefWidth="170.0" text="Placa do Veículo" />
                     </columns>
                   </TableView>
                </center>
                <bottom>
-                  <Button fx:id="addLccButton" mnemonicParsing="false" onAction="#addLicence" text="Adicionar Licença" BorderPane.alignment="CENTER" />
+                  <Button fx:id="AddLicenceButton" mnemonicParsing="false" onAction="#AddLicence" text="Adicionar Licença" BorderPane.alignment="CENTER" />
                </bottom>
                <HBox.margin>
                   <Insets />
@@ -46,13 +46,13 @@
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="900.0">
                <center>
-                  <TableView fx:id="nschDlvViewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="AddDeliveryTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <columns>
-                        <TableColumn prefWidth="140.0" text="Local" />
-                        <TableColumn prefWidth="140.0" text="Início da Entrega" />
-                        <TableColumn prefWidth="140.0" text="Fim da Entrega" />
-                        <TableColumn prefWidth="140.0" text="Receptor" />
-                        <TableColumn prefWidth="340.0" text="Materiais" />
+                        <TableColumn fx:id="Site" prefWidth="140.0" text="Local" />
+                        <TableColumn fx:id="DeliveryStart" prefWidth="140.0" text="Início da Entrega" />
+                        <TableColumn fx:id="DeliveryEnd" prefWidth="140.0" text="Fim da Entrega" />
+                        <TableColumn fx:id="ReceiverName" prefWidth="140.0" text="Receptor" />
+                        <TableColumn fx:id="Materials" prefWidth="340.0" text="Materiais" />
                      </columns>
                   </TableView>
                </center>
@@ -64,7 +64,7 @@
                   </Text>
                </top>
                <bottom>
-                  <Button fx:id="addDlvButton" mnemonicParsing="false" onAction="#addDelivery" text="Adicionar Entrega" BorderPane.alignment="CENTER" />
+                  <Button fx:id="AddDeliveryButton" mnemonicParsing="false" onAction="#AddDelivery" text="Adicionar Entrega" BorderPane.alignment="CENTER" />
                </bottom>
             </BorderPane>
          </children>
@@ -73,10 +73,10 @@
    <bottom>
       <BorderPane prefHeight="31.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <left>
-            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelNewScheduling" text="Cancelar" BorderPane.alignment="CENTER" />
+            <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#Cancel" text="Cancelar" BorderPane.alignment="CENTER" />
          </left>
          <right>
-            <Button fx:id="confirmButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#confirmNewScheduling" text="Confirma Seleção" BorderPane.alignment="CENTER" />
+            <Button fx:id="ConfirmButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#Confirm" text="Confirma Seleção" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
    </bottom>
