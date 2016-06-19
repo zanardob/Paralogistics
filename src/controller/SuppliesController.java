@@ -11,8 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.Receivers;
+import model.Supplies;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,23 +22,19 @@ import java.util.ResourceBundle;
 /**
  * Created by NilFu on 19/06/2016.
  */
-public class ReceiversController implements Initializable{
+public class SuppliesController implements Initializable{
     @FXML
-    TableView<Receivers> Table;
+    TableView<Supplies> Table;
 
     @FXML
-    TableColumn<Receivers, String> CPF;
+    TableColumn<Supplies, Integer> MaterialID;
 
     @FXML
-    TableColumn<Receivers, String> Name;
-
-    @FXML
-    TableColumn<Receivers, String> RG;
-
+    TableColumn<Supplies, String> CompanyCNPJ;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Receivers> entryList = FXCollections.observableArrayList();
+        ObservableList<Supplies> entryList = FXCollections.observableArrayList();
 
         // Insert code here:
         // Get data from database, create a model object for each entry,
@@ -45,9 +42,8 @@ public class ReceiversController implements Initializable{
         // entryList.add(model object);
 
         Table.setItems(entryList);
-        CPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-        Name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        RG.setCellValueFactory(new PropertyValueFactory<>("rg"));
+        MaterialID.setCellValueFactory(new PropertyValueFactory<>("material"));
+        CompanyCNPJ.setCellValueFactory(new PropertyValueFactory<>("company"));
     }
 
     public void GotoMainMenu(ActionEvent actionEvent) {
@@ -63,6 +59,5 @@ public class ReceiversController implements Initializable{
 
     public void Refresh(ActionEvent actionEvent) {
     }
-
 
 }

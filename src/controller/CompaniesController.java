@@ -1,14 +1,19 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Companies;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,13 +24,19 @@ import java.util.ResourceBundle;
  */
 public class CompaniesController implements Initializable{
     @FXML
-    BorderPane mainPane;
+    TableView<Companies> Table;
 
     @FXML
-    TableView tableView;
+    TableColumn<Companies, String> CNPJ;
 
-    public void gotoMainMenu(ActionEvent actionEvent) {
-        Stage stage = (Stage) mainPane.getScene().getWindow();
+    @FXML
+    TableColumn<Companies, String> Name;
+
+    @FXML
+    TableColumn<Companies, String> Fantasy;
+
+    public void GotoMainMenu(ActionEvent actionEvent) {
+        Stage stage = (Stage) Table.getScene().getWindow();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/mainmenu.fxml"));
             Parent root = loader.load();
@@ -35,11 +46,21 @@ public class CompaniesController implements Initializable{
         }
     }
 
-    public void refreshTable(ActionEvent actionEvent) {
+    public void Refresh(ActionEvent actionEvent) {
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Companies> entryList = FXCollections.observableArrayList();
 
+        // Insert code here:
+        // Get data from database, create a model object for each entry,
+        // and fill the entryList using:
+        // entryList.add(model object);
+
+        Table.setItems(entryList);
+        CNPJ.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
+        Name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        Fantasy.setCellValueFactory(new PropertyValueFactory<>("fantasy"));
     }
 }
