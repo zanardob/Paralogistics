@@ -12,10 +12,9 @@
         <columns>
           <TableColumn fx:id="ID" prefWidth="200.0" text="Código" />
           <TableColumn fx:id="SiteID" prefWidth="200.0" text="#Local" />
-            <TableColumn fx:id="DeliveryStart" prefWidth="240.0" text="Início da Entrega" />
-            <TableColumn fx:id="DeliveryEnd" prefWidth="240.0" text="Fim da Entrega" />
+            <TableColumn fx:id="DeliveryStart" prefWidth="340.0" text="Início da Entrega" />
+            <TableColumn fx:id="DeliveryEnd" prefWidth="340.0" text="Fim da Entrega" />
             <TableColumn fx:id="SchedulingID" prefWidth="200.0" text="#Agendamento" />
-            <TableColumn fx:id="ReceiverCPF" prefWidth="200.0" text="CPF do Receptor" />
         </columns>
       </TableView>
    </center>

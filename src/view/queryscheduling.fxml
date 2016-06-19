@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <top>
+      <BorderPane prefHeight="35.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Consulta de Agendamentos" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+         </center>
+         <left>
+            <Button onAction="#GotoMainMenu" prefHeight="25.0" prefWidth="65.0" text="Início" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Button onAction="#Refresh" prefHeight="25.0" prefWidth="65.0" text="Atualizar" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+   </top>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane prefHeight="372.0" prefWidth="400.0">
+               <top>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Agendamentos" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </top>
+               <center>
+                  <TableView fx:id="SchedulingPickerTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn fx:id="SchedulingID" prefWidth="200.0" text="Código" />
+                      <TableColumn fx:id="SchedulingCompanyCNPJ" prefWidth="200.0" text="CNPJ da Empresa" />
+                    </columns>
+                  </TableView>
+               </center>
+               <bottom>
+                  <HBox prefHeight="25.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="SchedulingPickerTextField" onAction="#SearchSchedules" prefWidth="250.0" promptText="Buscar por Código ou CNPJ da Empresa" />
+                        <Button fx:id="SelectSchedulingButton" mnemonicParsing="false" onAction="#SelectScheduling" text="Selecionar Agendamento" />
+                     </children>
+                  </HBox>
+               </bottom>
+            </BorderPane>
+            <VBox prefHeight="200.0" prefWidth="850.0">
+               <children>
+                  <BorderPane prefHeight="120.0" prefWidth="625.0">
+                     <top>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Empresa Responsável" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </top>
+                     <center>
+                        <GridPane BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CNPJ" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Razão Social" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Fantasia" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <TextField fx:id="CompanyCNPJTextField" alignment="CENTER" editable="false" promptText="CNPJ da Empresa" GridPane.rowIndex="1" />
+                              <TextField fx:id="CompanyNameTextField" alignment="CENTER" editable="false" promptText="Razão Social" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="CompanyFantasyTextField" alignment="CENTER" editable="false" promptText="Nome Fantasia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </center>
+                  </BorderPane>
+                  <BorderPane prefHeight="373.0" prefWidth="625.0">
+                     <top>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Entregas do Agendamento" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </top>
+                     <center>
+                        <TableView fx:id="DeliveryViewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn fx:id="DeliveryID" prefWidth="200.0" text="Código" />
+                              <TableColumn fx:id="DeliverySiteID" prefWidth="200.0" text="#Local" />
+                              <TableColumn fx:id="DeliveryStart" prefWidth="225.0" text="Início da Entrega" />
+                              <TableColumn fx:id="DeliveryEnd" prefWidth="225.0" text="Fim da Entrega" />
+                           </columns>
+                        </TableView>
+                     </center>
+                  </BorderPane>
+                  <BorderPane prefHeight="373.0" prefWidth="625.0">
+                     <center>
+                        <TableView fx:id="DelivererVehicleViewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn fx:id="DelivererCPF" prefWidth="250.0" text="CPF do Entregador" />
+                              <TableColumn fx:id="DelivererName" prefWidth="300.0" text="Nome do Entregador" />
+                              <TableColumn fx:id="VehiclePlate" prefWidth="300.0" text="Placa do Veículo" />
+                           </columns>
+                        </TableView>
+                     </center>
+                     <top>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Entregadores e Veículos" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </top>
+                  </BorderPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>
