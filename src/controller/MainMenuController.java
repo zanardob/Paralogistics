@@ -26,7 +26,6 @@ public class MainMenuController implements Initializable {
 
     }
 
-
     public void showScheduling(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
@@ -107,7 +106,7 @@ public class MainMenuController implements Initializable {
     public void showLicenses(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/licenses.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/licences.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {

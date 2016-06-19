@@ -109,6 +109,7 @@ CREATE TABLE periods (
 	prd_site NUMBER,
 	prd_start DATE,
 	prd_end DATE,
+	prd_receiver CHAR(11) NOT NULL,
 	CONSTRAINT prd_pk PRIMARY KEY (prd_site, prd_start, prd_end),
 	CONSTRAINT prd_site_fk FOREIGN KEY (prd_site) REFERENCES sites(site_id) ON DELETE CASCADE,
 	CONSTRAINT prd_date_ck CHECK (prd_end > prd_start)
@@ -120,11 +121,9 @@ CREATE TABLE deliveries (
 	dlv_start DATE,
 	dlv_end DATE,
 	dlv_scheduling NUMBER NOT NULL,
-	dlv_receiver CHAR(11) NOT NULL,
 	CONSTRAINT dlv_pk PRIMARY KEY (dlv_id),
 	CONSTRAINT dlv_prd_fk FOREIGN KEY (dlv_site, dlv_start, dlv_end) REFERENCES periods(prd_site, prd_start, prd_end) ON DELETE CASCADE,
 	CONSTRAINT dlv_sch_fk FOREIGN KEY (dlv_scheduling) REFERENCES schedulings(sch_id) ON DELETE CASCADE,
-	CONSTRAINT dlv_rcv_fk FOREIGN KEY (dlv_receiver) REFERENCES receivers(rcv_cpf) ON DELETE CASCADE,
 	CONSTRAINT dlv_uk UNIQUE (dlv_site, dlv_start, dlv_end)
 );
 
