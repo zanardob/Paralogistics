@@ -112,6 +112,7 @@ CREATE TABLE periods (
 	prd_receiver CHAR(11) NOT NULL,
 	CONSTRAINT prd_pk PRIMARY KEY (prd_site, prd_start, prd_end),
 	CONSTRAINT prd_site_fk FOREIGN KEY (prd_site) REFERENCES sites(site_id) ON DELETE CASCADE,
+	CONSTRAINT prd_rcv_fk FOREIGN KEY (prd_receiver) REFERENCES receivers(rcv_cpf) ON DELETE CASCADE,
 	CONSTRAINT prd_date_ck CHECK (prd_end > prd_start)
 );
 
