@@ -2,14 +2,12 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.VehiclesController">
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VehiclesController">
     <top>
 |        <HBox BorderPane.alignment="CENTER" alignment="CENTER">
-            <Button onAction="#gotoInicio" text="Início" alignment="CENTER_LEFT"/>
+            <Button onAction="#gotoMainMenu" text="Início" alignment="CENTER_LEFT"/>
             <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Veículos" BorderPane.alignment="CENTER">
                 <font>
                     <Font size="20.0" />

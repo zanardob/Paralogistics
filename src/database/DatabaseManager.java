@@ -12,7 +12,7 @@ public class DatabaseManager {
     private static final String USERNAME = "n8937250";
     private static final String PASSWORD = "n8937250";
 
-    public Connection getConnection(){
+    public Connection getConnection() {
         Connection connection = null;
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -21,7 +21,7 @@ public class DatabaseManager {
             e.printStackTrace();
         }
 
-        try{
+        try {
             connection = DriverManager.getConnection(CONNECTION, USERNAME, PASSWORD);
         } catch (SQLException e) {
             System.out.println("Connection Failed!");

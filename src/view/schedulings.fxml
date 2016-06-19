@@ -15,7 +15,7 @@
                     <Font size="20.0" />
                 </font>
             </Text>
-            <Button onAction="#refreshTable" text="Atualizar" alignment="CENTER_RIGHT"/>
+            <Button onAction="#refreshTable" alignment="CENTER_RIGHT" text="Atualizar"/>
         </HBox>
     </top>
     <center>

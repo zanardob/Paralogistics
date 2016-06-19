@@ -15,9 +15,9 @@
             <Font size="20.0" />
          </font>
       </Text>
-      		<Button onAction="#refreshTable"/>
+      		<Button onAction="#refreshTable" text="Atualizar"/>
 	</HBox>
-   </top>
+  </top>
    <center>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
