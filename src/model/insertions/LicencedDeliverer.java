@@ -1,6 +1,6 @@
-package model.special;
+package model.insertions;
 
-import model.entities.Licences;
+import model.viewtables.Licences;
 
 public class LicencedDeliverer extends Licences {
   private String name;

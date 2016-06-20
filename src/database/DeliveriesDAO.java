@@ -2,7 +2,7 @@ package database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.entities.Deliveries;
+import model.viewtables.Deliveries;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-package model.entities;
+package model.viewtables;
 
 public class Depots {
   private Integer site;

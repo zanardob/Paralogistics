@@ -12,9 +12,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.entities.*;
-import model.special.DeliveryAndEnumerations;
-import model.special.LicencedDeliverer;
+
+import model.viewtables.*;
+import model.insertions.DeliveryAndEnumerations;
+import model.insertions.LicencedDeliverer;
 
 import java.io.IOException;
 import java.net.URL;
