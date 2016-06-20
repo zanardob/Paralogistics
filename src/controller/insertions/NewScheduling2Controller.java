@@ -8,12 +8,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.entities.Companies;
 import model.entities.Deliveries;
 import model.entities.Enumerations;
+import model.entities.Licences;
 import model.special.DeliveryAndEnumerations;
+import model.special.LicencedDeliverer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,18 +29,55 @@ import java.util.ResourceBundle;
  * Created by NilFu on 19/06/2016.
  */
 public class NewScheduling2Controller implements Initializable {
-    @FXML
-    TableView AddLicenceTable;
-
     private Companies company = null;
     private ObservableList<DeliveryAndEnumerations> deliveries;
+    private ObservableList<LicencedDeliverer> licences;
+
+    @FXML TableView<LicencedDeliverer> AddLicenceTable;
+    @FXML TableColumn<LicencedDeliverer, String> DelivererName;
+    @FXML TableColumn<LicencedDeliverer, String> VehiclePlate;
+
+    @FXML TableView<DeliveryAndEnumerations> AddDeliveryTable;
+    @FXML TableColumn<DeliveryAndEnumerations, String> Site;
+    @FXML TableColumn<DeliveryAndEnumerations, java.sql.Date> DeliveryStart;
+    @FXML TableColumn<DeliveryAndEnumerations, java.sql.Date> DeliveryEnd;
+    @FXML TableColumn<DeliveryAndEnumerations, String> Materials;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        refreshTables();
+    }
+
+    public void clearTables() {
+        licences = FXCollections.observableArrayList();
         deliveries = FXCollections.observableArrayList();
     }
 
+    public void refreshTables() {
+        AddLicenceTable.setItems(licences);
+        DelivererName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        VehiclePlate.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
+
+        AddDeliveryTable.setItems(deliveries);
+        Site.setCellValueFactory(new PropertyValueFactory<>("site"));
+        DeliveryStart.setCellValueFactory(new PropertyValueFactory<>("start"));
+        DeliveryEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
+        Materials.setCellValueFactory(new PropertyValueFactory<>("materialsString"));
+    }
+
     public void AddLicence(ActionEvent actionEvent) {
+        Stage stage = (Stage) AddLicenceTable.getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/insertions/newlicence.fxml"));
+            Parent root = loader.load();
+            NewLicenceController controller = loader.getController();
+            controller.setCompany(company);
+            controller.setDeliveries(deliveries);
+            controller.setLicences(licences);
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void AddDelivery(ActionEvent actionEvent) {
@@ -44,7 +86,9 @@ public class NewScheduling2Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/insertions/newdelivery.fxml"));
             Parent root = loader.load();
             NewDeliveryController controller = loader.getController();
-            controller.setDeliveringCompany(company);
+            controller.setCompany(company);
+            controller.setDeliveries(deliveries);
+            controller.setLicences(licences);
             controller.fillMaterialsTable();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -52,8 +96,12 @@ public class NewScheduling2Controller implements Initializable {
         }
     }
 
-    public void addDeliveryToList(DeliveryAndEnumerations delivery) {
-        deliveries.add(delivery);
+    public void setDeliveries(ObservableList<DeliveryAndEnumerations> deliveries) {
+        this.deliveries = deliveries;
+    }
+
+    public void setLicences(ObservableList<LicencedDeliverer> licences) {
+        this.licences = licences;
     }
 
     public void Cancel(ActionEvent actionEvent) {

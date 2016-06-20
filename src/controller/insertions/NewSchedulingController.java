@@ -74,6 +74,7 @@ public class NewSchedulingController implements Initializable{
             Parent root = loader.load();
             NewScheduling2Controller controller = loader.getController();
             controller.setCompany(selectedCompany);
+            controller.clearTables();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();

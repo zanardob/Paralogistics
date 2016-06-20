@@ -17,6 +17,14 @@ public class DeliveryAndEnumerations extends Deliveries {
         materialsString = "";
     }
 
+    public DeliveryAndEnumerations copy() {
+        DeliveryAndEnumerations delivery = new DeliveryAndEnumerations(this.id, this.site, this.start, this.end, this.scheduling);
+        for(Enumerations e : this.enumerations) {
+            delivery.addEnumeration(e);
+        }
+        return delivery;
+    }
+
     public void addEnumeration(Enumerations e) {
         enumerations.add(e);
         if(enumerations.size() > 1) {

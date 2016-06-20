@@ -1,8 +1,6 @@
 package controller.insertions;
 
-import database.CompaniesDAO;
 import database.SitesDAO;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,19 +16,21 @@ import model.entities.Enumerations;
 import model.entities.Periods;
 import model.entities.Sites;
 import model.special.DeliveryAndEnumerations;
+import model.special.LicencedDeliverer;
 import model.special.MaterialAndQuantity;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 /**
  * Created by NilFu on 19/06/2016.
  */
 public class NewDeliveryController implements Initializable{
-    Companies deliveringCompany;
+    private Companies company = null;
+    private ObservableList<DeliveryAndEnumerations> deliveries;
+    private ObservableList<LicencedDeliverer> licences;
 
     ObservableList<Sites> sitesList;
     ObservableList<Periods> periodsList;
@@ -97,7 +97,19 @@ public class NewDeliveryController implements Initializable{
     public void fillMaterialsTable() {
         // materialsList = PEGA OS MATERIAL DA EMPRESA (deliveringCompany)
         System.out.println(materialsList);
-        System.out.println("Deveria ter impresso a lista de materiais da empresa de cnpj: " + deliveringCompany.getCnpj());
+        System.out.println("Deveria ter impresso a lista de materiais da empresa de cnpj: " + company.getCnpj());
+    }
+
+    public void setCompany(Companies company) {
+        this.company = company;
+    }
+
+    public void setDeliveries(ObservableList<DeliveryAndEnumerations> deliveries) {
+        this.deliveries = deliveries;
+    }
+
+    public void setLicences(ObservableList<LicencedDeliverer> licences) {
+        this.licences = licences;
     }
 
     public void Cancel(ActionEvent actionEvent) {
@@ -133,14 +145,6 @@ public class NewDeliveryController implements Initializable{
 
     }
 
-    public Companies getDeliveringCompany() {
-        return deliveringCompany;
-    }
-
-    public void setDeliveringCompany(Companies deliveringCompany) {
-        this.deliveringCompany = deliveringCompany;
-    }
-
     public void Confirm(ActionEvent actionEvent) {
         selectedPeriod = null;
         selectedPeriod = PeriodPickerTable.getSelectionModel().getSelectedItem();
@@ -165,8 +169,11 @@ public class NewDeliveryController implements Initializable{
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/insertions/newscheduling2.fxml"));
             Parent root = loader.load();
+            deliveries.add(delivery);
             NewScheduling2Controller controller = loader.getController();
-            controller.addDeliveryToList(delivery);
+            controller.setCompany(company);
+            controller.setDeliveries(deliveries);
+            controller.setLicences(licences);
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
