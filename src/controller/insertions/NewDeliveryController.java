@@ -1,7 +1,10 @@
 package controller.insertions;
 
+import database.PeriodsDAO;
 import database.SitesDAO;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,6 +64,7 @@ public class NewDeliveryController implements Initializable{
     @FXML TableColumn<MaterialAndQuantity, String> MaterialWeight;
     @FXML TableColumn<MaterialAndQuantity, String> MaterialDimensions;
     @FXML TableColumn<MaterialAndQuantity, Integer> MaterialQuantity;
+    @FXML TextField MaterialEnumeratorTextField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -69,11 +73,43 @@ public class NewDeliveryController implements Initializable{
         materialsList = null;
         try {
             sitesList = new SitesDAO().findAll();
+            periodsList = new PeriodsDAO().findAll();
+            //materialList = new MaterialAndQuantityDAO().findAll();
             System.out.println(sitesList);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        SitePickerTable.setItems(sitesList);
+
+        FilteredList<Sites> filteredSites = new FilteredList<>(sitesList, s -> true);
+        //FilteredList<MaterialAndQuantity> filteredMaterialAndQuantity = new FilteredList<>(materialsList, m -> true);
+
+        SortedList<Sites> sortedSites = new SortedList<>(filteredSites);
+        //SortedList<MaterialAndQuantity> sortedMaterialAndQuantity = new SortedList<>(filteredMaterialAndQuantity);
+
+        sortedSites.comparatorProperty().bind(SitePickerTable.comparatorProperty());
+        //sortedMaterialAndQuantity.comparatorProperty().bind(MaterialEnumeratorTable.comparatorProperty());
+
+        SitePickerTextField.textProperty().addListener((observable, oldValue, newValue) ->
+            filteredSites.setPredicate(site -> {
+                if(newValue == null || newValue.isEmpty())
+                    return true;
+
+                String siteFilter = newValue.toLowerCase();
+                return site.getName().toLowerCase().contains(siteFilter) || site.getStreet().toLowerCase().contains(siteFilter) || ((site.getCompany() != null) && site.getCompany().contains(siteFilter));
+            })
+        );
+
+        /*MaterialEnumeratorTextField.textProperty().addListener((observable, oldValue, newValue) ->
+            filteredMaterialAndQuantity.setPredicate(material -> {
+                if(newValue == null || newValue.isEmpty())
+                    return true;
+
+                String materialFilter = newValue.toLowerCase();
+                return material.getId().equals(Integer.parseInt(materialFilter)) || material.getDescription().toLowerCase().contains(materialFilter);
+            })
+        );*/
+
+        SitePickerTable.setItems(sortedSites);
         SiteName.setCellValueFactory(new PropertyValueFactory<>("name"));
         SiteStreet.setCellValueFactory(new PropertyValueFactory<>("street"));
         SiteNumber.setCellValueFactory(new PropertyValueFactory<>("number"));

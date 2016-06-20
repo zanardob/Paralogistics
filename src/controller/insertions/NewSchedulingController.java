@@ -2,6 +2,8 @@ package controller.insertions;
 
 import database.CompaniesDAO;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.viewtables.Companies;
@@ -26,10 +29,10 @@ import java.util.ResourceBundle;
 public class NewSchedulingController implements Initializable{
 
     @FXML TableView<Companies> CompanyPickerTable;
-
     @FXML TableColumn<Companies, String> CompanyCNPJ;
     @FXML TableColumn<Companies, String> CompanyName;
     @FXML TableColumn<Companies, String> CompanyFantasy;
+    @FXML TextField CompanyPickerTextField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,7 +43,22 @@ public class NewSchedulingController implements Initializable{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        CompanyPickerTable.setItems(entryList);
+
+        FilteredList<Companies> filteredList = new FilteredList<>(entryList, e -> true);
+        SortedList<Companies> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(CompanyPickerTable.comparatorProperty());
+
+        CompanyPickerTextField.textProperty().addListener((observable, oldValue, newValue) ->
+            filteredList.setPredicate(company -> {
+                if(newValue == null || newValue.isEmpty())
+                    return true;
+
+                String companyFilter = newValue.toLowerCase();
+                return company.getCnpj().contains(companyFilter) || company.getName().toLowerCase().contains(companyFilter) || company.getFantasy().toLowerCase().contains(companyFilter);
+            })
+        );
+
+        CompanyPickerTable.setItems(sortedList);
         CompanyCNPJ.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
         CompanyName.setCellValueFactory(new PropertyValueFactory<>("name"));
         CompanyFantasy.setCellValueFactory(new PropertyValueFactory<>("fantasy"));

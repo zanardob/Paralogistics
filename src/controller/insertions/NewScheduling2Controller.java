@@ -1,5 +1,9 @@
 package controller.insertions;
 
+import database.DeliveriesDAO;
+import database.EnumerationsDAO;
+import database.LicencesDAO;
+import database.SchedulingsDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +23,7 @@ import model.insertions.LicencedDeliverer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
@@ -115,24 +120,32 @@ public class NewScheduling2Controller implements Initializable {
 
     public void Confirm(ActionEvent actionEvent) {
         Schedulings scheduling = new Schedulings(0, company.getCnpj());
-        Integer schedulingID = scheduling.getId();
-        // NOW YOU HAVE A SCHEDULING
-        // INSERT IT INTO THE DATABASE AND GET THE ID
-        // schedulingID = ??? (get from database)
 
-        for(LicencedDeliverer licence : licences) {
-            Licences newLicence = new Licences(licence.getDeliverer(), schedulingID, licence.getVehicle());
-            // INSERT THE newLicence INTO THE DATABASE!
-        }
-        for(DeliveryEnumerations delivery : deliveries) {
-            Deliveries newDelivery = new Deliveries(0, delivery.getSite(), delivery.getStart(), delivery.getEnd(), schedulingID);
-            Integer deliveryID = newDelivery.getId();
-            // INSERT THE newDelivery INTO THE DATABASE AND GET THE ID
-            // deliveryID = ??? (get from database)
-            for(Enumerations newEnumeration : delivery.getEnumerations()) {
-                newEnumeration.setDelivery(deliveryID);
-                // INSERT THE enumeration INTO THE DATABASE!
+        SchedulingsDAO schedulingsDAO = new SchedulingsDAO();
+
+        try {
+            // TODO:Error recovery, remove the right things and remove what has to be removed
+            scheduling.setId(schedulingsDAO.insertReturnId(scheduling));
+            for(LicencedDeliverer licence : licences) {
+                Licences newLicence = new Licences(licence.getDeliverer(), scheduling.getId(), licence.getVehicle());
+                // INSERT THE newLicence INTO THE DATABASE!
+                new LicencesDAO().insert(newLicence);
             }
+            for(DeliveryEnumerations delivery : deliveries) {
+                Deliveries newDelivery = new Deliveries(0, delivery.getSite(), delivery.getStart(), delivery.getEnd(), scheduling.getId());
+                // INSERT THE newDelivery INTO THE DATABASE AND GET THE ID
+                // deliveryID = ??? (get from database)
+
+                newDelivery.setId(new DeliveriesDAO().insertReturnId(newDelivery));
+
+                for(Enumerations newEnumeration : delivery.getEnumerations()) {
+                    // INSERT THE enumeration INTO THE DATABASE!
+                    newEnumeration.setDelivery(newDelivery.getId());
+                    new EnumerationsDAO().insert(newEnumeration);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

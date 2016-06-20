@@ -189,7 +189,7 @@ public ObservableList<Depots> findBysite(Integer site) throws SQLException {
             return;
         }
         Statement statement = null;
-        String query = "insert into Depots( dpt_site, dpt_number, dpt_capacity, dpt_dimension) values (" + ins.getSite() + ", " + ins.getNumber() + ", " + ins.getCapacity() + ", " + ins.getDimension() + ")";
+        String query = "insert into Depots( dpt_site, dpt_number, dpt_capacity, dpt_dimension) values (" + ins.getSite() + ", " + ins.getNumber() + ", " + ins.getCapacity() + ", '" + ins.getDimension() + "')";
 
         try {
             statement = connection.createStatement();

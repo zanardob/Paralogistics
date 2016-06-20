@@ -156,7 +156,7 @@ public ObservableList<Vehicles> findByplate(String plate) throws SQLException {
             return;
         }
         Statement statement = null;
-        String query = "insert into Vehicles( vhc_plate, vhc_concession_start, vhc_concession_end) values (" + ins.getPlate() + ", " + ins.getConcession_start() + ", " + ins.getConcession_end() + ")";
+        String query = "insert into Vehicles( vhc_plate, vhc_concession_start, vhc_concession_end) values ('" + ins.getPlate() + "', " + ins.getConcession_start() + ", " + ins.getConcession_end() + ")";
 
         try {
             statement = connection.createStatement();

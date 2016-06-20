@@ -156,7 +156,7 @@ public ObservableList<Licences> findBydeliverer(String deliverer) throws SQLExce
             return;
         }
         Statement statement = null;
-        String query = "insert into Licences( lcc_deliverer, lcc_scheduling, lcc_vehicle) values (" + ins.getDeliverer() + ", " + ins.getScheduling() + ", " + ins.getVehicle() + ")";
+        String query = "insert into Licences( lcc_deliverer, lcc_scheduling, lcc_vehicle) values ('" + ins.getDeliverer() + "', " + ins.getScheduling() + ", '" + ins.getVehicle() + "')";
 
         try {
             statement = connection.createStatement();

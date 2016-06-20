@@ -3,11 +3,10 @@ package database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.viewtables.Deliveries;
+import model.viewtables.Schedulings;
+import oracle.jdbc.OracleTypes;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -239,5 +238,33 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
         if(connection != null) {
             connection.close();
         }
+    }
+
+    public Integer insertReturnId(Deliveries ins) throws SQLException {
+        DatabaseManager dbm = new DatabaseManager();
+        Connection connection = dbm.getConnection();
+        if (connection == null) {
+            System.out.println("Couldn't connect to database");
+            return null;
+        }
+        String query = "begin insert into Deliveries( dlv_id, dlv_site, dlv_start, dlv_end, dlv_scheduling) values (" + ins.getId() +
+                ", " + ins.getSite() + ", " + ins.getStart() + ", " + ins.getEnd() + ", " + ins.getScheduling() + ")" +
+                "returning dlv_id int ?; end;";
+        CallableStatement cs = connection.prepareCall(query);
+        cs.registerOutParameter(1, OracleTypes.NUMBER);
+        cs.execute();
+
+        Integer ret = cs.getInt(1);
+        System.out.println(cs.getInt(1));
+
+        if (cs != null) {
+            cs.close();
+        }
+
+        if (connection != null) {
+            connection.close();
+        }
+
+        return ret;
     }
 }
