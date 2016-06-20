@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <top>
+      <BorderPane prefHeight="35.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Consulta Detalhada de Entregas" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+         </center>
+         <left>
+            <Button onAction="#GotoMainMenu" prefHeight="25.0" prefWidth="65.0" text="Início" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Button onAction="#Refresh" prefHeight="25.0" prefWidth="65.0" text="Atualizar" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+   </top>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane prefHeight="372.0" prefWidth="400.0">
+               <top>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Entregas" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </top>
+               <center>
+                  <TableView fx:id="DeliveryPickerTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn fx:id="DeliveryID" prefWidth="133.0" text="Código" />
+                      <TableColumn fx:id="DeliverySiteID" prefWidth="133.0" text="#Local" />
+                        <TableColumn fx:id="DeliverySchedulingID" prefWidth="134.0" text="#Agendamento" />
+                    </columns>
+                  </TableView>
+               </center>
+               <bottom>
+                  <HBox prefHeight="25.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="DeliveryPickerTextField" onAction="#SearchDeliveries" prefWidth="285.0" promptText="Buscar por Código, #Local ou #Agendamento" />
+                        <Button fx:id="SelectDeliveryButton" mnemonicParsing="false" onAction="#SelectDelivery" text="Selecionar Entrega" />
+                     </children>
+                  </HBox>
+               </bottom>
+            </BorderPane>
+            <VBox prefHeight="200.0" prefWidth="850.0">
+               <children>
+                  <BorderPane prefHeight="140.0" prefWidth="625.0">
+                     <top>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Local de Destino" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </top>
+                     <center>
+                        <GridPane BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Código" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CEP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <TextField fx:id="SiteIDTextField" alignment="CENTER" editable="false" promptText="Código do Local" GridPane.rowIndex="1" />
+                              <TextField fx:id="SiteNameTextField" alignment="CENTER" editable="false" promptText="Nome do Local" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="SiteZipTextField" alignment="CENTER" editable="false" promptText="CEP do Local" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CNPJ da Empresa Responsável" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <TextField fx:id="SiteCompanyCNPJTextField" alignment="CENTER" editable="false" promptText="CNPJ da Empresa Responsável" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Logradouro" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Número" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cidade" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Estado" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                              <TextField fx:id="SiteStreetTextField" alignment="CENTER" editable="false" promptText="Logradouro" GridPane.rowIndex="3" />
+                              <TextField fx:id="SiteNumberTextField" alignment="CENTER" editable="false" promptText="Número" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="SiteCityTextField" alignment="CENTER" editable="false" promptText="Cidade" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <TextField fx:id="SiteStateTextField" alignment="CENTER" editable="false" promptText="Estado" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
+                     </center>
+                  </BorderPane>
+                  <BorderPane prefHeight="80.0" prefWidth="625.0">
+                     <center>
+                        <GridPane BorderPane.alignment="CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="RG" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <TextField fx:id="ReceiverCPFTextField" alignment="CENTER" editable="false" promptText="CPF do Receptor" GridPane.rowIndex="1" />
+                              <TextField fx:id="ReceiverNameTextField" alignment="CENTER" editable="false" promptText="Nome do Receptor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="ReceiverRGTextField" alignment="CENTER" editable="false" promptText="RG do Receptor" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </center>
+                     <top>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Receptor Responsável" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </top>
+                  </BorderPane>
+                  <BorderPane prefHeight="525.0" prefWidth="625.0">
+                     <center>
+                        <TableView fx:id="MaterialViewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn fx:id="MaterialID" prefWidth="100.0" text="Código" />
+                              <TableColumn fx:id="MaterialDescription" prefWidth="350.0" text="Descrição" />
+                              <TableColumn fx:id="MaterialWeight" prefWidth="150.0" text="Peso" />
+                              <TableColumn fx:id="MaterialDimensions" prefWidth="150.0" text="Dimensões" />
+                              <TableColumn fx:id="MaterialQuantity" prefWidth="100.0" text="Quantidade" />
+                           </columns>
+                        </TableView>
+                     </center>
+                     <top>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Materiais Entregues" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </top>
+                  </BorderPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>

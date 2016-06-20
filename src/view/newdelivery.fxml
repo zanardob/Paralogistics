@@ -38,16 +38,16 @@
                               <TableColumn fx:id="SiteStreet" prefWidth="150.0" text="Logradouro" />
                               <TableColumn fx:id="SiteNumber" prefWidth="55.0" text="Número" />
                               <TableColumn fx:id="SiteCity" text="Cidade" />
-                              <TableColumn fx:id="SiteState" prefWidth="55.0" text="Estado" />
+                              <TableColumn fx:id="SiteState" prefWidth="50.0" text="Estado" />
                               <TableColumn fx:id="SiteZip" prefWidth="60.0" text="CEP" />
-                              <TableColumn fx:id="SiteCompany" prefWidth="105.0" text="Empresa" />
+                              <TableColumn fx:id="SiteCompanyCNPJ" prefWidth="110.0" text="CNPJ da Empresa" />
                           </columns>
                         </TableView>
                      </center>
                      <bottom>
                         <HBox prefHeight="31.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <TextField fx:id="SitePickerTextField" onAction="#SearchSites" prefWidth="467.0" promptText="Buscar por Nome ou Empresa" />
+                              <TextField fx:id="SitePickerTextField" onAction="#SearchSites" prefWidth="467.0" promptText="Buscar por Nome, Logradouro ou CNPJ da Empresa" />
                               <Button fx:id="SitePickerConfirmButton" mnemonicParsing="false" onAction="#ConfirmSite" text="Exibir Períodos Disponíveis" />
                            </children>
                         </HBox>

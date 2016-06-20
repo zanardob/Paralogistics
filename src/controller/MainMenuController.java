@@ -25,7 +25,6 @@ public class MainMenuController implements Initializable {
 
     }
 
-
     public void showScheduling(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
