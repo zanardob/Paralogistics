@@ -1,17 +1,17 @@
 package model.entities;
 
 public class Depots {
-  public Depots(Integer site, Integer number, String capacity, String dimensions) {
-    this.site = site;
-    this.number = number;
-    this.capacity = capacity;
-    this.dimensions = dimensions;
-  }
-
   private Integer site;
   private Integer number;
   private String capacity;
-  private String dimensions;
+  private String dimension;
+
+  public Depots(Integer site, Integer number, String capacity, String dimension) {
+    this.site = site;
+    this.number = number;
+    this.capacity = capacity;
+    this.dimension = dimension;
+  }
 
   public Integer getSite() {
     return site;
@@ -37,11 +37,11 @@ public class Depots {
     this.capacity = capacity;
   }
 
-  public String getDimensions() {
-    return dimensions;
+  public String getDimension() {
+    return dimension;
   }
 
-  public void setDimensions(String dimensions) {
-    this.dimensions = dimensions;
+  public void setDimension(String dimension) {
+    this.dimension = dimension;
   }
 }

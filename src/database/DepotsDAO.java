@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by NilFu on 19/06/2016.
@@ -65,7 +67,7 @@ public ObservableList<Depots> findBysite(Integer site) throws SQLException {
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimensions")));
+				rs.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,7 +100,7 @@ public ObservableList<Depots> findBysite(Integer site) throws SQLException {
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimensions")));
+				rs.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,7 +133,7 @@ public ObservableList<Depots> findBysite(Integer site) throws SQLException {
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimensions")));
+				rs.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -146,7 +148,7 @@ public ObservableList<Depots> findBysite(Integer site) throws SQLException {
 		}
 		return rs;
 	}
-	public ObservableList<Depots> findBydimensions(String dimensions) throws SQLException {
+	public ObservableList<Depots> findBydimension(String dimension) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         if(connection == null) {
@@ -157,14 +159,14 @@ public ObservableList<Depots> findBysite(Integer site) throws SQLException {
 		
 		ObservableList<Depots> rs = FXCollections.observableArrayList();
 
-        String query = "select * from Depots where dpt_dimensions = '" + dimensions + "'";
+        String query = "select * from Depots where dpt_dimension = '" + dimension + "'";
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimensions")));
+				rs.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -179,4 +181,30 @@ public ObservableList<Depots> findBysite(Integer site) throws SQLException {
 		}
 		return rs;
 	}
-	}
+	public void insert(Depots ins) throws SQLException {
+        DatabaseManager dbm = new DatabaseManager();
+        Connection connection = dbm.getConnection();
+        if(connection == null) {
+            System.out.println("Couldn't connect to database");
+            return;
+        }
+        Statement statement = null;
+        String query = "insert into Depots( dpt_site, dpt_number, dpt_capacity, dpt_dimension) values (" + ins.getSite() + ", " + ins.getNumber() + ", " + ins.getCapacity() + ", " + ins.getDimension() + ")";
+
+        try {
+            statement = connection.createStatement();
+            statement.execute(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(statement != null){
+            statement.close();
+        }
+
+        if(connection != null) {
+            connection.close();
+        }
+    }
+}

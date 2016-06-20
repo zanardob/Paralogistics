@@ -52,7 +52,7 @@ public class DepotsController implements Initializable{
         SiteID.setCellValueFactory(new PropertyValueFactory<>("site"));
         Number.setCellValueFactory(new PropertyValueFactory<>("number"));
         Capacity.setCellValueFactory(new PropertyValueFactory<>("capacity"));
-        Dimensions.setCellValueFactory(new PropertyValueFactory<>("dimensions"));
+        Dimensions.setCellValueFactory(new PropertyValueFactory<>("dimension"));
     }
 
     public void GotoMainMenu(ActionEvent actionEvent) {

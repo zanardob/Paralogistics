@@ -89,7 +89,7 @@ public class NewDeliveryController implements Initializable{
         MaterialID.setCellValueFactory(new PropertyValueFactory<>("id"));
         MaterialDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         MaterialWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
-        MaterialDimensions.setCellValueFactory(new PropertyValueFactory<>("dimensions"));
+        MaterialDimensions.setCellValueFactory(new PropertyValueFactory<>("dimension"));
         MaterialQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         MaterialQuantity.setEditable(true);
     }

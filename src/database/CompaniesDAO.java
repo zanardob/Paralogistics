@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by NilFu on 19/06/2016.
@@ -146,4 +148,30 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
 		}
 		return rs;
 	}
-	}
+	public void insert(Companies ins) throws SQLException {
+        DatabaseManager dbm = new DatabaseManager();
+        Connection connection = dbm.getConnection();
+        if(connection == null) {
+            System.out.println("Couldn't connect to database");
+            return;
+        }
+        Statement statement = null;
+        String query = "insert into Companies( cpn_cnpj, cpn_name, cpn_fantasy) values (" + ins.getCnpj() + ", " + ins.getName() + ", " + ins.getFantasy() + ")";
+
+        try {
+            statement = connection.createStatement();
+            statement.execute(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(statement != null){
+            statement.close();
+        }
+
+        if(connection != null) {
+            connection.close();
+        }
+    }
+}

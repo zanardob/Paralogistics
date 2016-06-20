@@ -51,7 +51,7 @@ public class MaterialsController implements Initializable{
         ID.setCellValueFactory(new PropertyValueFactory<>("id"));
         Description.setCellValueFactory(new PropertyValueFactory<>("description"));
         Weight.setCellValueFactory(new PropertyValueFactory<>("weight"));
-        Dimensions.setCellValueFactory(new PropertyValueFactory<>("dimensions"));
+        Dimensions.setCellValueFactory(new PropertyValueFactory<>("dimension"));
     }
 
     public void GotoMainMenu(ActionEvent actionEvent) {

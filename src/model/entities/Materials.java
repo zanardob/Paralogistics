@@ -4,13 +4,13 @@ public class Materials {
   protected Integer id;
   protected String description;
   protected String weight;
-  protected String dimensions;
+  protected String dimension;
 
-  public Materials(Integer id, String description, String weight, String dimensions) {
+  public Materials(Integer id, String description, String weight, String dimension) {
     this.id = id;
     this.description = description;
     this.weight = weight;
-    this.dimensions = dimensions;
+    this.dimension = dimension;
   }
 
   public Integer getId() {
@@ -37,11 +37,11 @@ public class Materials {
     this.weight = weight;
   }
 
-  public String getDimensions() {
-    return dimensions;
+  public String getDimension() {
+    return dimension;
   }
 
-  public void setDimensions(String dimensions) {
-    this.dimensions = dimensions;
+  public void setDimension(String dimension) {
+    this.dimension = dimension;
   }
 }

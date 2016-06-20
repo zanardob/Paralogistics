@@ -1,15 +1,15 @@
 package model.entities;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Deliveries {
   protected Integer id;
   protected Integer site;
-  protected java.sql.Date start;
-  protected java.sql.Date end;
+  protected Timestamp start;
+  protected Timestamp end;
   protected Integer scheduling;
 
-  public Deliveries(Integer id, Integer site, Date start, Date end, Integer scheduling) {
+  public Deliveries(Integer id, Integer site, Timestamp start, Timestamp end, Integer scheduling) {
     this.id = id;
     this.site = site;
     this.start = start;
@@ -33,19 +33,19 @@ public class Deliveries {
     this.site = site;
   }
 
-  public java.sql.Date getStart() {
+  public Timestamp getStart() {
     return start;
   }
 
-  public void setStart(java.sql.Date start) {
+  public void setStart(Timestamp start) {
     this.start = start;
   }
 
-  public java.sql.Date getEnd() {
+  public Timestamp getEnd() {
     return end;
   }
 
-  public void setEnd(java.sql.Date end) {
+  public void setEnd(Timestamp end) {
     this.end = end;
   }
 

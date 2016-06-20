@@ -1,14 +1,14 @@
 package model.entities;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Periods {
   private Integer site;
-  private java.sql.Date start;
-  private java.sql.Date end;
+  private Timestamp start;
+  private Timestamp end;
   private String receiver;
 
-  public Periods(Integer site, Date start, Date end, String receiver) {
+  public Periods(Integer site, Timestamp start, Timestamp end, String receiver) {
     this.site = site;
     this.start = start;
     this.end = end;
@@ -31,19 +31,19 @@ public class Periods {
     this.site = site;
   }
 
-  public java.sql.Date getStart() {
+  public Timestamp getStart() {
     return start;
   }
 
-  public void setStart(java.sql.Date start) {
+  public void setStart(Timestamp start) {
     this.start = start;
   }
 
-  public java.sql.Date getEnd() {
+  public Timestamp getEnd() {
     return end;
   }
 
-  public void setEnd(java.sql.Date end) {
+  public void setEnd(Timestamp end) {
     this.end = end;
   }
 }
