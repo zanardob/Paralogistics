@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.entities.Receivers;
+import model.viewtables.Receivers;
 
 import java.io.IOException;
 import java.net.URL;

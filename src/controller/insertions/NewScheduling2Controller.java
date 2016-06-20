@@ -8,19 +8,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.entities.*;
-import model.special.DeliveryAndEnumerations;
-import model.special.LicencedDeliverer;
-import model.special.MaterialAndQuantity;
+
+import model.viewtables.*;
+import model.insertions.DeliveryAndEnumerations;
+import model.insertions.LicencedDeliverer;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Enumeration;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 /**
@@ -37,8 +36,8 @@ public class NewScheduling2Controller implements Initializable {
 
     @FXML TableView<DeliveryAndEnumerations> AddDeliveryTable;
     @FXML TableColumn<DeliveryAndEnumerations, String> Site;
-    @FXML TableColumn<DeliveryAndEnumerations, java.sql.Date> DeliveryStart;
-    @FXML TableColumn<DeliveryAndEnumerations, java.sql.Date> DeliveryEnd;
+    @FXML TableColumn<DeliveryAndEnumerations, Timestamp> DeliveryStart;
+    @FXML TableColumn<DeliveryAndEnumerations, Timestamp> DeliveryEnd;
     @FXML TableColumn<DeliveryAndEnumerations, String> Materials;
 
     @Override

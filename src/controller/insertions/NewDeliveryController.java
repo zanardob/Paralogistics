@@ -14,17 +14,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.entities.Companies;
-import model.entities.Enumerations;
-import model.entities.Periods;
-import model.entities.Sites;
-import model.special.DeliveryAndEnumerations;
-import model.special.LicencedDeliverer;
-import model.special.MaterialAndQuantity;
+import model.viewtables.Companies;
+import model.viewtables.Enumerations;
+import model.viewtables.Periods;
+import model.viewtables.Sites;
+import model.insertions.DeliveryAndEnumerations;
+import model.insertions.LicencedDeliverer;
+import model.insertions.MaterialAndQuantity;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 /**
@@ -54,8 +55,8 @@ public class NewDeliveryController implements Initializable{
     @FXML Button SitePickerConfirmButton;
 
     @FXML TableView<Periods> PeriodPickerTable;
-    @FXML TableColumn<Periods, java.sql.Date> SitePeriodStart;
-    @FXML TableColumn<Periods, java.sql.Date> SitePeriodEnd;
+    @FXML TableColumn<Periods, Timestamp> SitePeriodStart;
+    @FXML TableColumn<Periods, Timestamp> SitePeriodEnd;
 
     @FXML TableView<MaterialAndQuantity> MaterialEnumeratorTable;
     @FXML TableColumn<MaterialAndQuantity, Integer> MaterialID;
@@ -125,7 +126,7 @@ public class NewDeliveryController implements Initializable{
         MaterialID.setCellValueFactory(new PropertyValueFactory<>("id"));
         MaterialDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         MaterialWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
-        MaterialDimensions.setCellValueFactory(new PropertyValueFactory<>("dimensions"));
+        MaterialDimensions.setCellValueFactory(new PropertyValueFactory<>("dimension"));
         MaterialQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         MaterialQuantity.setEditable(true);
     }

@@ -1,4 +1,4 @@
-package model.entities;
+package model.viewtables;
 
 public class Schedulings {
   private Integer id;

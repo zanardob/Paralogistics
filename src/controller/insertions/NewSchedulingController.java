@@ -16,7 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.entities.Companies;
+import model.viewtables.Companies;
 
 import java.io.IOException;
 import java.net.URL;

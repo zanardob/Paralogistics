@@ -12,11 +12,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.entities.Periods;
+import model.viewtables.Periods;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 /**
@@ -30,10 +31,10 @@ public class PeriodsController implements Initializable{
     TableColumn<Periods, Integer> SiteID;
 
     @FXML
-    TableColumn<Periods, java.sql.Date> Start;
+    TableColumn<Periods, Timestamp> Start;
 
     @FXML
-    TableColumn<Periods, java.sql.Date> End;
+    TableColumn<Periods, Timestamp> End;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

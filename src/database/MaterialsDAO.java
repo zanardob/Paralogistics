@@ -2,12 +2,14 @@ package database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.entities.Materials;
+import model.viewtables.Materials;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by NilFu on 19/06/2016.
@@ -65,7 +67,7 @@ public ObservableList<Materials> findByid(Integer id) throws SQLException {
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Materials( resultSet.getInt("mtr_id"), resultSet.getString("mtr_description"), resultSet.getString("mtr_weight"), resultSet.getString("mtr_dimensions")));
+				rs.add(new Materials( resultSet.getInt("mtr_id"), resultSet.getString("mtr_description"), resultSet.getString("mtr_weight"), resultSet.getString("mtr_dimension")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,7 +100,7 @@ public ObservableList<Materials> findByid(Integer id) throws SQLException {
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Materials( resultSet.getInt("mtr_id"), resultSet.getString("mtr_description"), resultSet.getString("mtr_weight"), resultSet.getString("mtr_dimensions")));
+				rs.add(new Materials( resultSet.getInt("mtr_id"), resultSet.getString("mtr_description"), resultSet.getString("mtr_weight"), resultSet.getString("mtr_dimension")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,7 +133,7 @@ public ObservableList<Materials> findByid(Integer id) throws SQLException {
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Materials( resultSet.getInt("mtr_id"), resultSet.getString("mtr_description"), resultSet.getString("mtr_weight"), resultSet.getString("mtr_dimensions")));
+				rs.add(new Materials( resultSet.getInt("mtr_id"), resultSet.getString("mtr_description"), resultSet.getString("mtr_weight"), resultSet.getString("mtr_dimension")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -146,7 +148,7 @@ public ObservableList<Materials> findByid(Integer id) throws SQLException {
 		}
 		return rs;
 	}
-	public ObservableList<Materials> findBydimensions(String dimensions) throws SQLException {
+	public ObservableList<Materials> findBydimension(String dimension) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         if(connection == null) {
@@ -157,14 +159,14 @@ public ObservableList<Materials> findByid(Integer id) throws SQLException {
 		
 		ObservableList<Materials> rs = FXCollections.observableArrayList();
 
-        String query = "select * from Materials where mtr_dimensions = '" + dimensions + "'";
+        String query = "select * from Materials where mtr_dimension = '" + dimension + "'";
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Materials( resultSet.getInt("mtr_id"), resultSet.getString("mtr_description"), resultSet.getString("mtr_weight"), resultSet.getString("mtr_dimensions")));
+				rs.add(new Materials( resultSet.getInt("mtr_id"), resultSet.getString("mtr_description"), resultSet.getString("mtr_weight"), resultSet.getString("mtr_dimension")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -179,4 +181,30 @@ public ObservableList<Materials> findByid(Integer id) throws SQLException {
 		}
 		return rs;
 	}
-	}
+	public void insert(Materials ins) throws SQLException {
+        DatabaseManager dbm = new DatabaseManager();
+        Connection connection = dbm.getConnection();
+        if(connection == null) {
+            System.out.println("Couldn't connect to database");
+            return;
+        }
+        Statement statement = null;
+        String query = "insert into Materials( mtr_id, mtr_description, mtr_weight, mtr_dimension) values (" + ins.getId() + ", " + ins.getDescription() + ", " + ins.getWeight() + ", " + ins.getDimension() + ")";
+
+        try {
+            statement = connection.createStatement();
+            statement.execute(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(statement != null){
+            statement.close();
+        }
+
+        if(connection != null) {
+            connection.close();
+        }
+    }
+}

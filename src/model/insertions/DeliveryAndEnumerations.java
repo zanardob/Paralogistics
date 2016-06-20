@@ -1,17 +1,17 @@
-package model.special;
+package model.insertions;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.entities.Deliveries;
-import model.entities.Enumerations;
+import model.viewtables.Deliveries;
+import model.viewtables.Enumerations;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class DeliveryAndEnumerations extends Deliveries {
     ObservableList<Enumerations> enumerations;
     String materialsString;
 
-    public DeliveryAndEnumerations(Integer id, Integer site, Date start, Date end, Integer scheduling) {
+    public DeliveryAndEnumerations(Integer id, Integer site, Timestamp start, Timestamp end, Integer scheduling) {
         super(id, site, start, end, scheduling);
         enumerations = FXCollections.observableArrayList();
         materialsString = "";

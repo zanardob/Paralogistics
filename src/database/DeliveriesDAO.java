@@ -2,12 +2,14 @@ package database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.entities.Deliveries;
+import model.viewtables.Deliveries;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by NilFu on 19/06/2016.
@@ -31,7 +33,7 @@ public class DeliveriesDAO {
             ResultSet resultSet = statement.executeQuery(findAllQuery);
 
             while(resultSet.next()) {
-                cpns.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getDate("dlv_start"), resultSet.getDate("dlv_end"), resultSet.getInt("dlv_scheduling")));
+                cpns.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
             }
 
         } catch (SQLException e) {
@@ -65,7 +67,7 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getDate("dlv_start"), resultSet.getDate("dlv_end"), resultSet.getInt("dlv_scheduling")));
+				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,7 +100,7 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getDate("dlv_start"), resultSet.getDate("dlv_end"), resultSet.getInt("dlv_scheduling")));
+				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -113,7 +115,7 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
 		}
 		return rs;
 	}
-	public ObservableList<Deliveries> findBystart(java.sql.Date start) throws SQLException {
+	public ObservableList<Deliveries> findBystart(java.sql.Timestamp start) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         if(connection == null) {
@@ -131,7 +133,7 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getDate("dlv_start"), resultSet.getDate("dlv_end"), resultSet.getInt("dlv_scheduling")));
+				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -146,7 +148,7 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
 		}
 		return rs;
 	}
-	public ObservableList<Deliveries> findByend(java.sql.Date end) throws SQLException {
+	public ObservableList<Deliveries> findByend(java.sql.Timestamp end) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         if(connection == null) {
@@ -164,7 +166,7 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getDate("dlv_start"), resultSet.getDate("dlv_end"), resultSet.getInt("dlv_scheduling")));
+				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -197,7 +199,7 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getDate("dlv_start"), resultSet.getDate("dlv_end"), resultSet.getInt("dlv_scheduling")));
+				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -212,4 +214,30 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
 		}
 		return rs;
 	}
-	}
+	public void insert(Deliveries ins) throws SQLException {
+        DatabaseManager dbm = new DatabaseManager();
+        Connection connection = dbm.getConnection();
+        if(connection == null) {
+            System.out.println("Couldn't connect to database");
+            return;
+        }
+        Statement statement = null;
+        String query = "insert into Deliveries( dlv_id, dlv_site, dlv_start, dlv_end, dlv_scheduling) values (" + ins.getId() + ", " + ins.getSite() + ", " + ins.getStart() + ", " + ins.getEnd() + ", " + ins.getScheduling() + ")";
+
+        try {
+            statement = connection.createStatement();
+            statement.execute(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(statement != null){
+            statement.close();
+        }
+
+        if(connection != null) {
+            connection.close();
+        }
+    }
+}

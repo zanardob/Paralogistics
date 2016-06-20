@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.entities.Materials;
+import model.viewtables.Materials;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,7 +51,7 @@ public class MaterialsController implements Initializable{
         ID.setCellValueFactory(new PropertyValueFactory<>("id"));
         Description.setCellValueFactory(new PropertyValueFactory<>("description"));
         Weight.setCellValueFactory(new PropertyValueFactory<>("weight"));
-        Dimensions.setCellValueFactory(new PropertyValueFactory<>("dimensions"));
+        Dimensions.setCellValueFactory(new PropertyValueFactory<>("dimension"));
     }
 
     public void GotoMainMenu(ActionEvent actionEvent) {

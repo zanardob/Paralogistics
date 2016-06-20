@@ -1,6 +1,6 @@
-package controller.viewtables;
+package controller.queries;
 
-import database.DepotsDAO;
+import database.DeliveriesDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,47 +12,43 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.viewtables.Depots;
+import model.viewtables.Deliveries;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 /**
  * Created by NilFu on 19/06/2016.
  */
-public class DepotsController implements Initializable{
-    @FXML
-    TableView<Depots> Table;
+public class QueryDeliveriesController implements Initializable {
 
-    @FXML
-    TableColumn<Depots, Integer> SiteID;
-
-    @FXML
-    TableColumn<Depots, Integer> Number;
-
-    @FXML
-    TableColumn<Depots, String> Capacity;
-
-    @FXML
-    TableColumn<Depots, String> Dimensions;
+    @FXML TableView<Deliveries> Table;
+    @FXML TableColumn<Deliveries, Integer> ID;
+    @FXML TableColumn<Deliveries, Integer> SiteID;
+    @FXML TableColumn<Deliveries, Timestamp> DeliveryStart;
+    @FXML TableColumn<Deliveries, Timestamp> DeliveryEnd;
+    @FXML TableColumn<Deliveries, Integer> SchedulingID;
+    @FXML TableColumn<Deliveries, String> ReceiverCPF;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Depots> entryList = null;
+        ObservableList<Deliveries> entryList = null;
         try {
-            entryList = new DepotsDAO().findAll();
+            entryList = new DeliveriesDAO().findAll();
             System.out.println(entryList);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         Table.setItems(entryList);
+        ID.setCellValueFactory(new PropertyValueFactory<>("id"));
         SiteID.setCellValueFactory(new PropertyValueFactory<>("site"));
-        Number.setCellValueFactory(new PropertyValueFactory<>("number"));
-        Capacity.setCellValueFactory(new PropertyValueFactory<>("capacity"));
-        Dimensions.setCellValueFactory(new PropertyValueFactory<>("dimension"));
+        DeliveryStart.setCellValueFactory(new PropertyValueFactory<>("start"));
+        DeliveryEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
+        SchedulingID.setCellValueFactory(new PropertyValueFactory<>("scheduling"));
     }
 
     public void GotoMainMenu(ActionEvent actionEvent) {
@@ -68,5 +64,4 @@ public class DepotsController implements Initializable{
 
     public void Refresh(ActionEvent actionEvent) {
     }
-
 }

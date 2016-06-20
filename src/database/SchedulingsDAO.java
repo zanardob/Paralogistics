@@ -2,12 +2,14 @@ package database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.entities.Schedulings;
+import model.viewtables.Schedulings;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by NilFu on 19/06/2016.
@@ -113,4 +115,30 @@ public ObservableList<Schedulings> findByid(Integer id) throws SQLException {
 		}
 		return rs;
 	}
-	}
+	public void insert(Schedulings ins) throws SQLException {
+        DatabaseManager dbm = new DatabaseManager();
+        Connection connection = dbm.getConnection();
+        if(connection == null) {
+            System.out.println("Couldn't connect to database");
+            return;
+        }
+        Statement statement = null;
+        String query = "insert into Schedulings( sch_id, sch_company) values (" + ins.getId() + ", " + ins.getCompany() + ")";
+
+        try {
+            statement = connection.createStatement();
+            statement.execute(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(statement != null){
+            statement.close();
+        }
+
+        if(connection != null) {
+            connection.close();
+        }
+    }
+}
