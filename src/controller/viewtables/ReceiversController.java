@@ -1,8 +1,6 @@
 package controller.viewtables;
 
-import database.CompaniesDAO;
 import database.ReceiversDAO;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,8 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.Companies;
-import model.Receivers;
+import model.entities.Receivers;
 
 import java.io.IOException;
 import java.net.URL;

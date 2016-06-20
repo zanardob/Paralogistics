@@ -13,7 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.Companies;
+import model.entities.Companies;
 
 import java.io.IOException;
 import java.net.URL;
@@ -64,7 +64,7 @@ public class NewSchedulingController implements Initializable{
     public void Confirm(ActionEvent actionEvent) {
         Companies selectedCompany = CompanyPickerTable.getSelectionModel().getSelectedItem();
         if(selectedCompany == null) {
-            new Alert(Alert.AlertType.ERROR, "Select a Company");
+            new Alert(Alert.AlertType.ERROR, "Select a Company").show();
             return;
         }
 

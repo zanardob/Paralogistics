@@ -1,10 +1,10 @@
-package model;
+package model.entities;
 
 public class Materials {
-  private Integer id;
-  private String description;
-  private String weight;
-  private String dimensions;
+  protected Integer id;
+  protected String description;
+  protected String weight;
+  protected String dimensions;
 
   public Materials(Integer id, String description, String weight, String dimensions) {
     this.id = id;

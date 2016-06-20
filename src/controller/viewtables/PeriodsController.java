@@ -1,8 +1,6 @@
 package controller.viewtables;
 
-import database.CompaniesDAO;
 import database.PeriodsDAO;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,12 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.Companies;
-import model.Periods;
+import model.entities.Periods;
 
-import javax.xml.ws.FaultAction;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;

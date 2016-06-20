@@ -51,8 +51,7 @@
                         <TableColumn fx:id="Site" prefWidth="140.0" text="Local" />
                         <TableColumn fx:id="DeliveryStart" prefWidth="140.0" text="Início da Entrega" />
                         <TableColumn fx:id="DeliveryEnd" prefWidth="140.0" text="Fim da Entrega" />
-                        <TableColumn fx:id="ReceiverName" prefWidth="140.0" text="Receptor" />
-                        <TableColumn fx:id="Materials" prefWidth="340.0" text="Materiais" />
+                        <TableColumn fx:id="Materials" prefWidth="480.0" text="Materiais" />
                      </columns>
                   </TableView>
                </center>

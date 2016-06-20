@@ -1,13 +1,13 @@
-package model;
+package model.entities;
 
 import java.sql.Date;
 
 public class Deliveries {
-  private Integer id;
-  private Integer site;
-  private java.sql.Date start;
-  private java.sql.Date end;
-  private Integer scheduling;
+  protected Integer id;
+  protected Integer site;
+  protected java.sql.Date start;
+  protected java.sql.Date end;
+  protected Integer scheduling;
 
   public Deliveries(Integer id, Integer site, Date start, Date end, Integer scheduling) {
     this.id = id;

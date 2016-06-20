@@ -1,4 +1,4 @@
-package model;
+package model.entities;
 
 public class Depots {
   public Depots(Integer site, Integer number, String capacity, String dimensions) {
