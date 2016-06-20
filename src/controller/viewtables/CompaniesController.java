@@ -2,6 +2,8 @@ package controller.viewtables;
 
 import database.CompaniesDAO;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,6 +60,7 @@ public class CompaniesController implements Initializable{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         Table.setItems(entryList);
         CNPJ.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
         Name.setCellValueFactory(new PropertyValueFactory<>("name"));

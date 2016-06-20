@@ -4,6 +4,8 @@ import database.CompaniesDAO;
 import database.DeliverersDAO;
 import database.VehiclesDAO;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,12 +65,42 @@ public class NewLicenceController implements Initializable{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        DelivererPickerTable.setItems(deliverersList);
+
+        FilteredList<Deliverers> filteredDeliverers = new FilteredList<>(deliverersList, d -> true);
+        FilteredList<Vehicles> filteredVehicles = new FilteredList<>(vehiclesList, v -> true);
+
+        SortedList<Deliverers> sortedDeliverers = new SortedList<>(filteredDeliverers);
+        SortedList<Vehicles> sortedVehicles = new SortedList<>(filteredVehicles);
+
+        sortedDeliverers.comparatorProperty().bind(DelivererPickerTable.comparatorProperty());
+        sortedVehicles.comparatorProperty().bind(VehiclePickerTable.comparatorProperty());
+
+        DelivererPickerTextField.textProperty().addListener((observable, oldValue, newValue) ->
+                filteredDeliverers.setPredicate(deliverer -> {
+                    if(newValue == null || newValue.isEmpty())
+                        return true;
+
+                    String delivererFilter = newValue.toLowerCase();
+                    return deliverer.getCpf().contains(delivererFilter) || deliverer.getName().toLowerCase().contains(delivererFilter) || deliverer.getRg().contains(delivererFilter);
+                })
+        );
+
+        VehiclePickerTextField.textProperty().addListener((observable, oldValue, newValue) ->
+                filteredVehicles.setPredicate(vehicle -> {
+                    if(newValue == null || newValue.isEmpty())
+                        return true;
+
+                    String vehicleFilter = newValue.toLowerCase();
+                    return vehicle.getPlate().toLowerCase().contains(vehicleFilter);
+                })
+        );
+
+        DelivererPickerTable.setItems(sortedDeliverers);
         DelivererCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         DelivererName.setCellValueFactory(new PropertyValueFactory<>("name"));
         DelivererRG.setCellValueFactory(new PropertyValueFactory<>("rg"));
 
-        VehiclePickerTable.setItems(vehiclesList);
+        VehiclePickerTable.setItems(sortedVehicles);
         VehiclePlate.setCellValueFactory(new PropertyValueFactory<>("plate"));
         VehicleConcessionStart.setCellValueFactory(new PropertyValueFactory<>("concession_start"));
         VehicleConcessionEnd.setCellValueFactory(new PropertyValueFactory<>("concession_end"));
