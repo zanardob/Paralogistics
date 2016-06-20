@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import model.viewtables.Companies;
 import model.viewtables.Deliverers;
 import model.viewtables.Vehicles;
-import model.insertions.DeliveryAndEnumerations;
+import model.insertions.DeliveryEnumerations;
 import model.insertions.LicencedDeliverer;
 
 import java.io.IOException;
@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
  */
 public class NewLicenceController implements Initializable{
     private Companies company = null;
-    private ObservableList<DeliveryAndEnumerations> deliveries;
+    private ObservableList<DeliveryEnumerations> deliveries;
     private ObservableList<LicencedDeliverer> licences;
 
     ObservableList<Deliverers> deliverersList;
@@ -77,7 +77,7 @@ public class NewLicenceController implements Initializable{
         this.company = company;
     }
 
-    public void setDeliveries(ObservableList<DeliveryAndEnumerations> deliveries) {
+    public void setDeliveries(ObservableList<DeliveryEnumerations> deliveries) {
         this.deliveries = deliveries;
     }
 

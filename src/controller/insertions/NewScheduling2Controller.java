@@ -14,7 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import model.viewtables.*;
-import model.insertions.DeliveryAndEnumerations;
+import model.insertions.DeliveryEnumerations;
 import model.insertions.LicencedDeliverer;
 
 import java.io.IOException;
@@ -27,18 +27,18 @@ import java.util.ResourceBundle;
  */
 public class NewScheduling2Controller implements Initializable {
     private Companies company = null;
-    private ObservableList<DeliveryAndEnumerations> deliveries;
+    private ObservableList<DeliveryEnumerations> deliveries;
     private ObservableList<LicencedDeliverer> licences;
 
     @FXML TableView<LicencedDeliverer> AddLicenceTable;
     @FXML TableColumn<LicencedDeliverer, String> DelivererName;
     @FXML TableColumn<LicencedDeliverer, String> VehiclePlate;
 
-    @FXML TableView<DeliveryAndEnumerations> AddDeliveryTable;
-    @FXML TableColumn<DeliveryAndEnumerations, String> Site;
-    @FXML TableColumn<DeliveryAndEnumerations, Timestamp> DeliveryStart;
-    @FXML TableColumn<DeliveryAndEnumerations, Timestamp> DeliveryEnd;
-    @FXML TableColumn<DeliveryAndEnumerations, String> Materials;
+    @FXML TableView<DeliveryEnumerations> AddDeliveryTable;
+    @FXML TableColumn<DeliveryEnumerations, String> Site;
+    @FXML TableColumn<DeliveryEnumerations, Timestamp> DeliveryStart;
+    @FXML TableColumn<DeliveryEnumerations, Timestamp> DeliveryEnd;
+    @FXML TableColumn<DeliveryEnumerations, String> Materials;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -93,7 +93,7 @@ public class NewScheduling2Controller implements Initializable {
         }
     }
 
-    public void setDeliveries(ObservableList<DeliveryAndEnumerations> deliveries) {
+    public void setDeliveries(ObservableList<DeliveryEnumerations> deliveries) {
         this.deliveries = deliveries;
     }
 
@@ -124,7 +124,7 @@ public class NewScheduling2Controller implements Initializable {
             Licences newLicence = new Licences(licence.getDeliverer(), schedulingID, licence.getVehicle());
             // INSERT THE newLicence INTO THE DATABASE!
         }
-        for(DeliveryAndEnumerations delivery : deliveries) {
+        for(DeliveryEnumerations delivery : deliveries) {
             Deliveries newDelivery = new Deliveries(0, delivery.getSite(), delivery.getStart(), delivery.getEnd(), schedulingID);
             Integer deliveryID = newDelivery.getId();
             // INSERT THE newDelivery INTO THE DATABASE AND GET THE ID

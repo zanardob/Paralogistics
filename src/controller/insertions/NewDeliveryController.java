@@ -15,7 +15,7 @@ import model.viewtables.Companies;
 import model.viewtables.Enumerations;
 import model.viewtables.Periods;
 import model.viewtables.Sites;
-import model.insertions.DeliveryAndEnumerations;
+import model.insertions.DeliveryEnumerations;
 import model.insertions.LicencedDeliverer;
 import model.insertions.MaterialAndQuantity;
 
@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
  */
 public class NewDeliveryController implements Initializable{
     private Companies company = null;
-    private ObservableList<DeliveryAndEnumerations> deliveries;
+    private ObservableList<DeliveryEnumerations> deliveries;
     private ObservableList<LicencedDeliverer> licences;
 
     ObservableList<Sites> sitesList;
@@ -105,7 +105,7 @@ public class NewDeliveryController implements Initializable{
         this.company = company;
     }
 
-    public void setDeliveries(ObservableList<DeliveryAndEnumerations> deliveries) {
+    public void setDeliveries(ObservableList<DeliveryEnumerations> deliveries) {
         this.deliveries = deliveries;
     }
 
@@ -159,7 +159,7 @@ public class NewDeliveryController implements Initializable{
             return;
         }
 
-        DeliveryAndEnumerations delivery = new DeliveryAndEnumerations(0, selectedSite.getId(), selectedPeriod.getStart(), selectedPeriod.getEnd(), 0);
+        DeliveryEnumerations delivery = new DeliveryEnumerations(0, selectedSite.getId(), selectedPeriod.getStart(), selectedPeriod.getEnd(), 0);
         for(MaterialAndQuantity material : materialsList) {
             if (material.getQuantity() > 0) {
                 delivery.addEnumeration(new Enumerations(delivery.getId(), material.getId(), material.getQuantity()));

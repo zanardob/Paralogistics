@@ -7,18 +7,18 @@ import model.viewtables.Enumerations;
 
 import java.sql.Timestamp;
 
-public class DeliveryAndEnumerations extends Deliveries {
-    ObservableList<Enumerations> enumerations;
-    String materialsString;
+public class DeliveryEnumerations extends Deliveries {
+    protected ObservableList<Enumerations> enumerations;
+    protected String materialsString;
 
-    public DeliveryAndEnumerations(Integer id, Integer site, Timestamp start, Timestamp end, Integer scheduling) {
+    public DeliveryEnumerations(Integer id, Integer site, Timestamp start, Timestamp end, Integer scheduling) {
         super(id, site, start, end, scheduling);
         enumerations = FXCollections.observableArrayList();
         materialsString = "";
     }
 
-    public DeliveryAndEnumerations copy() {
-        DeliveryAndEnumerations delivery = new DeliveryAndEnumerations(this.id, this.site, this.start, this.end, this.scheduling);
+    public DeliveryEnumerations copy() {
+        DeliveryEnumerations delivery = new DeliveryEnumerations(this.id, this.site, this.start, this.end, this.scheduling);
         for(Enumerations e : this.enumerations) {
             delivery.addEnumeration(e);
         }
