@@ -19,6 +19,7 @@ import model.insertions.LicencedDeliverer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 /**
@@ -35,8 +36,8 @@ public class NewScheduling2Controller implements Initializable {
 
     @FXML TableView<DeliveryAndEnumerations> AddDeliveryTable;
     @FXML TableColumn<DeliveryAndEnumerations, String> Site;
-    @FXML TableColumn<DeliveryAndEnumerations, java.sql.Date> DeliveryStart;
-    @FXML TableColumn<DeliveryAndEnumerations, java.sql.Date> DeliveryEnd;
+    @FXML TableColumn<DeliveryAndEnumerations, Timestamp> DeliveryStart;
+    @FXML TableColumn<DeliveryAndEnumerations, Timestamp> DeliveryEnd;
     @FXML TableColumn<DeliveryAndEnumerations, String> Materials;
 
     @Override

@@ -17,6 +17,7 @@ import model.viewtables.Vehicles;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 /**
@@ -30,10 +31,10 @@ public class VehiclesController implements Initializable{
     TableColumn<Vehicles, Integer> Plate;
 
     @FXML
-    TableColumn<Vehicles, java.sql.Date> ConcessionStart;
+    TableColumn<Vehicles, Timestamp> ConcessionStart;
 
     @FXML
-    TableColumn<Vehicles, java.sql.Date> ConcessionEnd;
+    TableColumn<Vehicles, Timestamp> ConcessionEnd;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

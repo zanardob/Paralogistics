@@ -17,6 +17,7 @@ import model.viewtables.Deliveries;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 /**
@@ -33,10 +34,10 @@ public class DeliveriesController implements Initializable {
     TableColumn<Deliveries, Integer> SiteID;
 
     @FXML
-    TableColumn<Deliveries, java.sql.Date> DeliveryStart;
+    TableColumn<Deliveries, Timestamp> DeliveryStart;
 
     @FXML
-    TableColumn<Deliveries, java.sql.Date> DeliveryEnd;
+    TableColumn<Deliveries, Timestamp> DeliveryEnd;
 
     @FXML
     TableColumn<Deliveries, Integer> SchedulingID;

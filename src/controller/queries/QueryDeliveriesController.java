@@ -1,6 +1,6 @@
-package controller.viewtables;
+package controller.queries;
 
-import database.PeriodsDAO;
+import database.DeliveriesDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.viewtables.Periods;
+import model.viewtables.Deliveries;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,33 +23,32 @@ import java.util.ResourceBundle;
 /**
  * Created by NilFu on 19/06/2016.
  */
-public class PeriodsController implements Initializable{
-    @FXML
-    TableView<Periods> Table;
+public class QueryDeliveriesController implements Initializable {
 
-    @FXML
-    TableColumn<Periods, Integer> SiteID;
-
-    @FXML
-    TableColumn<Periods, Timestamp> Start;
-
-    @FXML
-    TableColumn<Periods, Timestamp> End;
+    @FXML TableView<Deliveries> Table;
+    @FXML TableColumn<Deliveries, Integer> ID;
+    @FXML TableColumn<Deliveries, Integer> SiteID;
+    @FXML TableColumn<Deliveries, Timestamp> DeliveryStart;
+    @FXML TableColumn<Deliveries, Timestamp> DeliveryEnd;
+    @FXML TableColumn<Deliveries, Integer> SchedulingID;
+    @FXML TableColumn<Deliveries, String> ReceiverCPF;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Periods> entryList = null;
+        ObservableList<Deliveries> entryList = null;
         try {
-            entryList = new PeriodsDAO().findAll();
+            entryList = new DeliveriesDAO().findAll();
             System.out.println(entryList);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         Table.setItems(entryList);
+        ID.setCellValueFactory(new PropertyValueFactory<>("id"));
         SiteID.setCellValueFactory(new PropertyValueFactory<>("site"));
-        Start.setCellValueFactory(new PropertyValueFactory<>("start"));
-        End.setCellValueFactory(new PropertyValueFactory<>("end"));
+        DeliveryStart.setCellValueFactory(new PropertyValueFactory<>("start"));
+        DeliveryEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
+        SchedulingID.setCellValueFactory(new PropertyValueFactory<>("scheduling"));
     }
 
     public void GotoMainMenu(ActionEvent actionEvent) {
@@ -65,5 +64,4 @@ public class PeriodsController implements Initializable{
 
     public void Refresh(ActionEvent actionEvent) {
     }
-
 }

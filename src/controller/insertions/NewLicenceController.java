@@ -24,6 +24,7 @@ import model.insertions.LicencedDeliverer;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 /**
@@ -45,8 +46,8 @@ public class NewLicenceController implements Initializable{
 
     @FXML TableView<Vehicles> VehiclePickerTable;
     @FXML TableColumn<Vehicles, String> VehiclePlate;
-    @FXML TableColumn<Vehicles, java.sql.Date> VehicleConcessionStart;
-    @FXML TableColumn<Vehicles, java.sql.Date> VehicleConcessionEnd;
+    @FXML TableColumn<Vehicles, Timestamp> VehicleConcessionStart;
+    @FXML TableColumn<Vehicles, Timestamp> VehicleConcessionEnd;
     @FXML TextField VehiclePickerTextField;
 
     @Override

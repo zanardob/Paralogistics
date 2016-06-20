@@ -22,6 +22,7 @@ import model.insertions.MaterialAndQuantity;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 /**
@@ -51,8 +52,8 @@ public class NewDeliveryController implements Initializable{
     @FXML Button SitePickerConfirmButton;
 
     @FXML TableView<Periods> PeriodPickerTable;
-    @FXML TableColumn<Periods, java.sql.Date> SitePeriodStart;
-    @FXML TableColumn<Periods, java.sql.Date> SitePeriodEnd;
+    @FXML TableColumn<Periods, Timestamp> SitePeriodStart;
+    @FXML TableColumn<Periods, Timestamp> SitePeriodEnd;
 
     @FXML TableView<MaterialAndQuantity> MaterialEnumeratorTable;
     @FXML TableColumn<MaterialAndQuantity, Integer> MaterialID;
