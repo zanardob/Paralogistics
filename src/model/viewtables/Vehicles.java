@@ -1,4 +1,4 @@
-package model.entities;
+package model.viewtables;
 
 import java.sql.Date;
 

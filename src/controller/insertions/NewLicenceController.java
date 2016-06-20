@@ -1,6 +1,5 @@
 package controller.insertions;
 
-import database.CompaniesDAO;
 import database.DeliverersDAO;
 import database.VehiclesDAO;
 import javafx.collections.ObservableList;
@@ -16,12 +15,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.entities.Companies;
-import model.entities.Deliverers;
-import model.entities.Licences;
-import model.entities.Vehicles;
-import model.special.DeliveryAndEnumerations;
-import model.special.LicencedDeliverer;
+import model.viewtables.Companies;
+import model.viewtables.Deliverers;
+import model.viewtables.Vehicles;
+import model.insertions.DeliveryAndEnumerations;
+import model.insertions.LicencedDeliverer;
 
 import java.io.IOException;
 import java.net.URL;

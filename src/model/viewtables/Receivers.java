@@ -1,4 +1,4 @@
-package model.entities;
+package model.viewtables;
 
 public class Receivers {
   private String cpf;

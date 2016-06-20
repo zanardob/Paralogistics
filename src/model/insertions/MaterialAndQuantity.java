@@ -1,6 +1,6 @@
-package model.special;
+package model.insertions;
 
-import model.entities.Materials;
+import model.viewtables.Materials;
 
 public class MaterialAndQuantity extends Materials {
   private Integer quantity = 0;

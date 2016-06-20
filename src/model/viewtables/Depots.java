@@ -1,4 +1,4 @@
-package model.entities;
+package model.viewtables;
 
 public class Depots {
   public Depots(Integer site, Integer number, String capacity, String dimensions) {
