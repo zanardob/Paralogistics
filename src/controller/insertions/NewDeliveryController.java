@@ -115,8 +115,13 @@ public class NewDeliveryController implements Initializable{
     public void Cancel(ActionEvent actionEvent) {
         Stage stage = (Stage) SitePickerTable.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/insertions/newscheduling.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/insertions/newscheduling2.fxml"));
             Parent root = loader.load();
+            NewScheduling2Controller controller = loader.getController();
+            controller.setCompany(company);
+            controller.setDeliveries(deliveries);
+            controller.setLicences(licences);
+            controller.refreshTables();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
@@ -174,6 +179,7 @@ public class NewDeliveryController implements Initializable{
             controller.setCompany(company);
             controller.setDeliveries(deliveries);
             controller.setLicences(licences);
+            controller.refreshTables();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();

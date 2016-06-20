@@ -45,6 +45,10 @@ public class DeliveryAndEnumerations extends Deliveries {
         }
     }
 
+    public ObservableList<Enumerations> getEnumerations() {
+        return enumerations;
+    }
+
     public void clearEnumerations() {
         enumerations.clear();
         materialsString = "";

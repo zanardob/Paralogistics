@@ -13,12 +13,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.entities.Companies;
-import model.entities.Deliveries;
-import model.entities.Enumerations;
-import model.entities.Licences;
+import model.entities.*;
 import model.special.DeliveryAndEnumerations;
 import model.special.LicencedDeliverer;
+import model.special.MaterialAndQuantity;
 
 import java.io.IOException;
 import java.net.URL;
@@ -117,7 +115,26 @@ public class NewScheduling2Controller implements Initializable {
     }
 
     public void Confirm(ActionEvent actionEvent) {
+        Schedulings scheduling = new Schedulings(0, company.getCnpj());
+        Integer schedulingID = scheduling.getId();
+        // NOW YOU HAVE A SCHEDULING
+        // INSERT IT INTO THE DATABASE AND GET THE ID
+        // schedulingID = ??? (get from database)
 
+        for(LicencedDeliverer licence : licences) {
+            Licences newLicence = new Licences(licence.getDeliverer(), schedulingID, licence.getVehicle());
+            // INSERT THE newLicence INTO THE DATABASE!
+        }
+        for(DeliveryAndEnumerations delivery : deliveries) {
+            Deliveries newDelivery = new Deliveries(0, delivery.getSite(), delivery.getStart(), delivery.getEnd(), schedulingID);
+            Integer deliveryID = newDelivery.getId();
+            // INSERT THE newDelivery INTO THE DATABASE AND GET THE ID
+            // deliveryID = ??? (get from database)
+            for(Enumerations newEnumeration : delivery.getEnumerations()) {
+                newEnumeration.setDelivery(deliveryID);
+                // INSERT THE enumeration INTO THE DATABASE!
+            }
+        }
     }
 
     public void setCompany(Companies cpn) {

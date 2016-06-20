@@ -89,8 +89,13 @@ public class NewLicenceController implements Initializable{
     public void Cancel(ActionEvent actionEvent) {
         Stage stage = (Stage) DelivererPickerTable.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/mainmenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/insertions/newscheduling2.fxml"));
             Parent root = loader.load();
+            NewScheduling2Controller controller = loader.getController();
+            controller.setCompany(company);
+            controller.setDeliveries(deliveries);
+            controller.setLicences(licences);
+            controller.refreshTables();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
