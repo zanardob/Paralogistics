@@ -28,7 +28,7 @@ public class MainMenuController implements Initializable {
     public void showScheduling(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/schedulings.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/schedulings.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -39,7 +39,7 @@ public class MainMenuController implements Initializable {
     public void showDepots(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/depots.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/depots.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -50,7 +50,7 @@ public class MainMenuController implements Initializable {
     public void showEnumerations(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/enumerations.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/enumerations.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -61,7 +61,7 @@ public class MainMenuController implements Initializable {
     public void showCompanies(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/companies.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/companies.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -72,7 +72,7 @@ public class MainMenuController implements Initializable {
     public void showDeliveries(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/deliveries.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/deliveries.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -83,7 +83,7 @@ public class MainMenuController implements Initializable {
     public void showDeliverers(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/deliverers.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/deliverers.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -94,7 +94,7 @@ public class MainMenuController implements Initializable {
     public void showSuplies(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supplies.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/supplies.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -105,7 +105,7 @@ public class MainMenuController implements Initializable {
     public void showLicenses(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/licences.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/licences.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -116,7 +116,7 @@ public class MainMenuController implements Initializable {
     public void showSites(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/sites.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/sites.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -127,7 +127,7 @@ public class MainMenuController implements Initializable {
     public void showMaterials(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/materials.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/materials.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -138,7 +138,7 @@ public class MainMenuController implements Initializable {
     public void showPeriods(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/periods.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/periods.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -149,7 +149,7 @@ public class MainMenuController implements Initializable {
     public void showReceivers(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/receivers.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/receivers.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -160,7 +160,7 @@ public class MainMenuController implements Initializable {
     public void showVehicles(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/vehicles.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewtables/vehicles.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -171,7 +171,73 @@ public class MainMenuController implements Initializable {
     public void newScheduling(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/newscheduling.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/insertions/newscheduling.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void queryDeliveries(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainPane.getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/queries/querydeliveries.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void querySchedulings(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainPane.getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/queries/queryschedulings.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void queryDeliveriesDetailed(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainPane.getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/queries/querydeliveriesdetailed.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void queryCompanies(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainPane.getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/queries/querycompanies.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void queryPeriods(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainPane.getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/queries/queryperiods.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void queryStats(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainPane.getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/queries/querystats.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
