@@ -2,7 +2,7 @@ package database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Companies;
+import model.Licences;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,11 +14,11 @@ import java.util.List;
 /**
  * Created by NilFu on 19/06/2016.
  */
-public class CompaniesDAO {
-    public ObservableList<Companies> findAll() throws SQLException {
+public class LicencesDAO {
+    public ObservableList<Licences> findAll() throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        ObservableList<Companies> cpns = FXCollections.observableArrayList();
+        ObservableList<Licences> cpns = FXCollections.observableArrayList();
 
         if(connection == null) {
             System.out.println("Couldn't connect to database");
@@ -26,14 +26,14 @@ public class CompaniesDAO {
         }
         Statement statement = null;
 
-        String findAllQuery = "select * from Companies";
+        String findAllQuery = "select * from Licences";
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(findAllQuery);
 
             while(resultSet.next()) {
-                cpns.add(new Companies( resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
+                cpns.add(new Licences( resultSet.getString("lcc_deliverer"), resultSet.getInt("lcc_scheduling"), resultSet.getString("lcc_vehicle")));
             }
 
         } catch (SQLException e) {
@@ -49,7 +49,7 @@ public class CompaniesDAO {
         }
         return cpns;
     }
-public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
+public ObservableList<Licences> findBydeliverer(String deliverer) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         if(connection == null) {
@@ -58,16 +58,16 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
         }
         Statement statement = null;
 		
-		ObservableList<Companies> rs = FXCollections.observableArrayList();
+		ObservableList<Licences> rs = FXCollections.observableArrayList();
 
-        String query = "select * from Companies where cpn_cnpj = '" + cnpj + "'";
+        String query = "select * from Licences where lcc_deliverer = '" + deliverer + "'";
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Companies( resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
+				rs.add(new Licences( resultSet.getString("lcc_deliverer"), resultSet.getInt("lcc_scheduling"), resultSet.getString("lcc_vehicle")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,7 +82,7 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
 		}
 		return rs;
 	}
-	public ObservableList<Companies> findByname(String name) throws SQLException {
+	public ObservableList<Licences> findByscheduling(Integer scheduling) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         if(connection == null) {
@@ -91,16 +91,16 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
         }
         Statement statement = null;
 		
-		ObservableList<Companies> rs = FXCollections.observableArrayList();
+		ObservableList<Licences> rs = FXCollections.observableArrayList();
 
-        String query = "select * from Companies where cpn_name = '" + name + "'";
+        String query = "select * from Licences where lcc_scheduling = " + scheduling + "";
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Companies( resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
+				rs.add(new Licences( resultSet.getString("lcc_deliverer"), resultSet.getInt("lcc_scheduling"), resultSet.getString("lcc_vehicle")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,7 +115,7 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
 		}
 		return rs;
 	}
-	public ObservableList<Companies> findByfantasy(String fantasy) throws SQLException {
+	public ObservableList<Licences> findByvehicle(String vehicle) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         if(connection == null) {
@@ -124,16 +124,16 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
         }
         Statement statement = null;
 		
-		ObservableList<Companies> rs = FXCollections.observableArrayList();
+		ObservableList<Licences> rs = FXCollections.observableArrayList();
 
-        String query = "select * from Companies where cpn_fantasy = '" + fantasy + "'";
+        String query = "select * from Licences where lcc_vehicle = '" + vehicle + "'";
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Companies( resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
+				rs.add(new Licences( resultSet.getString("lcc_deliverer"), resultSet.getInt("lcc_scheduling"), resultSet.getString("lcc_vehicle")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -5,6 +5,12 @@ public class Deliverers {
   private String name;
   private String rg;
 
+  public Deliverers(String cpf, String name, String rg) {
+    this.cpf = cpf;
+    this.name = name;
+    this.rg = rg;
+  }
+
   public String getCpf() {
     return cpf;
   }

@@ -13,6 +13,12 @@ public class Companies {
     this.cnpj = cnpj;
   }
 
+  public Companies(String cnpj, String name, String fantasy) {
+    this.cnpj = cnpj;
+    this.name = name;
+    this.fantasy = fantasy;
+  }
+
   public String getName() {
     return name;
   }

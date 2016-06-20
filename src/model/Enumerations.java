@@ -5,6 +5,12 @@ public class Enumerations {
   private Integer material;
   private Integer quantity;
 
+  public Enumerations(Integer delivery, Integer material, Integer quantity) {
+    this.delivery = delivery;
+    this.material = material;
+    this.quantity = quantity;
+  }
+
   public Integer getDelivery() {
     return delivery;
   }

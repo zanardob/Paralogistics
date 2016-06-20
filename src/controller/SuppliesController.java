@@ -1,5 +1,7 @@
 package controller;
 
+import database.CompaniesDAO;
+import database.SuppliesDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,10 +15,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Companies;
 import model.Supplies;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
@@ -34,13 +38,13 @@ public class SuppliesController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Supplies> entryList = FXCollections.observableArrayList();
-
-        // Insert code here:
-        // Get data from database, create a model object for each entry,
-        // and fill the entryList using:
-        // entryList.add(model object);
-
+        ObservableList<Supplies> entryList = null;
+        try {
+            entryList = new SuppliesDAO().findAll();
+            System.out.println(entryList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         Table.setItems(entryList);
         MaterialID.setCellValueFactory(new PropertyValueFactory<>("material"));
         CompanyCNPJ.setCellValueFactory(new PropertyValueFactory<>("company"));

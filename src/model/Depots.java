@@ -1,6 +1,13 @@
 package model;
 
 public class Depots {
+  public Depots(Integer site, Integer number, String capacity, String dimensions) {
+    this.site = site;
+    this.number = number;
+    this.capacity = capacity;
+    this.dimensions = dimensions;
+  }
+
   private Integer site;
   private Integer number;
   private String capacity;

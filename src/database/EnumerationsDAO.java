@@ -2,7 +2,7 @@ package database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Companies;
+import model.Enumerations;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,11 +14,11 @@ import java.util.List;
 /**
  * Created by NilFu on 19/06/2016.
  */
-public class CompaniesDAO {
-    public ObservableList<Companies> findAll() throws SQLException {
+public class EnumerationsDAO {
+    public ObservableList<Enumerations> findAll() throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        ObservableList<Companies> cpns = FXCollections.observableArrayList();
+        ObservableList<Enumerations> cpns = FXCollections.observableArrayList();
 
         if(connection == null) {
             System.out.println("Couldn't connect to database");
@@ -26,14 +26,14 @@ public class CompaniesDAO {
         }
         Statement statement = null;
 
-        String findAllQuery = "select * from Companies";
+        String findAllQuery = "select * from Enumerations";
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(findAllQuery);
 
             while(resultSet.next()) {
-                cpns.add(new Companies( resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
+                cpns.add(new Enumerations( resultSet.getInt("enum_delivery"), resultSet.getInt("enum_material"), resultSet.getInt("enum_quantity")));
             }
 
         } catch (SQLException e) {
@@ -49,7 +49,7 @@ public class CompaniesDAO {
         }
         return cpns;
     }
-public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
+public ObservableList<Enumerations> findBydelivery(Integer delivery) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         if(connection == null) {
@@ -58,16 +58,16 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
         }
         Statement statement = null;
 		
-		ObservableList<Companies> rs = FXCollections.observableArrayList();
+		ObservableList<Enumerations> rs = FXCollections.observableArrayList();
 
-        String query = "select * from Companies where cpn_cnpj = '" + cnpj + "'";
+        String query = "select * from Enumerations where enum_delivery = " + delivery + "";
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Companies( resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
+				rs.add(new Enumerations( resultSet.getInt("enum_delivery"), resultSet.getInt("enum_material"), resultSet.getInt("enum_quantity")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,7 +82,7 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
 		}
 		return rs;
 	}
-	public ObservableList<Companies> findByname(String name) throws SQLException {
+	public ObservableList<Enumerations> findBymaterial(Integer material) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         if(connection == null) {
@@ -91,16 +91,16 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
         }
         Statement statement = null;
 		
-		ObservableList<Companies> rs = FXCollections.observableArrayList();
+		ObservableList<Enumerations> rs = FXCollections.observableArrayList();
 
-        String query = "select * from Companies where cpn_name = '" + name + "'";
+        String query = "select * from Enumerations where enum_material = " + material + "";
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Companies( resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
+				rs.add(new Enumerations( resultSet.getInt("enum_delivery"), resultSet.getInt("enum_material"), resultSet.getInt("enum_quantity")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,7 +115,7 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
 		}
 		return rs;
 	}
-	public ObservableList<Companies> findByfantasy(String fantasy) throws SQLException {
+	public ObservableList<Enumerations> findByquantity(Integer quantity) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         if(connection == null) {
@@ -124,16 +124,16 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
         }
         Statement statement = null;
 		
-		ObservableList<Companies> rs = FXCollections.observableArrayList();
+		ObservableList<Enumerations> rs = FXCollections.observableArrayList();
 
-        String query = "select * from Companies where cpn_fantasy = '" + fantasy + "'";
+        String query = "select * from Enumerations where enum_quantity = " + quantity + "";
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
 			while(resultSet.next()) {
-				rs.add(new Companies( resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
+				rs.add(new Enumerations( resultSet.getInt("enum_delivery"), resultSet.getInt("enum_material"), resultSet.getInt("enum_quantity")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

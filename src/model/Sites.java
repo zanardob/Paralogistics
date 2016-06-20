@@ -10,6 +10,17 @@ public class Sites {
   private String zip;
   private String company;
 
+  public Sites(Integer id, String name, String street, Integer number, String city, String state, String zip, String company) {
+    this.id = id;
+    this.name = name;
+    this.street = street;
+    this.number = number;
+    this.city = city;
+    this.state = state;
+    this.zip = zip;
+    this.company = company;
+  }
+
   public Integer getId() {
     return id;
   }

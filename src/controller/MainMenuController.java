@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -107,7 +106,7 @@ public class MainMenuController implements Initializable {
     public void showLicenses(ActionEvent actionEvent) {
         Stage stage = (Stage) mainPane.getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/licenses.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/licences.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -171,5 +170,13 @@ public class MainMenuController implements Initializable {
     }
 
     public void newScheduling(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainPane.getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/newscheduling.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

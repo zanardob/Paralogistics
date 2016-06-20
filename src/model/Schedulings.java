@@ -4,6 +4,11 @@ public class Schedulings {
   private Integer id;
   private String company;
 
+  public Schedulings(Integer id, String company) {
+    this.id = id;
+    this.company = company;
+  }
+
   public Integer getId() {
     return id;
   }

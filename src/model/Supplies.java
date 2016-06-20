@@ -4,6 +4,11 @@ public class Supplies {
   private Integer material;
   private String company;
 
+  public Supplies(Integer material, String company) {
+    this.material = material;
+    this.company = company;
+  }
+
   public Integer getMaterial() {
     return material;
   }

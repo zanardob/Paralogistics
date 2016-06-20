@@ -5,6 +5,12 @@ public class Licences {
   private Integer scheduling;
   private String vehicle;
 
+  public Licences(String deliverer, Integer scheduling, String vehicle) {
+    this.deliverer = deliverer;
+    this.scheduling = scheduling;
+    this.vehicle = vehicle;
+  }
+
   public String getDeliverer() {
     return deliverer;
   }

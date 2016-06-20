@@ -1,9 +1,27 @@
 package model;
 
+import java.sql.Date;
+
 public class Periods {
   private Integer site;
   private java.sql.Date start;
   private java.sql.Date end;
+  private String receiver;
+
+  public Periods(Integer site, Date start, Date end, String receiver) {
+    this.site = site;
+    this.start = start;
+    this.end = end;
+    this.receiver = receiver;
+  }
+
+  public String getReceiver() {
+    return receiver;
+  }
+
+  public void setReceiver(String receiver) {
+    this.receiver = receiver;
+  }
 
   public Integer getSite() {
     return site;

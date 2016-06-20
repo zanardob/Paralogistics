@@ -6,6 +6,13 @@ public class Materials {
   private String weight;
   private String dimensions;
 
+  public Materials(Integer id, String description, String weight, String dimensions) {
+    this.id = id;
+    this.description = description;
+    this.weight = weight;
+    this.dimensions = dimensions;
+  }
+
   public Integer getId() {
     return id;
   }

@@ -1,5 +1,7 @@
 package controller;
 
+import database.CompaniesDAO;
+import database.SchedulingsDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import model.Schedulings;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
@@ -49,13 +52,13 @@ public class SchedulingsController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Schedulings> entryList = FXCollections.observableArrayList();
-
-        // Insert code here:
-        // Get data from database, create a model object for each entry,
-        // and fill the entryList using:
-        // entryList.add(model object);
-
+        ObservableList<Schedulings> entryList = null;
+        try {
+            entryList = new SchedulingsDAO().findAll();
+            System.out.println(entryList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         Table.setItems(entryList);
         ID.setCellValueFactory(new PropertyValueFactory<>("id"));
         CompanyCNPJ.setCellValueFactory(new PropertyValueFactory<>("company"));

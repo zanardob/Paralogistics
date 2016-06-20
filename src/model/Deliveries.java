@@ -1,12 +1,21 @@
 package model;
 
+import java.sql.Date;
+
 public class Deliveries {
   private Integer id;
   private Integer site;
   private java.sql.Date start;
   private java.sql.Date end;
   private Integer scheduling;
-  private String receiver;
+
+  public Deliveries(Integer id, Integer site, Date start, Date end, Integer scheduling) {
+    this.id = id;
+    this.site = site;
+    this.start = start;
+    this.end = end;
+    this.scheduling = scheduling;
+  }
 
   public Integer getId() {
     return id;
@@ -48,11 +57,4 @@ public class Deliveries {
     this.scheduling = scheduling;
   }
 
-  public String getReceiver() {
-    return receiver;
-  }
-
-  public void setReceiver(String receiver) {
-    this.receiver = receiver;
-  }
 }

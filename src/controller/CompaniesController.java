@@ -1,5 +1,6 @@
 package controller;
 
+import database.CompaniesDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import model.Companies;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
@@ -51,13 +53,13 @@ public class CompaniesController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Companies> entryList = FXCollections.observableArrayList();
-
-        // Insert code here:
-        // Get data from database, create a model object for each entry,
-        // and fill the entryList using:
-        // entryList.add(model object);
-
+        ObservableList<Companies> entryList = null;
+        try {
+            entryList = new CompaniesDAO().findAll();
+            System.out.println(entryList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         Table.setItems(entryList);
         CNPJ.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
         Name.setCellValueFactory(new PropertyValueFactory<>("name"));

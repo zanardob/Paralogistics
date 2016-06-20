@@ -1,5 +1,7 @@
 package controller;
 
+import database.CompaniesDAO;
+import database.VehiclesDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,10 +15,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Companies;
 import model.Vehicles;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
@@ -37,13 +41,13 @@ public class VehiclesController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Vehicles> entryList = FXCollections.observableArrayList();
-
-        // Insert code here:
-        // Get data from database, create a model object for each entry,
-        // and fill the entryList using:
-        // entryList.add(model object);
-
+        ObservableList<Vehicles> entryList = null;
+        try {
+            entryList = new VehiclesDAO().findAll();
+            System.out.println(entryList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         Table.setItems(entryList);
         Plate.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         ConcessionStart.setCellValueFactory(new PropertyValueFactory<>("concession_start"));
