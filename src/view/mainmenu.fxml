@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="controller.MainMenuController">
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
    <top>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paralogistics - Logística da Entrega dos Materiais: Olimpiadas e Paralimpíadas Rio 2016™" BorderPane.alignment="CENTER">
          <font>
@@ -113,6 +113,36 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
+                  <Hyperlink onAction="#queryDeliveries" prefWidth="460.0" text="1 - Status de Entregas" underline="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink onAction="#querySchedulings" prefWidth="460.0" text="2 - Informações sobre Agendamentos" underline="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink onAction="#queryDeliveriesDetailed" prefWidth="460.0" text="3 - Informações sobre Entregas" underline="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink onAction="#queryCompanies" prefWidth="460.0" text="4 - Informações sobre Empresas" underline="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink onAction="#queryPeriods" prefWidth="460.0" text="5 - Entregas em um Local e Período" underline="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink onAction="#queryStats" prefWidth="460.0" text="6 - Recordes" underline="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Hyperlink>
                </children>
             </VBox>
          </children>
