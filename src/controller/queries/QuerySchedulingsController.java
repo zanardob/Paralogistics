@@ -1,6 +1,8 @@
 package controller.queries;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -104,7 +106,22 @@ public class QuerySchedulingsController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        SchedulingPickerTable.setItems(schedulingsList);
+
+        FilteredList<Schedulings> filteredSchedulings = new FilteredList<>(schedulingsList, s -> true);
+        SortedList<Schedulings> sortedSchedulings = new SortedList<>(filteredSchedulings);
+        sortedSchedulings.comparatorProperty().bind(SchedulingPickerTable.comparatorProperty());
+
+        SchedulingPickerTextField.textProperty().addListener((observable, oldValue, newValue) ->
+                filteredSchedulings.setPredicate(scheduling -> {
+                    if (newValue == null || newValue.isEmpty())
+                        return true;
+
+                    String siteFilter = newValue.toLowerCase();
+                    return scheduling.getId().toString().contains(siteFilter) || ((scheduling.getCompany() != null) && scheduling.getCompany().contains(siteFilter));
+                })
+        );
+
+        SchedulingPickerTable.setItems(sortedSchedulings);
         SchedulingID.setCellValueFactory(new PropertyValueFactory<>("id"));
         SchedulingCompanyCNPJ.setCellValueFactory(new PropertyValueFactory<>("company"));
 

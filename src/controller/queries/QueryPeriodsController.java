@@ -1,6 +1,8 @@
 package controller.queries;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -105,7 +107,21 @@ public class QueryPeriodsController implements Initializable {
             e.printStackTrace();
         }
 
-        SitePickerTable.setItems(sitesList);
+        FilteredList<Sites> filteredSites = new FilteredList<>(sitesList, s -> true);
+        SortedList<Sites> sortedSites = new SortedList<>(filteredSites);
+        sortedSites.comparatorProperty().bind(SitePickerTable.comparatorProperty());
+
+        SitePickerTextField.textProperty().addListener((observable, oldValue, newValue) ->
+            filteredSites.setPredicate(site -> {
+                if (newValue == null || newValue.isEmpty())
+                    return true;
+
+                String siteFilter = newValue.toLowerCase();
+                return site.getId().toString().contains(siteFilter) || site.getName().toLowerCase().contains(siteFilter) || site.getStreet().toLowerCase().contains(siteFilter) || site.getCity().toLowerCase().contains(siteFilter) || site.getState().toLowerCase().contains(siteFilter) || ((site.getCompany() != null) && site.getCompany().contains(siteFilter));
+            })
+        );
+
+        SitePickerTable.setItems(sortedSites);
         SiteID.setCellValueFactory(new PropertyValueFactory<>("id"));
         SiteName.setCellValueFactory(new PropertyValueFactory<>("name"));
         SiteStreet.setCellValueFactory(new PropertyValueFactory<>("street"));

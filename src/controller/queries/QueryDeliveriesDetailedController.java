@@ -1,6 +1,8 @@
 package controller.queries;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -119,7 +121,21 @@ public class QueryDeliveriesDetailedController implements Initializable {
             e.printStackTrace();
         }
 
-        DeliveryPickerTable.setItems(deliveriesList);
+        FilteredList<Deliveries> filteredDeliveries = new FilteredList<>(deliveriesList, s -> true);
+        SortedList<Deliveries> sortedDeliveries = new SortedList<>(filteredDeliveries);
+        sortedDeliveries.comparatorProperty().bind(DeliveryPickerTable.comparatorProperty());
+
+        DeliveryPickerTextField.textProperty().addListener((observable, oldValue, newValue) ->
+            filteredDeliveries.setPredicate(delivery -> {
+                if (newValue == null || newValue.isEmpty())
+                    return true;
+
+                String deliveryFilter = newValue.toLowerCase();
+                return delivery.getId().toString().contains(deliveryFilter) || delivery.getSite().toString().contains(deliveryFilter) || delivery.getScheduling().toString().contains(deliveryFilter);
+            })
+        );
+
+        DeliveryPickerTable.setItems(sortedDeliveries);
         DeliveryID.setCellValueFactory(new PropertyValueFactory<>("id"));
         DeliverySiteID.setCellValueFactory(new PropertyValueFactory<>("site"));
         DeliverySchedulingID.setCellValueFactory(new PropertyValueFactory<>("scheduling"));
