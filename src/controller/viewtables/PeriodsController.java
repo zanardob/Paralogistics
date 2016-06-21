@@ -36,6 +36,9 @@ public class PeriodsController implements Initializable{
     @FXML
     TableColumn<Periods, Timestamp> End;
 
+    @FXML
+    TableColumn<Periods, String> ReceiverCPF;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Periods> entryList = null;
@@ -50,6 +53,7 @@ public class PeriodsController implements Initializable{
         SiteID.setCellValueFactory(new PropertyValueFactory<>("site"));
         Start.setCellValueFactory(new PropertyValueFactory<>("start"));
         End.setCellValueFactory(new PropertyValueFactory<>("end"));
+        ReceiverCPF.setCellValueFactory(new PropertyValueFactory<>("receiver"));
     }
 
     public void GotoMainMenu(ActionEvent actionEvent) {

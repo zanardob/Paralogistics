@@ -11,8 +11,9 @@
       <TableView fx:id="Table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="SiteID" prefWidth="200.0" text="#Local" />
-          <TableColumn fx:id="Start" prefWidth="540.0" text="Início" />
-            <TableColumn fx:id="End" prefWidth="540.0" text="Fim" />
+          <TableColumn fx:id="Start" prefWidth="440.0" text="Início" />
+            <TableColumn fx:id="End" prefWidth="440.0" text="Fim" />
+            <TableColumn fx:id="ReceiverCPF" prefWidth="200.0" text="CPF do Receptor" />
         </columns>
       </TableView>
    </center>
