@@ -108,6 +108,8 @@ public class QueryPeriodsController implements Initializable{
         SiteNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
         SiteCity.setCellValueFactory(new PropertyValueFactory<>("city"));
         SiteState.setCellValueFactory(new PropertyValueFactory<>("state"));
+        SiteZip.setCellValueFactory(new PropertyValueFactory<>("zip"));
+        SiteCompanyCNPJ.setCellValueFactory(new PropertyValueFactory<>("company"));
 
         DeliveryViewTable.setItems(deliveriesList);
         DeliveryID.setCellValueFactory(new PropertyValueFactory<>("id"));

@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -35,27 +36,28 @@ public class NewScheduling2Controller implements Initializable {
     private ObservableList<DeliveryEnumerations> deliveries;
     private ObservableList<LicenceDeliverer> licences;
 
-    @FXML
-    TableView<LicenceDeliverer> AddLicenceTable;
-    @FXML
-    TableColumn<LicenceDeliverer, String> DelivererName;
-    @FXML
-    TableColumn<LicenceDeliverer, String> VehiclePlate;
+    @FXML TableView<LicenceDeliverer> AddLicenceTable;
+    @FXML TableColumn<LicenceDeliverer, String> DelivererName;
+    @FXML TableColumn<LicenceDeliverer, String> VehiclePlate;
 
     @FXML TableView<DeliveryEnumerations> AddDeliveryTable;
     @FXML TableColumn<DeliveryEnumerations, String> Site;
     @FXML TableColumn<DeliveryEnumerations, Timestamp> DeliveryStart;
     @FXML TableColumn<DeliveryEnumerations, Timestamp> DeliveryEnd;
-    @FXML TableColumn<DeliveryEnumerations, String> Materials;
+
+    @FXML Button AddDeliveryButton;
+    @FXML Button AddLicenceButton;
+    @FXML Button CancelButton;
+    @FXML Button ConfirmButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         DelivererName.setCellValueFactory(new PropertyValueFactory<>("name"));
         VehiclePlate.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
+
         Site.setCellValueFactory(new PropertyValueFactory<>("site"));
         DeliveryStart.setCellValueFactory(new PropertyValueFactory<>("start"));
         DeliveryEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
-        Materials.setCellValueFactory(new PropertyValueFactory<>("materialsString"));
 
         refreshTables();
     }
@@ -131,7 +133,6 @@ public class NewScheduling2Controller implements Initializable {
         Integer enumerationsCount;
 
         try {
-            // TODO:Error recovery, remove the right things and remove what has to be removed
             scheduling.setId(schedulingsDAO.insertReturnId(scheduling));
             System.out.println("New Scheduling inserted, ID = " + scheduling.getId());
             licencesCount = licences.size();

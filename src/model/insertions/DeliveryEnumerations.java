@@ -8,14 +8,20 @@ import model.viewtables.Enumerations;
 import java.sql.Timestamp;
 
 public class DeliveryEnumerations extends Deliveries {
+    public String materials_string = "default string";
     protected ObservableList<Enumerations> enumerations;
-    protected String materialsString;
 
     public DeliveryEnumerations(Integer id, Integer site, Timestamp start, Timestamp end, Integer scheduling) {
         super(id, site, start, end, scheduling);
         enumerations = FXCollections.observableArrayList();
-        materialsString = "";
     }
+
+    public DeliveryEnumerations(Integer id, Integer site, Timestamp start, Timestamp end, Integer scheduling, String materials_string) {
+        super(id, site, start, end, scheduling);
+        this.materials_string = materials_string;
+        enumerations = FXCollections.observableArrayList();
+    }
+
 
     public DeliveryEnumerations copy() {
         DeliveryEnumerations delivery = new DeliveryEnumerations(this.id, this.site, this.start, this.end, this.scheduling);
@@ -32,16 +38,16 @@ public class DeliveryEnumerations extends Deliveries {
             // PEGA O NOME DO MATERIAL DO ID ACIMA
             // Materials m = ??? SQL
             // String materialName = m.getName();
-            // materialsString = materialsString + ", " + materialName;
-            materialsString = materialsString + ", material " + enumerations.get(enumerations.size() - 1).getMaterial();
+            // materials_string = materials_string + ", " + materialName;
+            materials_string = materials_string + ", material " + enumerations.get(enumerations.size() - 1).getMaterial();
         }
         else {
             Integer MaterialID = enumerations.get(enumerations.size() - 1).getMaterial();
             // PEGA O NOME DO MATERIAL DO ID ACIMA
             // Materials m = ??? SQL
             // String materialName = m.getName();
-            // materialsString = materialName;
-            materialsString = "material " + enumerations.get(enumerations.size() - 1).getMaterial();
+            // materials_string = materialName;
+            materials_string = "material " + enumerations.get(enumerations.size() - 1).getMaterial();
         }
     }
 
@@ -51,7 +57,7 @@ public class DeliveryEnumerations extends Deliveries {
 
     public void clearEnumerations() {
         enumerations.clear();
-        materialsString = "";
+        materials_string = "";
     }
 
     public boolean hasEnumerations() {

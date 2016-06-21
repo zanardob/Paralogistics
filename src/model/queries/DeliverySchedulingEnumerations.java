@@ -13,7 +13,7 @@ public class DeliverySchedulingEnumerations extends DeliveryEnumerations {
     public DeliverySchedulingEnumerations(Integer id, Integer site, Timestamp start, Timestamp end, Integer scheduling) {
         super(id, site, start, end, scheduling);
         enumerations = FXCollections.observableArrayList();
-        materialsString = "";
+        materials_string = "";
         companyCnpj = "";
     }
 }
