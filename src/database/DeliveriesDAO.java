@@ -288,8 +288,7 @@ public class DeliveriesDAO {
         String startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ins.getStart());
         String endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ins.getEnd());
 
-        String query = "begin insert into Deliveries(dlv_id, dlv_site, dlv_start, dlv_end, dlv_scheduling) values (" + ins.getId() +
-                ", " + ins.getSite() + ", TO_DATE('" + startTime + "' , 'yyyy-mm-dd hh24:mi:ss') , TO_DATE('" + endTime + "' , 'yyyy-mm-dd hh24:mi:ss') , " + ins.getScheduling() + ") " +
+        String query = "begin insert into Deliveries(dlv_site, dlv_start, dlv_end, dlv_scheduling) values (" + ins.getSite() + ", TO_DATE('" + startTime + "' , 'yyyy-mm-dd hh24:mi:ss') , TO_DATE('" + endTime + "' , 'yyyy-mm-dd hh24:mi:ss') , " + ins.getScheduling() + ") " +
                 "returning dlv_id into ?; end;";
 
         System.out.println(query);

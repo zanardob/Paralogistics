@@ -27,7 +27,6 @@ public class CompaniesDAO {
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(findAllQuery);
-
             while (resultSet.next()) {
                 cpns.add(new Companies(resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
             }
@@ -155,7 +154,7 @@ public class CompaniesDAO {
             return;
         }
         Statement statement = null;
-        String query = "insert into Companies( cpn_cnpj, cpn_name, cpn_fantasy) values ('" + ins.getCnpj() + "', '" + ins.getName() + "', '" + ins.getFantasy() + "')";
+        String query = "insert into Companies(cpn_cnpj, cpn_name, cpn_fantasy) values ('" + ins.getCnpj() + "', '" + ins.getName() + "', '" + ins.getFantasy() + "')";
 
         try {
             statement = connection.createStatement();

@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -38,7 +39,11 @@ public class NewScheduling2Controller implements Initializable {
     @FXML TableColumn<DeliveryEnumerations, String> Site;
     @FXML TableColumn<DeliveryEnumerations, Timestamp> DeliveryStart;
     @FXML TableColumn<DeliveryEnumerations, Timestamp> DeliveryEnd;
-    @FXML TableColumn<DeliveryEnumerations, String> Materials;
+
+    @FXML Button AddDeliveryButton;
+    @FXML Button AddLicenceButton;
+    @FXML Button CancelButton;
+    @FXML Button ConfirmButton;
 
     private Companies company = null;
     private ObservableList<DeliveryEnumerations> deliveries;
@@ -48,10 +53,10 @@ public class NewScheduling2Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         DelivererName.setCellValueFactory(new PropertyValueFactory<>("name"));
         VehiclePlate.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
+
         Site.setCellValueFactory(new PropertyValueFactory<>("site"));
         DeliveryStart.setCellValueFactory(new PropertyValueFactory<>("start"));
         DeliveryEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
-        Materials.setCellValueFactory(new PropertyValueFactory<>("materialsString"));
 
         refreshTables();
     }
@@ -127,7 +132,6 @@ public class NewScheduling2Controller implements Initializable {
         Integer enumerationsCount;
 
         try {
-            // TODO:Error recovery, remove the right things and remove what has to be removed
             scheduling.setId(schedulingsDAO.insertReturnId(scheduling));
             System.out.println("New Scheduling inserted, ID = " + scheduling.getId());
             licencesCount = licences.size();
@@ -137,8 +141,9 @@ public class NewScheduling2Controller implements Initializable {
                     licencesDAO.insert(newLicence);
                     System.out.println("New Licence inserted!");
                 }
-            } else {
-                // TODO: Remove Scheduling
+            }
+            else {
+                schedulingsDAO.deleteById(scheduling.getId());
                 System.out.println("Scheduling " + scheduling.getId() + " should be removed (no licences added)");
                 return;
             }
@@ -155,14 +160,16 @@ public class NewScheduling2Controller implements Initializable {
                             new EnumerationsDAO().insert(newEnumeration);
                             System.out.println("New Enumeration inserted!");
                         }
-                    } else {
-                        // TODO: Remove Scheduling
+                    }
+                    else {
+                        schedulingsDAO.deleteById(scheduling.getId());
                         System.out.println("Scheduling " + scheduling.getId() + " should be removed (no enumerations in delivery " + newDelivery.getId() + " added)");
                         return;
                     }
                 }
-            } else {
-                // TODO: Remove Scheduling
+            }
+            else {
+                schedulingsDAO.deleteById(scheduling.getId());
                 System.out.println("Scheduling " + scheduling.getId() + " should be removed (no deliveries added)");
                 return;
             }

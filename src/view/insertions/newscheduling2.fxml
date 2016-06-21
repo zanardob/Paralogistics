@@ -48,10 +48,9 @@
                <center>
                   <TableView fx:id="AddDeliveryTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <columns>
-                        <TableColumn fx:id="Site" prefWidth="140.0" text="Local" />
-                        <TableColumn fx:id="DeliveryStart" prefWidth="140.0" text="Início da Entrega" />
-                        <TableColumn fx:id="DeliveryEnd" prefWidth="140.0" text="Fim da Entrega" />
-                        <TableColumn fx:id="Materials" prefWidth="480.0" text="Materiais" />
+                        <TableColumn fx:id="Site" prefWidth="200.0" text="Local" />
+                        <TableColumn fx:id="DeliveryStart" prefWidth="350.0" text="Início da Entrega" />
+                        <TableColumn fx:id="DeliveryEnd" prefWidth="350.0" text="Fim da Entrega" />
                      </columns>
                   </TableView>
                </center>

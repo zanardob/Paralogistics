@@ -37,7 +37,7 @@ public class VehiclesController implements Initializable {
             e.printStackTrace();
         }
         Table.setItems(entryList);
-        Plate.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        Plate.setCellValueFactory(new PropertyValueFactory<>("plate"));
         ConcessionStart.setCellValueFactory(new PropertyValueFactory<>("concession_start"));
         ConcessionEnd.setCellValueFactory(new PropertyValueFactory<>("concession_end"));
     }
