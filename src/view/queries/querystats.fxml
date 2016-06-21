@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.queries.QueryStatsController">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -57,7 +57,7 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Fantasia" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <TextField fx:id="MostDeliveriesCompanyCNPJTextField" alignment="CENTER" editable="false" promptText="CNPJ da Empresa" GridPane.rowIndex="1" />
                         <TextField fx:id="MostDeliveriesCompanyNameTextField" alignment="CENTER" editable="false" promptText="Razão Social" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="MostDeliveriesCompanyCompanyFantasyTextField" alignment="CENTER" editable="false" promptText="Nome Fantasia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="MostDeliveriesCompanyFantasyTextField" alignment="CENTER" editable="false" promptText="Nome Fantasia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantidade de Entregas" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <TextField fx:id="MostDeliveriesQuantity" alignment="CENTER" promptText="Quantidade de Entregas" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                      </children>
@@ -72,8 +72,8 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Razão Social" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Fantasia" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <TextField fx:id="HeaviestCompanyCNPJTextField" alignment="CENTER" editable="false" promptText="CNPJ da Empresa" GridPane.rowIndex="1" />
-                        <TextField fx:id="HeaviestCompanyNameTextField1" alignment="CENTER" editable="false" promptText="Razão Social" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="HeaviestCompanyFantasyTextField1" alignment="CENTER" editable="false" promptText="Nome Fantasia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="HeaviestCompanyNameTextField" alignment="CENTER" editable="false" promptText="Razão Social" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="HeaviestCompanyFantasyTextField" alignment="CENTER" editable="false" promptText="Nome Fantasia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Massa Total Entregue" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <TextField fx:id="HeaviestCompanyWeight" alignment="CENTER" promptText="Massa Total Entregue" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                      </children>

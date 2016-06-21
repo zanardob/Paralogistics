@@ -161,7 +161,8 @@ public class SuppliesDAO {
             return;
         }
         Statement statement = null;
-        String query = "insert into Supplies(spl_material, spl_company) values (" + ins.getMaterial() + ", " + ins.getCompany() + ")";
+        String query = "insert into Supplies( spl_material, spl_company) values (" + ins.getMaterial() + ", '"
+                + ins.getCompany() + "')";
 
         try {
             statement = connection.createStatement();

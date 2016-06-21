@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.viewtables.Deliveries;
@@ -25,34 +26,54 @@ import java.util.ResourceBundle;
  */
 public class QueryDeliveriesController implements Initializable {
 
-    @FXML TableView<Deliveries> Table;
-    @FXML TableColumn<Deliveries, Integer> ID;
-    @FXML TableColumn<Deliveries, Integer> SiteID;
-    @FXML TableColumn<Deliveries, Timestamp> DeliveryStart;
-    @FXML TableColumn<Deliveries, Timestamp> DeliveryEnd;
-    @FXML TableColumn<Deliveries, Integer> SchedulingID;
-    @FXML TableColumn<Deliveries, String> ReceiverCPF;
+    @FXML TableView<Deliveries> AlreadyDeliveredTable;
+    @FXML TableColumn<Deliveries, Integer> AlreadyDeliveredID;
+    @FXML TableColumn<Deliveries, Integer> AlreadyDeliveredSiteID;
+    @FXML TableColumn<Deliveries, Timestamp> AlreadyDeliveredStart;
+    @FXML TableColumn<Deliveries, Timestamp> AlreadyDeliveredEnd;
+    @FXML TableColumn<Deliveries, Integer> AlreadyDeliveredSchedulingID;
+    @FXML TextField AlreadyDeliveredTextField;
+
+    @FXML TableView<Deliveries> ToBeDeliveredTable;
+    @FXML TableColumn<Deliveries, Integer> ToBeDeliveredID;
+    @FXML TableColumn<Deliveries, Integer> ToBeDeliveredSiteID;
+    @FXML TableColumn<Deliveries, Timestamp> ToBeDeliveredStart;
+    @FXML TableColumn<Deliveries, Timestamp> ToBeDeliveredEnd;
+    @FXML TableColumn<Deliveries, Integer> ToBeDeliveredSchedulingID;
+    @FXML TextField ToBeDeliveredTextField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Deliveries> entryList = null;
-        try {
-            entryList = new DeliveriesDAO().findAll();
-            System.out.println(entryList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        ObservableList<Deliveries> alreadyDeliveredList = null;
+        ObservableList<Deliveries> toBeDeliveredList = null;
 
-        Table.setItems(entryList);
-        ID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        SiteID.setCellValueFactory(new PropertyValueFactory<>("site"));
-        DeliveryStart.setCellValueFactory(new PropertyValueFactory<>("start"));
-        DeliveryEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
-        SchedulingID.setCellValueFactory(new PropertyValueFactory<>("scheduling"));
+        //preenche o alreadyDeliveredList com as lista onde o fim da entrega é menor q a data atual
+        //preenche o alreadyDeliveredList com as lista onde o fim da entrega é maior ou igual q a data atual
+        //alreadyDeliveredList = new DeliveriesDAO().findAll();
+        //toBeDeliveredList = new DeliveriesDAO().findAll();
+        System.out.println(alreadyDeliveredList);
+        System.out.println("deveria ter preenchido a lista de entregas ja feitas");
+        System.out.println(toBeDeliveredList);
+        System.out.println("deveria ter preenchido a lista de entregas ainda nao feitas");
+
+
+        AlreadyDeliveredTable.setItems(alreadyDeliveredList);
+        AlreadyDeliveredID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        AlreadyDeliveredSiteID.setCellValueFactory(new PropertyValueFactory<>("site"));
+        AlreadyDeliveredStart.setCellValueFactory(new PropertyValueFactory<>("start"));
+        AlreadyDeliveredEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
+        AlreadyDeliveredSchedulingID.setCellValueFactory(new PropertyValueFactory<>("scheduling"));
+
+        ToBeDeliveredTable.setItems(toBeDeliveredList);
+        ToBeDeliveredID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        ToBeDeliveredSiteID.setCellValueFactory(new PropertyValueFactory<>("site"));
+        ToBeDeliveredStart.setCellValueFactory(new PropertyValueFactory<>("start"));
+        ToBeDeliveredEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
+        ToBeDeliveredSchedulingID.setCellValueFactory(new PropertyValueFactory<>("scheduling"));
     }
 
     public void GotoMainMenu(ActionEvent actionEvent) {
-        Stage stage = (Stage) Table.getScene().getWindow();
+        Stage stage = (Stage) AlreadyDeliveredTable.getScene().getWindow();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/mainmenu.fxml"));
             Parent root = loader.load();
@@ -63,5 +84,11 @@ public class QueryDeliveriesController implements Initializable {
     }
 
     public void Refresh(ActionEvent actionEvent) {
+    }
+
+    public void SearchAlreadyDelivered(ActionEvent actionEvent) {
+    }
+
+    public void SearchToBeDelivered(ActionEvent actionEvent) {
     }
 }

@@ -156,7 +156,7 @@ public ObservableList<Receivers> findBycpf(String cpf) throws SQLException {
             return;
         }
         Statement statement = null;
-        String query = "insert into Receivers( rcv_cpf, rcv_name, rcv_rg) values (" + ins.getCpf() + ", " + ins.getName() + ", " + ins.getRg() + ")";
+        String query = "insert into Receivers( rcv_cpf, rcv_name, rcv_rg) values ('" + ins.getCpf() + "', '" + ins.getName() + "', '" + ins.getRg() + "')";
 
         try {
             statement = connection.createStatement();

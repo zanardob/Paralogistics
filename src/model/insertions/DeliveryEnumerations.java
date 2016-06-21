@@ -8,8 +8,8 @@ import model.viewtables.Enumerations;
 import java.sql.Timestamp;
 
 public class DeliveryEnumerations extends Deliveries {
-    ObservableList<Enumerations> enumerations;
-    String materialsString;
+    protected ObservableList<Enumerations> enumerations;
+    protected String materialsString;
 
     public DeliveryEnumerations(Integer id, Integer site, Timestamp start, Timestamp end, Integer scheduling) {
         super(id, site, start, end, scheduling);

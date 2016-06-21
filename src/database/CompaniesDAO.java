@@ -160,7 +160,7 @@ public class CompaniesDAO {
             return;
         }
         Statement statement = null;
-        String query = "insert into Companies(cpn_cnpj, cpn_name, cpn_fantasy) values (" + ins.getCnpj() + ", " + ins.getName() + ", " + ins.getFantasy() + ")";
+        String query = "insert into Companies( cpn_cnpj, cpn_name, cpn_fantasy) values ('" + ins.getCnpj() + "', '" + ins.getName() + "', '" + ins.getFantasy() + "')";
 
         try {
             statement = connection.createStatement();

@@ -17,11 +17,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-import javafx.util.converter.IntegerStringConverter;
-import model.insertions.MaterialQuantity;
-import model.viewtables.*;
+import model.viewtables.Companies;
+import model.viewtables.Enumerations;
+import model.viewtables.Periods;
+import model.viewtables.Sites;
 import model.insertions.DeliveryEnumerations;
 import model.insertions.LicenceDeliverer;
+import model.insertions.MaterialQuantity;
 
 import java.io.IOException;
 import java.net.URL;
