@@ -1,9 +1,6 @@
 package controller.viewtables;
 
-import database.CompaniesDAO;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.CompaniesDAO;
 import model.viewtables.Companies;
 
 import java.io.IOException;
@@ -21,21 +20,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
-public class CompaniesController implements Initializable{
-    @FXML
-    TableView<Companies> Table;
-
-    @FXML
-    TableColumn<Companies, String> CNPJ;
-
-    @FXML
-    TableColumn<Companies, String> Name;
-
-    @FXML
-    TableColumn<Companies, String> Fantasy;
+public class CompaniesController implements Initializable {
+    @FXML TableView<Companies> Table;
+    @FXML TableColumn<Companies, String> CNPJ;
+    @FXML TableColumn<Companies, String> Name;
+    @FXML TableColumn<Companies, String> Fantasy;
 
     public void GotoMainMenu(ActionEvent actionEvent) {
         Stage stage = (Stage) Table.getScene().getWindow();

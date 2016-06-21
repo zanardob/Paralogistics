@@ -1,6 +1,5 @@
 package controller.viewtables;
 
-import database.VehiclesDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.VehiclesDAO;
 import model.viewtables.Vehicles;
 
 import java.io.IOException;
@@ -20,21 +21,11 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
-public class VehiclesController implements Initializable{
-    @FXML
-    TableView<Vehicles> Table;
-
-    @FXML
-    TableColumn<Vehicles, Integer> Plate;
-
-    @FXML
-    TableColumn<Vehicles, Timestamp> ConcessionStart;
-
-    @FXML
-    TableColumn<Vehicles, Timestamp> ConcessionEnd;
+public class VehiclesController implements Initializable {
+    @FXML TableView<Vehicles> Table;
+    @FXML TableColumn<Vehicles, Integer> Plate;
+    @FXML TableColumn<Vehicles, Timestamp> ConcessionStart;
+    @FXML TableColumn<Vehicles, Timestamp> ConcessionEnd;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,5 +55,4 @@ public class VehiclesController implements Initializable{
 
     public void Refresh(ActionEvent actionEvent) {
     }
-
 }

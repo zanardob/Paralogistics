@@ -3,18 +3,11 @@ package database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.viewtables.Deliveries;
-import model.viewtables.Schedulings;
 import oracle.jdbc.OracleTypes;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
 public class DeliveriesDAO {
     public ObservableList<Deliveries> findAll() throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
@@ -27,7 +20,7 @@ public class DeliveriesDAO {
         }
         Statement statement = null;
 
-        String findAllQuery = "select * from Deliveries";
+        String findAllQuery = "SELECT * FROM Deliveries";
 
         try {
             statement = connection.createStatement();
@@ -199,6 +192,42 @@ public class DeliveriesDAO {
         ObservableList<Deliveries> rs = FXCollections.observableArrayList();
 
         String query = "select * from Deliveries where dlv_scheduling = " + scheduling + "";
+
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                rs.add(new Deliveries(resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (statement != null) {
+            statement.close();
+        }
+
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Deliveries> findBySiteAndEnd(Integer site, Timestamp end) throws SQLException {
+        DatabaseManager dbm = new DatabaseManager();
+        Connection connection = dbm.getConnection();
+        if (connection == null) {
+            System.out.println("Couldn't connect to database");
+            return null;
+        }
+        Statement statement = null;
+
+        ObservableList<Deliveries> rs = FXCollections.observableArrayList();
+
+        String endDate = new SimpleDateFormat("yyyy-MM-dd").format(end);
+
+        String query = "select * from Deliveries where dlv_site = " + site + " and dlv_end between TO_DATE('" + endDate + "' , 'yyyy-mm-dd') and TO_DATE('" + endDate + " 23:59:59' , 'yyyy-mm-dd hh24:mi:ss')";
 
         try {
             statement = connection.createStatement();

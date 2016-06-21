@@ -8,19 +8,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
 public class VehiclesDAO {
     public ObservableList<Vehicles> findAll() throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         ObservableList<Vehicles> cpns = FXCollections.observableArrayList();
 
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
@@ -32,33 +27,34 @@ public class VehiclesDAO {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(findAllQuery);
 
-            while(resultSet.next()) {
-                cpns.add(new Vehicles( resultSet.getString("vhc_plate"), resultSet.getTimestamp("vhc_concession_start"), resultSet.getTimestamp("vhc_concession_end")));
+            while (resultSet.next()) {
+                cpns.add(new Vehicles(resultSet.getString("vhc_plate"), resultSet.getTimestamp("vhc_concession_start"), resultSet.getTimestamp("vhc_concession_end")));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
         return cpns;
     }
-public ObservableList<Vehicles> findByplate(String plate) throws SQLException {
+
+    public ObservableList<Vehicles> findByplate(String plate) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Vehicles> rs = FXCollections.observableArrayList();
+
+        ObservableList<Vehicles> rs = FXCollections.observableArrayList();
 
         String query = "select * from Vehicles where vhc_plate = '" + plate + "'";
 
@@ -66,32 +62,33 @@ public ObservableList<Vehicles> findByplate(String plate) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Vehicles( resultSet.getString("vhc_plate"), resultSet.getTimestamp("vhc_concession_start"), resultSet.getTimestamp("vhc_concession_end")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Vehicles(resultSet.getString("vhc_plate"), resultSet.getTimestamp("vhc_concession_start"), resultSet.getTimestamp("vhc_concession_end")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Vehicles> findByconcession_start(java.sql.Timestamp concession_start) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Vehicles> findByconcession_start(java.sql.Timestamp concession_start) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Vehicles> rs = FXCollections.observableArrayList();
+
+        ObservableList<Vehicles> rs = FXCollections.observableArrayList();
 
         String query = "select * from Vehicles where vhc_concession_start = " + concession_start + "";
 
@@ -99,32 +96,33 @@ public ObservableList<Vehicles> findByplate(String plate) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Vehicles( resultSet.getString("vhc_plate"), resultSet.getTimestamp("vhc_concession_start"), resultSet.getTimestamp("vhc_concession_end")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Vehicles(resultSet.getString("vhc_plate"), resultSet.getTimestamp("vhc_concession_start"), resultSet.getTimestamp("vhc_concession_end")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Vehicles> findByconcession_end(java.sql.Timestamp concession_end) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Vehicles> findByconcession_end(java.sql.Timestamp concession_end) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Vehicles> rs = FXCollections.observableArrayList();
+
+        ObservableList<Vehicles> rs = FXCollections.observableArrayList();
 
         String query = "select * from Vehicles where vhc_concession_end = " + concession_end + "";
 
@@ -132,26 +130,27 @@ public ObservableList<Vehicles> findByplate(String plate) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Vehicles( resultSet.getString("vhc_plate"), resultSet.getTimestamp("vhc_concession_start"), resultSet.getTimestamp("vhc_concession_end")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Vehicles(resultSet.getString("vhc_plate"), resultSet.getTimestamp("vhc_concession_start"), resultSet.getTimestamp("vhc_concession_end")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public void insert(Vehicles ins) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public void insert(Vehicles ins) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return;
         }
@@ -166,11 +165,11 @@ public ObservableList<Vehicles> findByplate(String plate) throws SQLException {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
     }

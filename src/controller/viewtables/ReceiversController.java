@@ -1,6 +1,5 @@
 package controller.viewtables;
 
-import database.ReceiversDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.ReceiversDAO;
 import model.viewtables.Receivers;
 
 import java.io.IOException;
@@ -19,22 +20,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
-public class ReceiversController implements Initializable{
-    @FXML
-    TableView<Receivers> Table;
-
-    @FXML
-    TableColumn<Receivers, String> CPF;
-
-    @FXML
-    TableColumn<Receivers, String> Name;
-
-    @FXML
-    TableColumn<Receivers, String> RG;
-
+public class ReceiversController implements Initializable {
+    @FXML TableView<Receivers> Table;
+    @FXML TableColumn<Receivers, String> CPF;
+    @FXML TableColumn<Receivers, String> Name;
+    @FXML TableColumn<Receivers, String> RG;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,6 +55,4 @@ public class ReceiversController implements Initializable{
 
     public void Refresh(ActionEvent actionEvent) {
     }
-
-
 }

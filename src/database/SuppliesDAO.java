@@ -9,12 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
 public class SuppliesDAO {
     public ObservableList<Supplies> findAll() throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
@@ -27,7 +22,7 @@ public class SuppliesDAO {
         }
         Statement statement = null;
 
-        String findAllQuery = "select * from Supplies";
+        String findAllQuery = "SELECT * FROM Supplies";
 
         try {
             statement = connection.createStatement();

@@ -8,19 +8,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
 public class DepotsDAO {
     public ObservableList<Depots> findAll() throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         ObservableList<Depots> cpns = FXCollections.observableArrayList();
 
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
@@ -32,33 +27,34 @@ public class DepotsDAO {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(findAllQuery);
 
-            while(resultSet.next()) {
-                cpns.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
+            while (resultSet.next()) {
+                cpns.add(new Depots(resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
         return cpns;
     }
-public ObservableList<Depots> findBysite(Integer site) throws SQLException {
+
+    public ObservableList<Depots> findBysite(Integer site) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Depots> rs = FXCollections.observableArrayList();
+
+        ObservableList<Depots> rs = FXCollections.observableArrayList();
 
         String query = "select * from Depots where dpt_site = " + site + "";
 
@@ -66,32 +62,33 @@ public ObservableList<Depots> findBysite(Integer site) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Depots(resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Depots> findBynumber(Integer number) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Depots> findBynumber(Integer number) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Depots> rs = FXCollections.observableArrayList();
+
+        ObservableList<Depots> rs = FXCollections.observableArrayList();
 
         String query = "select * from Depots where dpt_number = " + number + "";
 
@@ -99,32 +96,33 @@ public ObservableList<Depots> findBysite(Integer site) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Depots(resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Depots> findBycapacity(String capacity) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Depots> findBycapacity(String capacity) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Depots> rs = FXCollections.observableArrayList();
+
+        ObservableList<Depots> rs = FXCollections.observableArrayList();
 
         String query = "select * from Depots where dpt_capacity = '" + capacity + "'";
 
@@ -132,32 +130,33 @@ public ObservableList<Depots> findBysite(Integer site) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Depots(resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Depots> findBydimension(String dimension) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Depots> findBydimension(String dimension) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Depots> rs = FXCollections.observableArrayList();
+
+        ObservableList<Depots> rs = FXCollections.observableArrayList();
 
         String query = "select * from Depots where dpt_dimension = '" + dimension + "'";
 
@@ -165,26 +164,27 @@ public ObservableList<Depots> findBysite(Integer site) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Depots( resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Depots(resultSet.getInt("dpt_site"), resultSet.getInt("dpt_number"), resultSet.getString("dpt_capacity"), resultSet.getString("dpt_dimension")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public void insert(Depots ins) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public void insert(Depots ins) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return;
         }
@@ -199,11 +199,11 @@ public ObservableList<Depots> findBysite(Integer site) throws SQLException {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
     }

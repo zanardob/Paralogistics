@@ -18,10 +18,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
-import model.viewtables.*;
 import model.insertions.DeliveryEnumerations;
 import model.insertions.LicenceDeliverer;
 import model.insertions.MaterialQuantity;
+import model.viewtables.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,20 +29,12 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
 public class NewDeliveryController implements Initializable {
-    private Companies company = null;
-    private ObservableList<DeliveryEnumerations> deliveries;
-    private ObservableList<LicenceDeliverer> licences;
-
     ObservableList<Sites> sitesList = null;
     ObservableList<Periods> periodsList = null;
     ObservableList<MaterialQuantity> materialQuantityList = null;
-
-    Sites selectedSite;
-    Periods selectedPeriod;
+    Sites selectedSite = null;
+    Periods selectedPeriod = null;
 
     @FXML TableView<Sites> SitePickerTable;
     @FXML TableColumn<Sites, String> SiteName;
@@ -52,20 +44,25 @@ public class NewDeliveryController implements Initializable {
     @FXML TableColumn<Sites, String> SiteState;
     @FXML TableColumn<Sites, String> SiteZip;
     @FXML TableColumn<Sites, String> SiteCompanyCNPJ;
-    @FXML TextField SitePickerTextField;
-    @FXML Button SitePickerConfirmButton;
 
     @FXML TableView<Periods> PeriodPickerTable;
     @FXML TableColumn<Periods, Timestamp> SitePeriodStart;
-    @FXML TableColumn<Periods, Timestamp> SitePeriodEnd;
 
+    @FXML TableColumn<Periods, Timestamp> SitePeriodEnd;
     @FXML TableView<model.insertions.MaterialQuantity> MaterialEnumeratorTable;
     @FXML TableColumn<model.insertions.MaterialQuantity, Integer> MaterialID;
     @FXML TableColumn<model.insertions.MaterialQuantity, String> MaterialDescription;
     @FXML TableColumn<model.insertions.MaterialQuantity, String> MaterialWeight;
     @FXML TableColumn<model.insertions.MaterialQuantity, String> MaterialDimensions;
     @FXML TableColumn<MaterialQuantity, Integer> MaterialQuantity;
+
+    @FXML TextField SitePickerTextField;
+    @FXML Button SitePickerConfirmButton;
     @FXML TextField MaterialEnumeratorTextField;
+
+    private Companies company = null;
+    private ObservableList<DeliveryEnumerations> deliveries;
+    private ObservableList<LicenceDeliverer> licences;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -109,7 +106,7 @@ public class NewDeliveryController implements Initializable {
         MaterialQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         MaterialQuantity.setCellFactory(TextFieldTableCell.<MaterialQuantity, Integer>forTableColumn(new IntegerStringConverter()));
         MaterialQuantity.setOnEditCommit((TableColumn.CellEditEvent<MaterialQuantity, Integer> event) ->
-            (event.getTableView().getItems(). get(event.getTablePosition().getRow())).setQuantity(event.getNewValue()));
+                (event.getTableView().getItems().get(event.getTablePosition().getRow())).setQuantity(event.getNewValue()));
 
         MaterialEnumeratorTable.setEditable(true);
     }
@@ -136,13 +133,13 @@ public class NewDeliveryController implements Initializable {
         sortedMaterialAndQuantity.comparatorProperty().bind(MaterialEnumeratorTable.comparatorProperty());
 
         MaterialEnumeratorTextField.textProperty().addListener((observable, oldValue, newValue) ->
-                filteredMaterialAndQuantity.setPredicate(material -> {
-                    if (newValue == null || newValue.isEmpty())
-                        return true;
+            filteredMaterialAndQuantity.setPredicate(material -> {
+                if (newValue == null || newValue.isEmpty())
+                    return true;
 
-                    String materialFilter = newValue.toLowerCase();
-                    return material.getId().equals(Integer.parseInt(materialFilter)) || material.getDescription().toLowerCase().contains(materialFilter);
-                })
+                String materialFilter = newValue.toLowerCase();
+                return material.getId().equals(Integer.parseInt(materialFilter)) || material.getDescription().toLowerCase().contains(materialFilter);
+            })
         );
 
         MaterialEnumeratorTable.setItems(materialQuantityList);

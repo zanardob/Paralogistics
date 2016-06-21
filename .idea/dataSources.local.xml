@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="pira@grad.icmc.usp.br" uuid="dfec1579-a106-4972-8a0a-0ac5345c4733" />
+    <data-source name="pira@grad.icmc.usp.br" uuid="dfec1579-a106-4972-8a0a-0ac5345c4733">
+      <user-name>g8937458</user-name>
+    </data-source>
   </component>
 </project>

@@ -1,6 +1,5 @@
 package controller.viewtables;
 
-import database.DeliveriesDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.DeliveriesDAO;
 import model.viewtables.Deliveries;
 
 import java.io.IOException;
@@ -20,30 +21,14 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
 public class DeliveriesController implements Initializable {
-    @FXML
-    TableView<Deliveries> Table;
-
-    @FXML
-    TableColumn<Deliveries, Integer> ID;
-
-    @FXML
-    TableColumn<Deliveries, Integer> SiteID;
-
-    @FXML
-    TableColumn<Deliveries, Timestamp> DeliveryStart;
-
-    @FXML
-    TableColumn<Deliveries, Timestamp> DeliveryEnd;
-
-    @FXML
-    TableColumn<Deliveries, Integer> SchedulingID;
-
-    @FXML
-    TableColumn<Deliveries, String> ReceiverCPF;
+    @FXML TableView<Deliveries> Table;
+    @FXML TableColumn<Deliveries, Integer> ID;
+    @FXML TableColumn<Deliveries, Integer> SiteID;
+    @FXML TableColumn<Deliveries, Timestamp> DeliveryStart;
+    @FXML TableColumn<Deliveries, Timestamp> DeliveryEnd;
+    @FXML TableColumn<Deliveries, Integer> SchedulingID;
+    @FXML TableColumn<Deliveries, String> ReceiverCPF;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

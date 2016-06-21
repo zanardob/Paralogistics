@@ -1,6 +1,5 @@
 package controller.queries;
 
-import database.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,22 +10,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.DeliveriesDAO;
+import database.EnumerationsDAO;
+import database.PeriodsDAO;
+import database.SitesDAO;
+
 import model.insertions.MaterialQuantity;
 import model.viewtables.Deliveries;
 import model.viewtables.Receivers;
-import model.viewtables.Schedulings;
 import model.viewtables.Sites;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 18/06/2016.
- */
-public class QueryDeliveriesDetailedController implements Initializable{
+public class QueryDeliveriesDetailedController implements Initializable {
     ObservableList<Deliveries> deliveriesList = null;
     ObservableList<MaterialQuantity> materialQuantityList = null;
 
@@ -34,6 +34,14 @@ public class QueryDeliveriesDetailedController implements Initializable{
     @FXML TableColumn<Deliveries, Integer> DeliveryID;
     @FXML TableColumn<Deliveries, Integer> DeliverySiteID;
     @FXML TableColumn<Deliveries, Integer> DeliverySchedulingID;
+
+    @FXML TableView<MaterialQuantity> MaterialViewTable;
+    @FXML TableColumn<MaterialQuantity, Integer> MaterialID;
+    @FXML TableColumn<MaterialQuantity, Integer> MaterialDescription;
+    @FXML TableColumn<MaterialQuantity, Integer> MaterialWeight;
+    @FXML TableColumn<MaterialQuantity, Integer> MaterialDimensions;
+    @FXML TableColumn<MaterialQuantity, Integer> MaterialQuantity;
+
     @FXML TextField DeliveryPickerTextField;
     @FXML Button SelectDeliveryButton;
 
@@ -49,13 +57,6 @@ public class QueryDeliveriesDetailedController implements Initializable{
     @FXML TextField ReceiverCPFTextField;
     @FXML TextField ReceiverNameTextField;
     @FXML TextField ReceiverRGTextField;
-
-    @FXML TableView<MaterialQuantity> MaterialViewTable;
-    @FXML TableColumn<MaterialQuantity, Integer> MaterialID;
-    @FXML TableColumn<MaterialQuantity, Integer> MaterialDescription;
-    @FXML TableColumn<MaterialQuantity, Integer> MaterialWeight;
-    @FXML TableColumn<MaterialQuantity, Integer> MaterialDimensions;
-    @FXML TableColumn<MaterialQuantity, Integer> MaterialQuantity;
 
     public void GotoMainMenu(ActionEvent actionEvent) {
         Stage stage = (Stage) DeliveryPickerTable.getScene().getWindow();
@@ -78,7 +79,7 @@ public class QueryDeliveriesDetailedController implements Initializable{
         materialQuantityList = null;
 
         Deliveries selectedDelivery = DeliveryPickerTable.getSelectionModel().getSelectedItem();
-        if(selectedDelivery == null) {
+        if (selectedDelivery == null) {
             new Alert(Alert.AlertType.ERROR, "Selecione uma Entrega!").show();
             return;
         }

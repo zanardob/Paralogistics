@@ -14,7 +14,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/mainmenu.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
-        stage.setTitle("Paralogistics");
+        stage.setTitle("Paralogistics - Logística da Entrega dos Materiais: Olimpíadas e Paralimpíadas Rio 2016™");
         stage.setScene(new Scene(root));
         stage.show();
     }

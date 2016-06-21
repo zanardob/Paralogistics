@@ -8,19 +8,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
 public class DeliverersDAO {
     public ObservableList<Deliverers> findAll() throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
         ObservableList<Deliverers> cpns = FXCollections.observableArrayList();
 
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
@@ -32,33 +27,34 @@ public class DeliverersDAO {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(findAllQuery);
 
-            while(resultSet.next()) {
-                cpns.add(new Deliverers( resultSet.getString("dlvr_cpf"), resultSet.getString("dlvr_name"), resultSet.getString("dlvr_rg")));
+            while (resultSet.next()) {
+                cpns.add(new Deliverers(resultSet.getString("dlvr_cpf"), resultSet.getString("dlvr_name"), resultSet.getString("dlvr_rg")));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
         return cpns;
     }
-public ObservableList<Deliverers> findBycpf(String cpf) throws SQLException {
+
+    public ObservableList<Deliverers> findBycpf(String cpf) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Deliverers> rs = FXCollections.observableArrayList();
+
+        ObservableList<Deliverers> rs = FXCollections.observableArrayList();
 
         String query = "select * from Deliverers where dlvr_cpf = '" + cpf + "'";
 
@@ -66,32 +62,33 @@ public ObservableList<Deliverers> findBycpf(String cpf) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Deliverers( resultSet.getString("dlvr_cpf"), resultSet.getString("dlvr_name"), resultSet.getString("dlvr_rg")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Deliverers(resultSet.getString("dlvr_cpf"), resultSet.getString("dlvr_name"), resultSet.getString("dlvr_rg")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Deliverers> findByname(String name) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Deliverers> findByname(String name) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Deliverers> rs = FXCollections.observableArrayList();
+
+        ObservableList<Deliverers> rs = FXCollections.observableArrayList();
 
         String query = "select * from Deliverers where dlvr_name = '" + name + "'";
 
@@ -99,32 +96,33 @@ public ObservableList<Deliverers> findBycpf(String cpf) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Deliverers( resultSet.getString("dlvr_cpf"), resultSet.getString("dlvr_name"), resultSet.getString("dlvr_rg")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Deliverers(resultSet.getString("dlvr_cpf"), resultSet.getString("dlvr_name"), resultSet.getString("dlvr_rg")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Deliverers> findByrg(String rg) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Deliverers> findByrg(String rg) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Deliverers> rs = FXCollections.observableArrayList();
+
+        ObservableList<Deliverers> rs = FXCollections.observableArrayList();
 
         String query = "select * from Deliverers where dlvr_rg = '" + rg + "'";
 
@@ -132,26 +130,27 @@ public ObservableList<Deliverers> findBycpf(String cpf) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Deliverers( resultSet.getString("dlvr_cpf"), resultSet.getString("dlvr_name"), resultSet.getString("dlvr_rg")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Deliverers(resultSet.getString("dlvr_cpf"), resultSet.getString("dlvr_name"), resultSet.getString("dlvr_rg")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public void insert(Deliverers ins) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public void insert(Deliverers ins) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return;
         }
@@ -166,11 +165,11 @@ public ObservableList<Deliverers> findBycpf(String cpf) throws SQLException {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
     }

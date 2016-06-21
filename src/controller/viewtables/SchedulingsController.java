@@ -1,6 +1,5 @@
 package controller.viewtables;
 
-import database.SchedulingsDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.SchedulingsDAO;
 import model.viewtables.Schedulings;
 
 import java.io.IOException;
@@ -19,18 +20,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 18/06/2016.
- */
-public class SchedulingsController implements Initializable{
-    @FXML
-    TableView<Schedulings> Table;
-
-    @FXML
-    TableColumn<Schedulings, Integer> ID;
-
-    @FXML
-    TableColumn<Schedulings, String> CompanyCNPJ;
+public class SchedulingsController implements Initializable {
+    @FXML TableView<Schedulings> Table;
+    @FXML TableColumn<Schedulings, Integer> ID;
+    @FXML TableColumn<Schedulings, String> CompanyCNPJ;
 
     public void GotoMainMenu(ActionEvent actionEvent) {
         Stage stage = (Stage) Table.getScene().getWindow();

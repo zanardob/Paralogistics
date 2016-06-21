@@ -7,12 +7,7 @@ import model.viewtables.Receivers;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
 public class PeriodsDAO {
     public ObservableList<Periods> findAll() throws SQLException {
         DatabaseManager dbm = new DatabaseManager();

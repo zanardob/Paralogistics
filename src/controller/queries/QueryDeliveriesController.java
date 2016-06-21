@@ -1,6 +1,5 @@
 package controller.queries;
 
-import database.DeliveriesDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +12,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.DeliveriesDAO;
 import model.viewtables.Deliveries;
 
 import java.io.IOException;
@@ -21,18 +22,13 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
 public class QueryDeliveriesController implements Initializable {
-
     @FXML TableView<Deliveries> AlreadyDeliveredTable;
     @FXML TableColumn<Deliveries, Integer> AlreadyDeliveredID;
     @FXML TableColumn<Deliveries, Integer> AlreadyDeliveredSiteID;
     @FXML TableColumn<Deliveries, Timestamp> AlreadyDeliveredStart;
     @FXML TableColumn<Deliveries, Timestamp> AlreadyDeliveredEnd;
     @FXML TableColumn<Deliveries, Integer> AlreadyDeliveredSchedulingID;
-    @FXML TextField AlreadyDeliveredTextField;
 
     @FXML TableView<Deliveries> ToBeDeliveredTable;
     @FXML TableColumn<Deliveries, Integer> ToBeDeliveredID;
@@ -40,6 +36,8 @@ public class QueryDeliveriesController implements Initializable {
     @FXML TableColumn<Deliveries, Timestamp> ToBeDeliveredStart;
     @FXML TableColumn<Deliveries, Timestamp> ToBeDeliveredEnd;
     @FXML TableColumn<Deliveries, Integer> ToBeDeliveredSchedulingID;
+
+    @FXML TextField AlreadyDeliveredTextField;
     @FXML TextField ToBeDeliveredTextField;
 
     @Override

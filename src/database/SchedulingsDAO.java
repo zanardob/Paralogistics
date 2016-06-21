@@ -7,12 +7,7 @@ import model.viewtables.Schedulings;
 import oracle.jdbc.OracleTypes;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
 public class SchedulingsDAO {
     public ObservableList<Schedulings> findAll() throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
@@ -25,7 +20,7 @@ public class SchedulingsDAO {
         }
         Statement statement = null;
 
-        String findAllQuery = "select * from Schedulings";
+        String findAllQuery = "SELECT * FROM Schedulings";
 
         try {
             statement = connection.createStatement();

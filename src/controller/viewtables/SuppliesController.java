@@ -1,6 +1,5 @@
 package controller.viewtables;
 
-import database.SuppliesDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.SuppliesDAO;
 import model.viewtables.Supplies;
 
 import java.io.IOException;
@@ -19,18 +20,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
-public class SuppliesController implements Initializable{
-    @FXML
-    TableView<Supplies> Table;
-
-    @FXML
-    TableColumn<Supplies, Integer> MaterialID;
-
-    @FXML
-    TableColumn<Supplies, String> CompanyCNPJ;
+public class SuppliesController implements Initializable {
+    @FXML TableView<Supplies> Table;
+    @FXML TableColumn<Supplies, Integer> MaterialID;
+    @FXML TableColumn<Supplies, String> CompanyCNPJ;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,5 +52,4 @@ public class SuppliesController implements Initializable{
 
     public void Refresh(ActionEvent actionEvent) {
     }
-
 }

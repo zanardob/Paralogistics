@@ -19,7 +19,7 @@ public class DeliveryEnumerations extends Deliveries {
 
     public DeliveryEnumerations copy() {
         DeliveryEnumerations delivery = new DeliveryEnumerations(this.id, this.site, this.start, this.end, this.scheduling);
-        for(Enumerations e : this.enumerations) {
+        for (Enumerations e : this.enumerations) {
             delivery.addEnumeration(e);
         }
         return delivery;
@@ -27,15 +27,14 @@ public class DeliveryEnumerations extends Deliveries {
 
     public void addEnumeration(Enumerations e) {
         enumerations.add(e);
-        if(enumerations.size() > 1) {
+        if (enumerations.size() > 1) {
             Integer MaterialID = enumerations.get(enumerations.size() - 1).getMaterial();
             // PEGA O NOME DO MATERIAL DO ID ACIMA
             // Materials m = ??? SQL
             // String materialName = m.getName();
             // materialsString = materialsString + ", " + materialName;
             materialsString = materialsString + ", material " + enumerations.get(enumerations.size() - 1).getMaterial();
-        }
-        else {
+        } else {
             Integer MaterialID = enumerations.get(enumerations.size() - 1).getMaterial();
             // PEGA O NOME DO MATERIAL DO ID ACIMA
             // Materials m = ??? SQL

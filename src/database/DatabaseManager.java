@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Created by NilFu on 18/06/2016.
- */
 public class DatabaseManager {
     private static final String CONNECTION = "jdbc:oracle:thin:@grad.icmc.usp.br:15215:orcl";
     private static final String USERNAME = "g8937458";

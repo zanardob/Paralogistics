@@ -1,8 +1,5 @@
 package controller.queries;
 
-import database.DeliveriesDAO;
-import database.LicencesDAO;
-import database.SchedulingsDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,9 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.DeliveriesDAO;
+import database.LicencesDAO;
+import database.SchedulingsDAO;
+
 import model.insertions.LicenceDeliverer;
 import model.viewtables.Companies;
-import model.viewtables.Deliverers;
 import model.viewtables.Deliveries;
 import model.viewtables.Schedulings;
 
@@ -25,10 +26,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 18/06/2016.
- */
-public class QuerySchedulingsController implements Initializable{
+public class QuerySchedulingsController implements Initializable {
     ObservableList<Schedulings> schedulingsList = null;
     ObservableList<Deliveries> deliveriesList = null;
     ObservableList<LicenceDeliverer> licenceDeliverersList = null;
@@ -36,12 +34,6 @@ public class QuerySchedulingsController implements Initializable{
     @FXML TableView<Schedulings> SchedulingPickerTable;
     @FXML TableColumn<Schedulings, Integer> SchedulingID;
     @FXML TableColumn<Schedulings, String> SchedulingCompanyCNPJ;
-    @FXML TextField SchedulingPickerTextField;
-    @FXML Button SelectSchedulingButton;
-
-    @FXML TextField CompanyCNPJTextField;
-    @FXML TextField CompanyNameTextField;
-    @FXML TextField CompanyFantasyTextField;
 
     @FXML TableView<Deliveries> DeliveryViewTable;
     @FXML TableColumn<Deliveries, Integer> DeliveryID;
@@ -53,6 +45,13 @@ public class QuerySchedulingsController implements Initializable{
     @FXML TableColumn<LicenceDeliverer, Integer> DelivererCPF;
     @FXML TableColumn<LicenceDeliverer, String> DelivererName;
     @FXML TableColumn<LicenceDeliverer, Timestamp> VehiclePlate;
+
+    @FXML TextField SchedulingPickerTextField;
+    @FXML Button SelectSchedulingButton;
+
+    @FXML TextField CompanyCNPJTextField;
+    @FXML TextField CompanyNameTextField;
+    @FXML TextField CompanyFantasyTextField;
 
     public void GotoMainMenu(ActionEvent actionEvent) {
         Stage stage = (Stage) SchedulingPickerTable.getScene().getWindow();
@@ -76,7 +75,7 @@ public class QuerySchedulingsController implements Initializable{
         licenceDeliverersList = null;
 
         Schedulings selectedScheduling = SchedulingPickerTable.getSelectionModel().getSelectedItem();
-        if(selectedScheduling == null) {
+        if (selectedScheduling == null) {
             new Alert(Alert.AlertType.ERROR, "Selecione um agendamento!").show();
             return;
         }

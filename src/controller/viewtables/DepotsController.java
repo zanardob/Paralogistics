@@ -1,6 +1,5 @@
 package controller.viewtables;
 
-import database.DepotsDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.DepotsDAO;
 import model.viewtables.Depots;
 
 import java.io.IOException;
@@ -19,24 +20,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
-public class DepotsController implements Initializable{
-    @FXML
-    TableView<Depots> Table;
-
-    @FXML
-    TableColumn<Depots, Integer> SiteID;
-
-    @FXML
-    TableColumn<Depots, Integer> Number;
-
-    @FXML
-    TableColumn<Depots, String> Capacity;
-
-    @FXML
-    TableColumn<Depots, String> Dimensions;
+public class DepotsController implements Initializable {
+    @FXML TableView<Depots> Table;
+    @FXML TableColumn<Depots, Integer> SiteID;
+    @FXML TableColumn<Depots, Integer> Number;
+    @FXML TableColumn<Depots, String> Capacity;
+    @FXML TableColumn<Depots, String> Dimensions;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

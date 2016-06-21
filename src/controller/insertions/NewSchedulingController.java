@@ -1,6 +1,5 @@
 package controller.insertions;
 
-import database.CompaniesDAO;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -16,6 +15,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.CompaniesDAO;
 import model.viewtables.Companies;
 
 import java.io.IOException;
@@ -23,15 +24,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
-public class NewSchedulingController implements Initializable{
-
+public class NewSchedulingController implements Initializable {
     @FXML TableView<Companies> CompanyPickerTable;
     @FXML TableColumn<Companies, String> CompanyCNPJ;
     @FXML TableColumn<Companies, String> CompanyName;
     @FXML TableColumn<Companies, String> CompanyFantasy;
+
     @FXML TextField CompanyPickerTextField;
 
     @Override
@@ -50,7 +48,7 @@ public class NewSchedulingController implements Initializable{
 
         CompanyPickerTextField.textProperty().addListener((observable, oldValue, newValue) ->
             filteredList.setPredicate(company -> {
-                if(newValue == null || newValue.isEmpty())
+                if (newValue == null || newValue.isEmpty())
                     return true;
 
                 String companyFilter = newValue.toLowerCase();
@@ -76,12 +74,11 @@ public class NewSchedulingController implements Initializable{
     }
 
     public void SearchCompanies(ActionEvent actionEvent) {
-
     }
 
     public void Confirm(ActionEvent actionEvent) {
         Companies selectedCompany = CompanyPickerTable.getSelectionModel().getSelectedItem();
-        if(selectedCompany == null) {
+        if (selectedCompany == null) {
             new Alert(Alert.AlertType.ERROR, "Select a Company").show();
             return;
         }

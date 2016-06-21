@@ -1,6 +1,5 @@
 package controller.viewtables;
 
-import database.LicencesDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.LicencesDAO;
 import model.viewtables.Licences;
 
 import java.io.IOException;
@@ -19,21 +20,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
-public class LicencesController implements Initializable{
-    @FXML
-    TableView<Licences> Table;
-
-    @FXML
-    TableColumn<Licences, String> DelivererCPF;
-
-    @FXML
-    TableColumn<Licences, Integer> SchedulingID;
-
-    @FXML
-    TableColumn<Licences, String> VehiclePlate;
+public class LicencesController implements Initializable {
+    @FXML TableView<Licences> Table;
+    @FXML TableColumn<Licences, String> DelivererCPF;
+    @FXML TableColumn<Licences, Integer> SchedulingID;
+    @FXML TableColumn<Licences, String> VehiclePlate;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

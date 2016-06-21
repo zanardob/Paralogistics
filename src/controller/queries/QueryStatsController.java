@@ -1,29 +1,27 @@
 package controller.queries;
 
-import database.DeliveriesDAO;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.viewtables.Deliveries;
-import model.viewtables.Receivers;
-import model.viewtables.Sites;
+import javafx.util.Pair;
+
+import database.CompaniesDAO;
+import model.viewtables.Companies;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 18/06/2016.
- */
-public class QueryStatsController implements Initializable{
+public class QueryStatsController implements Initializable {
+    Companies mostDeliveriesCompany = null;
+    Companies heaviestCompany = null;
+
     @FXML TextField MostDeliveriesCompanyCNPJTextField;
     @FXML TextField MostDeliveriesCompanyNameTextField;
     @FXML TextField MostDeliveriesCompanyFantasyTextField;
@@ -33,9 +31,6 @@ public class QueryStatsController implements Initializable{
     @FXML TextField HeaviestCompanyNameTextField;
     @FXML TextField HeaviestCompanyFantasyTextField;
     @FXML TextField HeaviestCompanyWeight;
-
-    // TODO:
-    // DEFINE LICENCES JOIN DELIVERERS TABLE AND TABLECOLUMNS
 
     public void GotoMainMenu(ActionEvent actionEvent) {
         Stage stage = (Stage) MostDeliveriesCompanyCNPJTextField.getScene().getWindow();
@@ -53,7 +48,30 @@ public class QueryStatsController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO
-        // ALL THE SHIT!
+        Pair<Companies, Integer> mostDeliveriesPair = null;
+        Pair<Companies, Integer> heaviestCompanyPair = null;
+
+        try {
+            mostDeliveriesPair = new CompaniesDAO().getMostDeliveries();
+            heaviestCompanyPair = new CompaniesDAO().getHeaviest();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        mostDeliveriesCompany = mostDeliveriesPair.getKey();
+        heaviestCompany = heaviestCompanyPair.getKey();
+
+        Integer numDeliveries = mostDeliveriesPair.getValue();
+        Integer totalWeight = heaviestCompanyPair.getValue();
+
+        MostDeliveriesCompanyCNPJTextField.setText(mostDeliveriesCompany.getCnpj());
+        MostDeliveriesCompanyNameTextField.setText(mostDeliveriesCompany.getName());
+        MostDeliveriesCompanyFantasyTextField.setText(mostDeliveriesCompany.getFantasy());
+        MostDeliveriesQuantity.setText(numDeliveries.toString());
+
+        HeaviestCompanyCNPJTextField.setText(heaviestCompany.getCnpj());
+        HeaviestCompanyNameTextField.setText(heaviestCompany.getName());
+        HeaviestCompanyFantasyTextField.setText(heaviestCompany.getFantasy());
+        HeaviestCompanyWeight.setText(totalWeight.toString());
     }
 }

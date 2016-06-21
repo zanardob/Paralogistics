@@ -4,18 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.insertions.MaterialQuantity;
 import model.viewtables.Enumerations;
-import model.viewtables.Materials;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
 public class EnumerationsDAO {
     public ObservableList<Enumerations> findAll() throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
@@ -28,7 +22,7 @@ public class EnumerationsDAO {
         }
         Statement statement = null;
 
-        String findAllQuery = "select * from Enumerations";
+        String findAllQuery = "SELECT * FROM Enumerations";
 
         try {
             statement = connection.createStatement();

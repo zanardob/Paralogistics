@@ -13,16 +13,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 18/06/2016.
- */
 public class MainMenuController implements Initializable {
     @FXML
     BorderPane mainPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
     public void showScheduling(ActionEvent actionEvent) {

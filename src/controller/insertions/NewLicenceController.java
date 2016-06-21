@@ -1,7 +1,5 @@
 package controller.insertions;
 
-import database.DeliverersDAO;
-import database.VehiclesDAO;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -17,11 +15,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.DeliverersDAO;
+import database.VehiclesDAO;
+
+import model.insertions.DeliveryEnumerations;
+import model.insertions.LicenceDeliverer;
 import model.viewtables.Companies;
 import model.viewtables.Deliverers;
 import model.viewtables.Vehicles;
-import model.insertions.DeliveryEnumerations;
-import model.insertions.LicenceDeliverer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,14 +31,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
-public class NewLicenceController implements Initializable{
-    private Companies company = null;
-    private ObservableList<DeliveryEnumerations> deliveries;
-    private ObservableList<LicenceDeliverer> licences;
-
+public class NewLicenceController implements Initializable {
     ObservableList<Deliverers> deliverersList;
     ObservableList<Vehicles> vehiclesList;
 
@@ -44,13 +39,18 @@ public class NewLicenceController implements Initializable{
     @FXML TableColumn<Deliverers, String> DelivererCPF;
     @FXML TableColumn<Deliverers, String> DelivererName;
     @FXML TableColumn<Deliverers, String> DelivererRG;
-    @FXML TextField DelivererPickerTextField;
 
     @FXML TableView<Vehicles> VehiclePickerTable;
     @FXML TableColumn<Vehicles, String> VehiclePlate;
     @FXML TableColumn<Vehicles, Timestamp> VehicleConcessionStart;
     @FXML TableColumn<Vehicles, Timestamp> VehicleConcessionEnd;
+
+    @FXML TextField DelivererPickerTextField;
     @FXML TextField VehiclePickerTextField;
+
+    private Companies company = null;
+    private ObservableList<DeliveryEnumerations> deliveries;
+    private ObservableList<LicenceDeliverer> licences;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,23 +75,23 @@ public class NewLicenceController implements Initializable{
         sortedVehicles.comparatorProperty().bind(VehiclePickerTable.comparatorProperty());
 
         DelivererPickerTextField.textProperty().addListener((observable, oldValue, newValue) ->
-                filteredDeliverers.setPredicate(deliverer -> {
-                    if(newValue == null || newValue.isEmpty())
-                        return true;
+            filteredDeliverers.setPredicate(deliverer -> {
+                if (newValue == null || newValue.isEmpty())
+                    return true;
 
-                    String delivererFilter = newValue.toLowerCase();
-                    return deliverer.getCpf().contains(delivererFilter) || deliverer.getName().toLowerCase().contains(delivererFilter) || deliverer.getRg().contains(delivererFilter);
-                })
+                String delivererFilter = newValue.toLowerCase();
+                return deliverer.getCpf().contains(delivererFilter) || deliverer.getName().toLowerCase().contains(delivererFilter) || deliverer.getRg().contains(delivererFilter);
+            })
         );
 
         VehiclePickerTextField.textProperty().addListener((observable, oldValue, newValue) ->
-                filteredVehicles.setPredicate(vehicle -> {
-                    if(newValue == null || newValue.isEmpty())
-                        return true;
+            filteredVehicles.setPredicate(vehicle -> {
+                if (newValue == null || newValue.isEmpty())
+                    return true;
 
-                    String vehicleFilter = newValue.toLowerCase();
-                    return vehicle.getPlate().toLowerCase().contains(vehicleFilter);
-                })
+                String vehicleFilter = newValue.toLowerCase();
+                return vehicle.getPlate().toLowerCase().contains(vehicleFilter);
+            })
         );
 
         DelivererPickerTable.setItems(sortedDeliverers);
@@ -144,7 +144,7 @@ public class NewLicenceController implements Initializable{
     public void Confirm(ActionEvent actionEvent) {
         Deliverers selectedDeliverer = DelivererPickerTable.getSelectionModel().getSelectedItem();
         Vehicles selectedVehicle = VehiclePickerTable.getSelectionModel().getSelectedItem();
-        if((selectedDeliverer == null) || (selectedVehicle == null)) {
+        if ((selectedDeliverer == null) || (selectedVehicle == null)) {
             new Alert(Alert.AlertType.ERROR, "Selecione um Entregador E um Veículo").show();
             return;
         }

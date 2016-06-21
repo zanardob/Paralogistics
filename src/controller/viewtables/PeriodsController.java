@@ -1,6 +1,5 @@
 package controller.viewtables;
 
-import database.PeriodsDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import database.PeriodsDAO;
 import model.viewtables.Periods;
 
 import java.io.IOException;
@@ -20,24 +21,12 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
-/**
- * Created by NilFu on 19/06/2016.
- */
-public class PeriodsController implements Initializable{
-    @FXML
-    TableView<Periods> Table;
-
-    @FXML
-    TableColumn<Periods, Integer> SiteID;
-
-    @FXML
-    TableColumn<Periods, Timestamp> Start;
-
-    @FXML
-    TableColumn<Periods, Timestamp> End;
-
-    @FXML
-    TableColumn<Periods, String> ReceiverCPF;
+public class PeriodsController implements Initializable {
+    @FXML TableView<Periods> Table;
+    @FXML TableColumn<Periods, Integer> SiteID;
+    @FXML TableColumn<Periods, Timestamp> Start;
+    @FXML TableColumn<Periods, Timestamp> End;
+    @FXML TableColumn<Periods, String> ReceiverCPF;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
