@@ -129,7 +129,7 @@ public class NewScheduling2Controller implements Initializable {
         try {
             // TODO:Error recovery, remove the right things and remove what has to be removed
             scheduling.setId(schedulingsDAO.insertReturnId(scheduling));
-            for(LicencedDeliverer licence : licences) {
+            for(LicenceDeliverer licence : licences) {
                 Licences newLicence = new Licences(licence.getDeliverer(), scheduling.getId(), licence.getVehicle());
                 // INSERT THE newLicence INTO THE DATABASE!
                 new LicencesDAO().insert(newLicence);

@@ -17,10 +17,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-import model.viewtables.Companies;
-import model.viewtables.Enumerations;
-import model.viewtables.Periods;
-import model.viewtables.Sites;
+import javafx.util.converter.IntegerStringConverter;
+import model.viewtables.*;
 import model.insertions.DeliveryEnumerations;
 import model.insertions.LicenceDeliverer;
 import model.insertions.MaterialQuantity;
@@ -46,48 +44,28 @@ public class NewDeliveryController implements Initializable {
     Sites selectedSite;
     Periods selectedPeriod;
 
-    @FXML
-    TableView<Sites> SitePickerTable;
-    @FXML
-    TableColumn<Sites, String> SiteName;
-    @FXML
-    TableColumn<Sites, String> SiteStreet;
-    @FXML
-    TableColumn<Sites, Integer> SiteNumber;
-    @FXML
-    TableColumn<Sites, String> SiteCity;
-    @FXML
-    TableColumn<Sites, String> SiteState;
-    @FXML
-    TableColumn<Sites, String> SiteZip;
-    @FXML
-    TableColumn<Sites, String> SiteCompanyCNPJ;
-    @FXML
-    TextField SitePickerTextField;
-    @FXML
-    Button SitePickerConfirmButton;
+    @FXML TableView<Sites> SitePickerTable;
+    @FXML TableColumn<Sites, String> SiteName;
+    @FXML TableColumn<Sites, String> SiteStreet;
+    @FXML TableColumn<Sites, Integer> SiteNumber;
+    @FXML TableColumn<Sites, String> SiteCity;
+    @FXML TableColumn<Sites, String> SiteState;
+    @FXML TableColumn<Sites, String> SiteZip;
+    @FXML TableColumn<Sites, String> SiteCompanyCNPJ;
+    @FXML TextField SitePickerTextField;
+    @FXML Button SitePickerConfirmButton;
 
-    @FXML
-    TableView<Periods> PeriodPickerTable;
-    @FXML
-    TableColumn<Periods, Timestamp> SitePeriodStart;
-    @FXML
-    TableColumn<Periods, Timestamp> SitePeriodEnd;
+    @FXML TableView<Periods> PeriodPickerTable;
+    @FXML TableColumn<Periods, Timestamp> SitePeriodStart;
+    @FXML TableColumn<Periods, Timestamp> SitePeriodEnd;
 
-    @FXML
-    TableView<model.insertions.MaterialQuantity> MaterialEnumeratorTable;
-    @FXML
-    TableColumn<model.insertions.MaterialQuantity, Integer> MaterialID;
-    @FXML
-    TableColumn<model.insertions.MaterialQuantity, String> MaterialDescription;
-    @FXML
-    TableColumn<model.insertions.MaterialQuantity, String> MaterialWeight;
-    @FXML
-    TableColumn<model.insertions.MaterialQuantity, String> MaterialDimensions;
-    @FXML
-    TableColumn<MaterialQuantity, Integer> MaterialQuantity;
-    @FXML
-    TextField MaterialEnumeratorTextField;
+    @FXML TableView<model.insertions.MaterialQuantity> MaterialEnumeratorTable;
+    @FXML TableColumn<model.insertions.MaterialQuantity, Integer> MaterialID;
+    @FXML TableColumn<model.insertions.MaterialQuantity, String> MaterialDescription;
+    @FXML TableColumn<model.insertions.MaterialQuantity, String> MaterialWeight;
+    @FXML TableColumn<model.insertions.MaterialQuantity, String> MaterialDimensions;
+    @FXML TableColumn<MaterialQuantity, Integer> MaterialQuantity;
+    @FXML TextField MaterialEnumeratorTextField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -103,13 +81,13 @@ public class NewDeliveryController implements Initializable {
         sortedSites.comparatorProperty().bind(SitePickerTable.comparatorProperty());
 
         SitePickerTextField.textProperty().addListener((observable, oldValue, newValue) ->
-                filteredSites.setPredicate(site -> {
-                    if (newValue == null || newValue.isEmpty())
-                        return true;
+            filteredSites.setPredicate(site -> {
+                if (newValue == null || newValue.isEmpty())
+                    return true;
 
-                    String siteFilter = newValue.toLowerCase();
-                    return site.getName().toLowerCase().contains(siteFilter) || site.getStreet().toLowerCase().contains(siteFilter) || ((site.getCompany() != null) && site.getCompany().contains(siteFilter));
-                })
+                String siteFilter = newValue.toLowerCase();
+                return site.getName().toLowerCase().contains(siteFilter) || site.getStreet().toLowerCase().contains(siteFilter) || ((site.getCompany() != null) && site.getCompany().contains(siteFilter));
+            })
         );
 
         SitePickerTable.setItems(sortedSites);
