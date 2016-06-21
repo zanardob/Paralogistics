@@ -85,19 +85,19 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Código" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CEP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <TextField fx:id="SiteIDTextField" alignment="CENTER" editable="false" promptText="Código do Local" GridPane.rowIndex="1" />
-                              <TextField fx:id="SiteNameTextField" alignment="CENTER" editable="false" promptText="Nome do Local" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="SiteZipTextField" alignment="CENTER" editable="false" promptText="CEP do Local" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField fx:id="SiteIDTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Código do Local" GridPane.rowIndex="1" />
+                              <TextField fx:id="SiteNameTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Nome do Local" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="SiteZipTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="CEP do Local" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CNPJ da Empresa Responsável" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <TextField fx:id="SiteCompanyCNPJTextField" alignment="CENTER" editable="false" promptText="CNPJ da Empresa Responsável" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <TextField fx:id="SiteCompanyCNPJTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="CNPJ da Empresa Responsável" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Logradouro" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Número" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cidade" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Estado" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                              <TextField fx:id="SiteStreetTextField" alignment="CENTER" editable="false" promptText="Logradouro" GridPane.rowIndex="3" />
-                              <TextField fx:id="SiteNumberTextField" alignment="CENTER" editable="false" promptText="Número" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField fx:id="SiteCityTextField" alignment="CENTER" editable="false" promptText="Cidade" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <TextField fx:id="SiteStateTextField" alignment="CENTER" editable="false" promptText="Estado" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <TextField fx:id="SiteStreetTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Logradouro" GridPane.rowIndex="3" />
+                              <TextField fx:id="SiteNumberTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Número" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="SiteCityTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Cidade" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <TextField fx:id="SiteStateTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Estado" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
                      </center>
@@ -109,9 +109,9 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="RG" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <TextField fx:id="ReceiverCPFTextField" alignment="CENTER" editable="false" promptText="CPF do Receptor" GridPane.rowIndex="1" />
-                              <TextField fx:id="ReceiverNameTextField" alignment="CENTER" editable="false" promptText="Nome do Receptor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="ReceiverRGTextField" alignment="CENTER" editable="false" promptText="RG do Receptor" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField fx:id="ReceiverCPFTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="CPF do Receptor" GridPane.rowIndex="1" />
+                              <TextField fx:id="ReceiverNameTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Nome do Receptor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="ReceiverRGTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="RG do Receptor" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                            </children>
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />

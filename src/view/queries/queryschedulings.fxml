@@ -81,9 +81,9 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CNPJ" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Razão Social" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Fantasia" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <TextField fx:id="CompanyCNPJTextField" alignment="CENTER" editable="false" promptText="CNPJ da Empresa" GridPane.rowIndex="1" />
-                              <TextField fx:id="CompanyNameTextField" alignment="CENTER" editable="false" promptText="Razão Social" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="CompanyFantasyTextField" alignment="CENTER" editable="false" promptText="Nome Fantasia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField fx:id="CompanyCNPJTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="CNPJ da Empresa" GridPane.rowIndex="1" />
+                              <TextField fx:id="CompanyNameTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Razão Social" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="CompanyFantasyTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Nome Fantasia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </center>

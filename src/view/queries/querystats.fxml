@@ -55,11 +55,11 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CNPJ" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Razão Social" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Fantasia" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <TextField fx:id="MostDeliveriesCompanyCNPJTextField" alignment="CENTER" editable="false" promptText="CNPJ da Empresa" GridPane.rowIndex="1" />
-                        <TextField fx:id="MostDeliveriesCompanyNameTextField" alignment="CENTER" editable="false" promptText="Razão Social" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="MostDeliveriesCompanyFantasyTextField" alignment="CENTER" editable="false" promptText="Nome Fantasia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="MostDeliveriesCompanyCNPJTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="CNPJ da Empresa" GridPane.rowIndex="1" />
+                        <TextField fx:id="MostDeliveriesCompanyNameTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Razão Social" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="MostDeliveriesCompanyFantasyTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Nome Fantasia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantidade de Entregas" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <TextField fx:id="MostDeliveriesQuantity" alignment="CENTER" promptText="Quantidade de Entregas" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <TextField fx:id="MostDeliveriesQuantity" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Quantidade de Entregas" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </center>
@@ -71,11 +71,11 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CNPJ" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Razão Social" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Fantasia" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <TextField fx:id="HeaviestCompanyCNPJTextField" alignment="CENTER" editable="false" promptText="CNPJ da Empresa" GridPane.rowIndex="1" />
-                        <TextField fx:id="HeaviestCompanyNameTextField" alignment="CENTER" editable="false" promptText="Razão Social" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="HeaviestCompanyFantasyTextField" alignment="CENTER" editable="false" promptText="Nome Fantasia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="HeaviestCompanyCNPJTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="CNPJ da Empresa" GridPane.rowIndex="1" />
+                        <TextField fx:id="HeaviestCompanyNameTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Razão Social" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="HeaviestCompanyFantasyTextField" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Nome Fantasia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Massa Total Entregue" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <TextField fx:id="HeaviestCompanyWeight" alignment="CENTER" promptText="Massa Total Entregue" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <TextField fx:id="HeaviestCompanyWeight" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" promptText="Massa Total Entregue" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
