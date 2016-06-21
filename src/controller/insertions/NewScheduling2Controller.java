@@ -144,7 +144,7 @@ public class NewScheduling2Controller implements Initializable {
                 }
             }
             else {
-                // TODO: Remove Scheduling
+                schedulingsDAO.deleteById(scheduling.getId());
                 System.out.println("Scheduling " + scheduling.getId() + " should be removed (no licences added)");
                 return;
             }
@@ -163,14 +163,14 @@ public class NewScheduling2Controller implements Initializable {
                         }
                     }
                     else {
-                        // TODO: Remove Scheduling
+                        schedulingsDAO.deleteById(scheduling.getId());
                         System.out.println("Scheduling " + scheduling.getId() + " should be removed (no enumerations in delivery " + newDelivery.getId() + " added)");
                         return;
                     }
                 }
             }
             else {
-                // TODO: Remove Scheduling
+                schedulingsDAO.deleteById(scheduling.getId());
                 System.out.println("Scheduling " + scheduling.getId() + " should be removed (no deliveries added)");
                 return;
             }
