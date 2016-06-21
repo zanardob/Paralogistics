@@ -20,8 +20,8 @@ import javafx.stage.Stage;
 import model.viewtables.Companies;
 import model.viewtables.Deliverers;
 import model.viewtables.Vehicles;
-import model.insertions.DeliveryAndEnumerations;
-import model.insertions.LicencedDeliverer;
+import model.insertions.DeliveryEnumerations;
+import model.insertions.LicenceDeliverer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,8 +34,8 @@ import java.util.ResourceBundle;
  */
 public class NewLicenceController implements Initializable{
     private Companies company = null;
-    private ObservableList<DeliveryAndEnumerations> deliveries;
-    private ObservableList<LicencedDeliverer> licences;
+    private ObservableList<DeliveryEnumerations> deliveries;
+    private ObservableList<LicenceDeliverer> licences;
 
     ObservableList<Deliverers> deliverersList;
     ObservableList<Vehicles> vehiclesList;
@@ -109,11 +109,11 @@ public class NewLicenceController implements Initializable{
         this.company = company;
     }
 
-    public void setDeliveries(ObservableList<DeliveryAndEnumerations> deliveries) {
+    public void setDeliveries(ObservableList<DeliveryEnumerations> deliveries) {
         this.deliveries = deliveries;
     }
 
-    public void setLicences(ObservableList<LicencedDeliverer> licences) {
+    public void setLicences(ObservableList<LicenceDeliverer> licences) {
         this.licences = licences;
     }
 
@@ -152,7 +152,7 @@ public class NewLicenceController implements Initializable{
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/insertions/newscheduling2.fxml"));
             Parent root = loader.load();
-            licences.add(new LicencedDeliverer(selectedDeliverer.getCpf(), 0, selectedVehicle.getPlate(), selectedDeliverer.getName()));
+            licences.add(new LicenceDeliverer(selectedDeliverer.getCpf(), 0, selectedVehicle.getPlate(), selectedDeliverer.getName()));
             NewScheduling2Controller controller = loader.getController();
             controller.setCompany(company);
             controller.setDeliveries(deliveries);

@@ -2,10 +2,10 @@ package model.insertions;
 
 import model.viewtables.Licences;
 
-public class LicencedDeliverer extends Licences {
+public class LicenceDeliverer extends Licences {
   private String name;
 
-  public LicencedDeliverer(String deliverer, Integer scheduling, String vehicle, String name) {
+  public LicenceDeliverer(String deliverer, Integer scheduling, String vehicle, String name) {
     super(deliverer, scheduling, vehicle);
     this.name = name;
   }

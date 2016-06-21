@@ -2,6 +2,8 @@ package controller.insertions;
 
 import database.PeriodsDAO;
 import database.SitesDAO;
+import database.SuppliesDAO;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -13,14 +15,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-import model.viewtables.Companies;
-import model.viewtables.Enumerations;
-import model.viewtables.Periods;
-import model.viewtables.Sites;
-import model.insertions.DeliveryAndEnumerations;
-import model.insertions.LicencedDeliverer;
-import model.insertions.MaterialAndQuantity;
+import javafx.util.converter.IntegerStringConverter;
+import model.insertions.MaterialQuantity;
+import model.viewtables.*;
+import model.insertions.DeliveryEnumerations;
+import model.insertions.LicenceDeliverer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,83 +32,83 @@ import java.util.ResourceBundle;
 /**
  * Created by NilFu on 19/06/2016.
  */
-public class NewDeliveryController implements Initializable{
+public class NewDeliveryController implements Initializable {
     private Companies company = null;
-    private ObservableList<DeliveryAndEnumerations> deliveries;
-    private ObservableList<LicencedDeliverer> licences;
+    private ObservableList<DeliveryEnumerations> deliveries;
+    private ObservableList<LicenceDeliverer> licences;
 
-    ObservableList<Sites> sitesList;
-    ObservableList<Periods> periodsList;
-    ObservableList<MaterialAndQuantity> materialsList;
+    ObservableList<Sites> sitesList = null;
+    ObservableList<Periods> periodsList = null;
+    ObservableList<MaterialQuantity> materialQuantityList = null;
 
     Sites selectedSite;
     Periods selectedPeriod;
 
-    @FXML TableView<Sites> SitePickerTable;
-    @FXML TableColumn<Sites, String> SiteName;
-    @FXML TableColumn<Sites, String> SiteStreet;
-    @FXML TableColumn<Sites, Integer> SiteNumber;
-    @FXML TableColumn<Sites, String> SiteCity;
-    @FXML TableColumn<Sites, String> SiteState;
-    @FXML TableColumn<Sites, String> SiteZip;
-    @FXML TableColumn<Sites, String> SiteCompanyCNPJ;
-    @FXML TextField SitePickerTextField;
-    @FXML Button SitePickerConfirmButton;
+    @FXML
+    TableView<Sites> SitePickerTable;
+    @FXML
+    TableColumn<Sites, String> SiteName;
+    @FXML
+    TableColumn<Sites, String> SiteStreet;
+    @FXML
+    TableColumn<Sites, Integer> SiteNumber;
+    @FXML
+    TableColumn<Sites, String> SiteCity;
+    @FXML
+    TableColumn<Sites, String> SiteState;
+    @FXML
+    TableColumn<Sites, String> SiteZip;
+    @FXML
+    TableColumn<Sites, String> SiteCompanyCNPJ;
+    @FXML
+    TextField SitePickerTextField;
+    @FXML
+    Button SitePickerConfirmButton;
 
-    @FXML TableView<Periods> PeriodPickerTable;
-    @FXML TableColumn<Periods, Timestamp> SitePeriodStart;
-    @FXML TableColumn<Periods, Timestamp> SitePeriodEnd;
+    @FXML
+    TableView<Periods> PeriodPickerTable;
+    @FXML
+    TableColumn<Periods, Timestamp> SitePeriodStart;
+    @FXML
+    TableColumn<Periods, Timestamp> SitePeriodEnd;
 
-    @FXML TableView<MaterialAndQuantity> MaterialEnumeratorTable;
-    @FXML TableColumn<MaterialAndQuantity, Integer> MaterialID;
-    @FXML TableColumn<MaterialAndQuantity, String> MaterialDescription;
-    @FXML TableColumn<MaterialAndQuantity, String> MaterialWeight;
-    @FXML TableColumn<MaterialAndQuantity, String> MaterialDimensions;
-    @FXML TableColumn<MaterialAndQuantity, Integer> MaterialQuantity;
-    @FXML TextField MaterialEnumeratorTextField;
+    @FXML
+    TableView<model.insertions.MaterialQuantity> MaterialEnumeratorTable;
+    @FXML
+    TableColumn<model.insertions.MaterialQuantity, Integer> MaterialID;
+    @FXML
+    TableColumn<model.insertions.MaterialQuantity, String> MaterialDescription;
+    @FXML
+    TableColumn<model.insertions.MaterialQuantity, String> MaterialWeight;
+    @FXML
+    TableColumn<model.insertions.MaterialQuantity, String> MaterialDimensions;
+    @FXML
+    TableColumn<MaterialQuantity, Integer> MaterialQuantity;
+    @FXML
+    TextField MaterialEnumeratorTextField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        sitesList = null;
-        periodsList = null;
-        materialsList = null;
         try {
             sitesList = new SitesDAO().findAll();
-            periodsList = new PeriodsDAO().findAll();
-            //materialList = new MaterialAndQuantityDAO().findAll();
             System.out.println(sitesList);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         FilteredList<Sites> filteredSites = new FilteredList<>(sitesList, s -> true);
-        //FilteredList<MaterialAndQuantity> filteredMaterialAndQuantity = new FilteredList<>(materialsList, m -> true);
-
         SortedList<Sites> sortedSites = new SortedList<>(filteredSites);
-        //SortedList<MaterialAndQuantity> sortedMaterialAndQuantity = new SortedList<>(filteredMaterialAndQuantity);
-
         sortedSites.comparatorProperty().bind(SitePickerTable.comparatorProperty());
-        //sortedMaterialAndQuantity.comparatorProperty().bind(MaterialEnumeratorTable.comparatorProperty());
 
         SitePickerTextField.textProperty().addListener((observable, oldValue, newValue) ->
-            filteredSites.setPredicate(site -> {
-                if(newValue == null || newValue.isEmpty())
-                    return true;
+                filteredSites.setPredicate(site -> {
+                    if (newValue == null || newValue.isEmpty())
+                        return true;
 
-                String siteFilter = newValue.toLowerCase();
-                return site.getName().toLowerCase().contains(siteFilter) || site.getStreet().toLowerCase().contains(siteFilter) || ((site.getCompany() != null) && site.getCompany().contains(siteFilter));
-            })
+                    String siteFilter = newValue.toLowerCase();
+                    return site.getName().toLowerCase().contains(siteFilter) || site.getStreet().toLowerCase().contains(siteFilter) || ((site.getCompany() != null) && site.getCompany().contains(siteFilter));
+                })
         );
-
-        /*MaterialEnumeratorTextField.textProperty().addListener((observable, oldValue, newValue) ->
-            filteredMaterialAndQuantity.setPredicate(material -> {
-                if(newValue == null || newValue.isEmpty())
-                    return true;
-
-                String materialFilter = newValue.toLowerCase();
-                return material.getId().equals(Integer.parseInt(materialFilter)) || material.getDescription().toLowerCase().contains(materialFilter);
-            })
-        );*/
 
         SitePickerTable.setItems(sortedSites);
         SiteName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -118,22 +119,54 @@ public class NewDeliveryController implements Initializable{
         SiteZip.setCellValueFactory(new PropertyValueFactory<>("zip"));
         SiteCompanyCNPJ.setCellValueFactory(new PropertyValueFactory<>("company"));
 
-        PeriodPickerTable.setItems(periodsList);
         SitePeriodStart.setCellValueFactory(new PropertyValueFactory<>("start"));
         SitePeriodEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
 
-        MaterialEnumeratorTable.setItems(materialsList);
         MaterialID.setCellValueFactory(new PropertyValueFactory<>("id"));
         MaterialDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         MaterialWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
         MaterialDimensions.setCellValueFactory(new PropertyValueFactory<>("dimension"));
         MaterialQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        MaterialQuantity.setEditable(true);
+        MaterialQuantity.setCellFactory(TextFieldTableCell.<MaterialQuantity, Integer>forTableColumn(new IntegerStringConverter()));
+        MaterialQuantity.setOnEditCommit((TableColumn.CellEditEvent<MaterialQuantity, Integer> event) ->
+            (event.getTableView().getItems(). get(event.getTablePosition().getRow())).setQuantity(event.getNewValue()));
+
+        MaterialEnumeratorTable.setEditable(true);
+    }
+
+    private ObservableList<MaterialQuantity> buildList(ObservableList<Materials> materialsList) {
+        ObservableList<MaterialQuantity> materialQuantityList = FXCollections.observableArrayList();
+        for (Materials material : materialsList) {
+            materialQuantityList.add(new MaterialQuantity(material));
+        }
+
+        return materialQuantityList;
     }
 
     public void fillMaterialsTable() {
-        // materialsList = PEGA OS MATERIAL DA EMPRESA (deliveringCompany)
-        System.out.println(materialsList);
+        try {
+            ObservableList<Materials> materialsList = new SuppliesDAO().getMaterials(company.getCnpj());
+            materialQuantityList = buildList(materialsList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        FilteredList<MaterialQuantity> filteredMaterialAndQuantity = new FilteredList<>(materialQuantityList, m -> true);
+        SortedList<MaterialQuantity> sortedMaterialAndQuantity = new SortedList<>(filteredMaterialAndQuantity);
+        sortedMaterialAndQuantity.comparatorProperty().bind(MaterialEnumeratorTable.comparatorProperty());
+
+        MaterialEnumeratorTextField.textProperty().addListener((observable, oldValue, newValue) ->
+                filteredMaterialAndQuantity.setPredicate(material -> {
+                    if (newValue == null || newValue.isEmpty())
+                        return true;
+
+                    String materialFilter = newValue.toLowerCase();
+                    return material.getId().equals(Integer.parseInt(materialFilter)) || material.getDescription().toLowerCase().contains(materialFilter);
+                })
+        );
+
+        MaterialEnumeratorTable.setItems(materialQuantityList);
+        System.out.println(materialQuantityList);
         System.out.println("Deveria ter impresso a lista de materiais da empresa de cnpj: " + company.getCnpj());
     }
 
@@ -141,11 +174,11 @@ public class NewDeliveryController implements Initializable{
         this.company = company;
     }
 
-    public void setDeliveries(ObservableList<DeliveryAndEnumerations> deliveries) {
+    public void setDeliveries(ObservableList<DeliveryEnumerations> deliveries) {
         this.deliveries = deliveries;
     }
 
-    public void setLicences(ObservableList<LicencedDeliverer> licences) {
+    public void setLicences(ObservableList<LicenceDeliverer> licences) {
         this.licences = licences;
     }
 
@@ -173,12 +206,19 @@ public class NewDeliveryController implements Initializable{
         selectedPeriod = null;
         selectedSite = null;
         selectedSite = SitePickerTable.getSelectionModel().getSelectedItem();
-        if(selectedSite == null) {
+
+        if (selectedSite == null) {
             new Alert(Alert.AlertType.ERROR, "Selecione um Local").show();
             return;
         }
-        // Insert a query here to fill the list
-        // periodsList = (GET ALL PERIODS FROM selectedSite)
+
+        try {
+            periodsList = new PeriodsDAO().findBysite(selectedSite.getId());
+            PeriodPickerTable.setItems(periodsList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         System.out.println(periodsList);
         System.out.println("Deveria ter impresso a lista de períodos do local de Nome: " + selectedSite.getName());
     }
@@ -190,19 +230,18 @@ public class NewDeliveryController implements Initializable{
     public void Confirm(ActionEvent actionEvent) {
         selectedPeriod = null;
         selectedPeriod = PeriodPickerTable.getSelectionModel().getSelectedItem();
-        if(selectedPeriod == null) {
+        if (selectedPeriod == null) {
             new Alert(Alert.AlertType.ERROR, "Selecione um Período").show();
             return;
         }
 
-        DeliveryAndEnumerations delivery = new DeliveryAndEnumerations(0, selectedSite.getId(), selectedPeriod.getStart(), selectedPeriod.getEnd(), 0);
-        for(MaterialAndQuantity material : materialsList) {
+        DeliveryEnumerations delivery = new DeliveryEnumerations(0, selectedSite.getId(), selectedPeriod.getStart(), selectedPeriod.getEnd(), 0);
+        for (model.insertions.MaterialQuantity material : materialQuantityList) {
             if (material.getQuantity() > 0) {
                 delivery.addEnumeration(new Enumerations(delivery.getId(), material.getId(), material.getQuantity()));
-                break;
             }
         }
-        if(!delivery.hasEnumerations()) {
+        if (!delivery.hasEnumerations()) {
             new Alert(Alert.AlertType.ERROR, "Adicione materiais à entrega!").show();
             return;
         }

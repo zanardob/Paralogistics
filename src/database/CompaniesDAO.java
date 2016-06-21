@@ -20,7 +20,7 @@ public class CompaniesDAO {
         Connection connection = dbm.getConnection();
         ObservableList<Companies> cpns = FXCollections.observableArrayList();
 
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
@@ -32,33 +32,34 @@ public class CompaniesDAO {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(findAllQuery);
 
-            while(resultSet.next()) {
-                cpns.add(new Companies( resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
+            while (resultSet.next()) {
+                cpns.add(new Companies(resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
         return cpns;
     }
-public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
+
+    public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Companies> rs = FXCollections.observableArrayList();
+
+        ObservableList<Companies> rs = FXCollections.observableArrayList();
 
         String query = "select * from Companies where cpn_cnpj = '" + cnpj + "'";
 
@@ -66,32 +67,33 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Companies( resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Companies(resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Companies> findByname(String name) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Companies> findByname(String name) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Companies> rs = FXCollections.observableArrayList();
+
+        ObservableList<Companies> rs = FXCollections.observableArrayList();
 
         String query = "select * from Companies where cpn_name = '" + name + "'";
 
@@ -99,32 +101,33 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Companies( resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Companies(resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Companies> findByfantasy(String fantasy) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Companies> findByfantasy(String fantasy) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Companies> rs = FXCollections.observableArrayList();
+
+        ObservableList<Companies> rs = FXCollections.observableArrayList();
 
         String query = "select * from Companies where cpn_fantasy = '" + fantasy + "'";
 
@@ -132,31 +135,32 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Companies( resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Companies(resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public void insert(Companies ins) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public void insert(Companies ins) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return;
         }
         Statement statement = null;
-        String query = "insert into Companies( cpn_cnpj, cpn_name, cpn_fantasy) values (" + ins.getCnpj() + ", " + ins.getName() + ", " + ins.getFantasy() + ")";
+        String query = "insert into Companies(cpn_cnpj, cpn_name, cpn_fantasy) values (" + ins.getCnpj() + ", " + ins.getName() + ", " + ins.getFantasy() + ")";
 
         try {
             statement = connection.createStatement();
@@ -166,11 +170,11 @@ public ObservableList<Companies> findBycnpj(String cnpj) throws SQLException {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
     }
