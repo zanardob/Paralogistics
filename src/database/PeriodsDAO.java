@@ -3,11 +3,10 @@ package database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.viewtables.Periods;
+import model.viewtables.Receivers;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,45 +19,46 @@ public class PeriodsDAO {
         Connection connection = dbm.getConnection();
         ObservableList<Periods> cpns = FXCollections.observableArrayList();
 
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
 
-        String findAllQuery = "select * from Periods";
+        String findAllQuery = "SELECT * FROM Periods";
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(findAllQuery);
 
-            while(resultSet.next()) {
-                cpns.add(new Periods( resultSet.getInt("prd_site"), resultSet.getTimestamp("prd_start"), resultSet.getTimestamp("prd_end"), resultSet.getString("prd_receiver")));
+            while (resultSet.next()) {
+                cpns.add(new Periods(resultSet.getInt("prd_site"), resultSet.getTimestamp("prd_start"), resultSet.getTimestamp("prd_end"), resultSet.getString("prd_receiver")));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
         return cpns;
     }
-public ObservableList<Periods> findBysite(Integer site) throws SQLException {
+
+    public ObservableList<Periods> findBysite(Integer site) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Periods> rs = FXCollections.observableArrayList();
+
+        ObservableList<Periods> rs = FXCollections.observableArrayList();
 
         String query = "select * from Periods where prd_site = " + site + "";
 
@@ -66,32 +66,33 @@ public ObservableList<Periods> findBysite(Integer site) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Periods( resultSet.getInt("prd_site"), resultSet.getTimestamp("prd_start"), resultSet.getTimestamp("prd_end"), resultSet.getString("prd_receiver")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Periods(resultSet.getInt("prd_site"), resultSet.getTimestamp("prd_start"), resultSet.getTimestamp("prd_end"), resultSet.getString("prd_receiver")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Periods> findBystart(java.sql.Timestamp start) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Periods> findBystart(java.sql.Timestamp start) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Periods> rs = FXCollections.observableArrayList();
+
+        ObservableList<Periods> rs = FXCollections.observableArrayList();
 
         String query = "select * from Periods where prd_start = " + start + "";
 
@@ -99,32 +100,33 @@ public ObservableList<Periods> findBysite(Integer site) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Periods( resultSet.getInt("prd_site"), resultSet.getTimestamp("prd_start"), resultSet.getTimestamp("prd_end"), resultSet.getString("prd_receiver")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Periods(resultSet.getInt("prd_site"), resultSet.getTimestamp("prd_start"), resultSet.getTimestamp("prd_end"), resultSet.getString("prd_receiver")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Periods> findByend(java.sql.Timestamp end) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Periods> findByend(java.sql.Timestamp end) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Periods> rs = FXCollections.observableArrayList();
+
+        ObservableList<Periods> rs = FXCollections.observableArrayList();
 
         String query = "select * from Periods where prd_end = " + end + "";
 
@@ -132,32 +134,33 @@ public ObservableList<Periods> findBysite(Integer site) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Periods( resultSet.getInt("prd_site"), resultSet.getTimestamp("prd_start"), resultSet.getTimestamp("prd_end"), resultSet.getString("prd_receiver")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Periods(resultSet.getInt("prd_site"), resultSet.getTimestamp("prd_start"), resultSet.getTimestamp("prd_end"), resultSet.getString("prd_receiver")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Periods> findByreceiver(String receiver) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Periods> findByreceiver(String receiver) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Periods> rs = FXCollections.observableArrayList();
+
+        ObservableList<Periods> rs = FXCollections.observableArrayList();
 
         String query = "select * from Periods where prd_receiver = '" + receiver + "'";
 
@@ -165,26 +168,27 @@ public ObservableList<Periods> findBysite(Integer site) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Periods( resultSet.getInt("prd_site"), resultSet.getTimestamp("prd_start"), resultSet.getTimestamp("prd_end"), resultSet.getString("prd_receiver")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Periods(resultSet.getInt("prd_site"), resultSet.getTimestamp("prd_start"), resultSet.getTimestamp("prd_end"), resultSet.getString("prd_receiver")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public void insert(Periods ins) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public void insert(Periods ins) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return;
         }
@@ -199,12 +203,51 @@ public ObservableList<Periods> findBysite(Integer site) throws SQLException {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
+    }
+
+    public Receivers getReceiver(Integer site, Timestamp start, Timestamp end) throws SQLException {
+        DatabaseManager dbm = new DatabaseManager();
+        Connection connection = dbm.getConnection();
+        if (connection == null) {
+            System.out.println("Couldn't connect to database");
+            return null;
+        }
+
+        Statement statement = null;
+        Receivers rs = null;
+
+        String startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(start);
+        String endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(end);
+
+        String query = "select R.rcv_cpf, R.rcv_name, R.rcv_rg from Periods P join Receivers R on P.prd_receiver = R.rcv_cpf where (P.prd_site = '" + site + "' and P.prd_start = TO_DATE('" + startTime + "' , 'yyyy-mm-dd hh24:mi:ss') and P.prd_end = TO_DATE('" + endTime + "' , 'yyyy-mm-dd hh24:mi:ss'))";
+        System.out.println(query);
+
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                rs = new Receivers(resultSet.getString("rcv_cpf"), resultSet.getString("rcv_name"), resultSet.getString("rcv_rg"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (statement != null) {
+            statement.close();
+        }
+
+        if (connection != null) {
+            connection.close();
+        }
+
+        return rs;
     }
 }

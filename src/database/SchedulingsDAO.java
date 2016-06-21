@@ -2,6 +2,7 @@ package database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.viewtables.Companies;
 import model.viewtables.Schedulings;
 import oracle.jdbc.OracleTypes;
 
@@ -168,5 +169,38 @@ public class SchedulingsDAO {
         }
 
         return ret;
+    }
+
+    public Companies getCompany(Schedulings ins) throws SQLException {
+        DatabaseManager dbm = new DatabaseManager();
+        Connection connection = dbm.getConnection();
+        if (connection == null) {
+            System.out.println("Couldn't connect to database");
+            return null;
+        }
+        Statement statement = null;
+        Companies rs = null;
+
+        String query = "select C.cpn_cnpj, C.cpn_name, C.cpn_fantasy from Schedulings S join Companies C on S.sch_company = C.cpn_cnpj where S.sch_id = " + ins.getId();
+
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                rs = new Companies(resultSet.getString("cpn_cnpj"), resultSet.getString("cpn_name"), resultSet.getString("cpn_fantasy"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (statement != null) {
+            statement.close();
+        }
+
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
     }
 }

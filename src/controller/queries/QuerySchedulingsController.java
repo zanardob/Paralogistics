@@ -1,6 +1,7 @@
 package controller.queries;
 
 import database.DeliveriesDAO;
+import database.LicencesDAO;
 import database.SchedulingsDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.insertions.LicenceDeliverer;
+import model.viewtables.Companies;
 import model.viewtables.Deliverers;
 import model.viewtables.Deliveries;
 import model.viewtables.Schedulings;
@@ -28,9 +31,7 @@ import java.util.ResourceBundle;
 public class QuerySchedulingsController implements Initializable{
     ObservableList<Schedulings> schedulingsList = null;
     ObservableList<Deliveries> deliveriesList = null;
-
-    // TODO
-    // ObeservableList<(PAR DE DELIVERERS COM LICENCES)> deliverersVehiclesList = null;
+    ObservableList<LicenceDeliverer> licenceDeliverersList = null;
 
     @FXML TableView<Schedulings> SchedulingPickerTable;
     @FXML TableColumn<Schedulings, Integer> SchedulingID;
@@ -48,8 +49,10 @@ public class QuerySchedulingsController implements Initializable{
     @FXML TableColumn<Deliveries, Timestamp> DeliveryStart;
     @FXML TableColumn<Deliveries, Timestamp> DeliveryEnd;
 
-    // TODO:
-    // DEFINE LICENCES JOIN DELIVERERS TABLE AND TABLECOLUMNS
+    @FXML TableView<LicenceDeliverer> DelivererVehicleViewTable;
+    @FXML TableColumn<LicenceDeliverer, Integer> DelivererCPF;
+    @FXML TableColumn<LicenceDeliverer, String> DelivererName;
+    @FXML TableColumn<LicenceDeliverer, Timestamp> VehiclePlate;
 
     public void GotoMainMenu(ActionEvent actionEvent) {
         Stage stage = (Stage) SchedulingPickerTable.getScene().getWindow();
@@ -70,8 +73,7 @@ public class QuerySchedulingsController implements Initializable{
 
     public void SelectScheduling(ActionEvent actionEvent) {
         deliveriesList = null;
-        // TODO:
-        // deliverersVehiclesList = null;
+        licenceDeliverersList = null;
 
         Schedulings selectedScheduling = SchedulingPickerTable.getSelectionModel().getSelectedItem();
         if(selectedScheduling == null) {
@@ -79,16 +81,24 @@ public class QuerySchedulingsController implements Initializable{
             return;
         }
 
-        // TODO:
-        // deliveriesList = DA JOIN DE selectedScheduling COM ENTREGAS
-        // deliverersVehiclesList = DA JOIN DE selectedScheduling COM LICENCES COM DELIVERERS
+        try {
+            Companies company = new SchedulingsDAO().getCompany(selectedScheduling);
+            CompanyCNPJTextField.setText(company.getCnpj());
+            CompanyNameTextField.setText(company.getName());
+            CompanyFantasyTextField.setText(company.getFantasy());
+            deliveriesList = new DeliveriesDAO().findByscheduling(selectedScheduling.getId());
+            licenceDeliverersList = new LicencesDAO().getDeliverersVehicles(selectedScheduling.getId());
+            System.out.println(schedulingsList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        DeliveryViewTable.setItems(deliveriesList);
+        DelivererVehicleViewTable.setItems(licenceDeliverersList);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        schedulingsList = null;
-        deliveriesList = null;
-
         try {
             schedulingsList = new SchedulingsDAO().findAll();
             System.out.println(schedulingsList);
@@ -105,7 +115,9 @@ public class QuerySchedulingsController implements Initializable{
         DeliveryStart.setCellValueFactory(new PropertyValueFactory<>("start"));
         DeliveryEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
 
-        // TODO:
-        // Set DeliverersVehicles Table and tablecolumns
+        DelivererVehicleViewTable.setItems(licenceDeliverersList);
+        DelivererCPF.setCellValueFactory(new PropertyValueFactory<>("deliverer"));
+        DelivererName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        VehiclePlate.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
     }
 }

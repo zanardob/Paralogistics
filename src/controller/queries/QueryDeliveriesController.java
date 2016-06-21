@@ -47,15 +47,17 @@ public class QueryDeliveriesController implements Initializable {
         ObservableList<Deliveries> alreadyDeliveredList = null;
         ObservableList<Deliveries> toBeDeliveredList = null;
 
-        //preenche o alreadyDeliveredList com as lista onde o fim da entrega é menor q a data atual
-        //preenche o alreadyDeliveredList com as lista onde o fim da entrega é maior ou igual q a data atual
-        //alreadyDeliveredList = new DeliveriesDAO().findAll();
-        //toBeDeliveredList = new DeliveriesDAO().findAll();
+        try {
+            alreadyDeliveredList = new DeliveriesDAO().getFromDate("<");
+            toBeDeliveredList = new DeliveriesDAO().getFromDate(">=");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         System.out.println(alreadyDeliveredList);
         System.out.println("deveria ter preenchido a lista de entregas ja feitas");
         System.out.println(toBeDeliveredList);
         System.out.println("deveria ter preenchido a lista de entregas ainda nao feitas");
-
 
         AlreadyDeliveredTable.setItems(alreadyDeliveredList);
         AlreadyDeliveredID.setCellValueFactory(new PropertyValueFactory<>("id"));

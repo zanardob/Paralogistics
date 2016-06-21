@@ -1,7 +1,6 @@
 package controller.queries;
 
-import database.DeliveriesDAO;
-import database.SchedulingsDAO;
+import database.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.insertions.MaterialQuantity;
 import model.viewtables.Deliveries;
 import model.viewtables.Receivers;
 import model.viewtables.Schedulings;
@@ -28,9 +28,7 @@ import java.util.ResourceBundle;
  */
 public class QueryDeliveriesDetailedController implements Initializable{
     ObservableList<Deliveries> deliveriesList = null;
-
-    // TODO
-    // ObeservableList<(PAR DE MATERIALS COM ENUMERATIONS)> materialsEnumerationsList = null;
+    ObservableList<MaterialQuantity> materialQuantityList = null;
 
     @FXML TableView<Deliveries> DeliveryPickerTable;
     @FXML TableColumn<Deliveries, Integer> DeliveryID;
@@ -52,8 +50,12 @@ public class QueryDeliveriesDetailedController implements Initializable{
     @FXML TextField ReceiverNameTextField;
     @FXML TextField ReceiverRGTextField;
 
-    // TODO:
-    // DEFINE LICENCES JOIN DELIVERERS TABLE AND TABLECOLUMNS
+    @FXML TableView<MaterialQuantity> MaterialViewTable;
+    @FXML TableColumn<MaterialQuantity, Integer> MaterialID;
+    @FXML TableColumn<MaterialQuantity, Integer> MaterialDescription;
+    @FXML TableColumn<MaterialQuantity, Integer> MaterialWeight;
+    @FXML TableColumn<MaterialQuantity, Integer> MaterialDimensions;
+    @FXML TableColumn<MaterialQuantity, Integer> MaterialQuantity;
 
     public void GotoMainMenu(ActionEvent actionEvent) {
         Stage stage = (Stage) DeliveryPickerTable.getScene().getWindow();
@@ -73,8 +75,7 @@ public class QueryDeliveriesDetailedController implements Initializable{
     }
 
     public void SelectDelivery(ActionEvent actionEvent) {
-        // TODO:
-        // materialsEnumerationsList = null;
+        materialQuantityList = null;
 
         Deliveries selectedDelivery = DeliveryPickerTable.getSelectionModel().getSelectedItem();
         if(selectedDelivery == null) {
@@ -82,32 +83,51 @@ public class QueryDeliveriesDetailedController implements Initializable{
             return;
         }
 
-        // TODO:
-        Sites site = new Sites(0, "oi", "ola", 1, "rip", "dep", "1234", "HUE");
-        Receivers receiver = new Receivers("123", "oi", "123");
-        // pega os valores certos
-        // deliveriesList = DA JOIN DE selectedDelivery COM ENUMERACOES COM MATERIAIS
+        Sites site = null;
+        Receivers receiver = null;
+        try {
+            site = new SitesDAO().findByid(selectedDelivery.getSite());
+            receiver = new PeriodsDAO().getReceiver(selectedDelivery.getSite(), selectedDelivery.getStart(), selectedDelivery.getEnd());
+            materialQuantityList = new EnumerationsDAO().getMaterials(selectedDelivery.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        SiteIDTextField.setText(site.getId().toString());
+        SiteNameTextField.setText(site.getName());
+        SiteZipTextField.setText(site.getZip());
+        SiteCompanyCNPJTextField.setText(site.getCompany());
+        SiteStreetTextField.setText(site.getStreet());
+        SiteNumberTextField.setText(site.getNumber().toString());
+        SiteCityTextField.setText(site.getCity());
+        SiteStateTextField.setText(site.getState());
+
+        ReceiverCPFTextField.setText(receiver.getCpf());
+        ReceiverNameTextField.setText(receiver.getName());
+        ReceiverRGTextField.setText(receiver.getRg().trim());
+
+        MaterialViewTable.setItems(materialQuantityList);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        deliveriesList = null;
-
-        // TODO:
-        // materialsEnumerationsList = null;
-
         try {
             deliveriesList = new DeliveriesDAO().findAll();
             System.out.println(deliveriesList);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         DeliveryPickerTable.setItems(deliveriesList);
         DeliveryID.setCellValueFactory(new PropertyValueFactory<>("id"));
         DeliverySiteID.setCellValueFactory(new PropertyValueFactory<>("site"));
         DeliverySchedulingID.setCellValueFactory(new PropertyValueFactory<>("scheduling"));
 
-        // TODO:
-        // Set MaterialsEnumerations Table and tablecolumns
+        MaterialViewTable.setItems(materialQuantityList);
+        MaterialID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        MaterialDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        MaterialWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
+        MaterialDimensions.setCellValueFactory(new PropertyValueFactory<>("dimension"));
+        MaterialQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
     }
 }

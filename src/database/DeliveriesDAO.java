@@ -7,6 +7,7 @@ import model.viewtables.Schedulings;
 import oracle.jdbc.OracleTypes;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class DeliveriesDAO {
         Connection connection = dbm.getConnection();
         ObservableList<Deliveries> cpns = FXCollections.observableArrayList();
 
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
@@ -31,33 +32,34 @@ public class DeliveriesDAO {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(findAllQuery);
 
-            while(resultSet.next()) {
-                cpns.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
+            while (resultSet.next()) {
+                cpns.add(new Deliveries(resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
         return cpns;
     }
-public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
+
+    public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Deliveries> rs = FXCollections.observableArrayList();
+
+        ObservableList<Deliveries> rs = FXCollections.observableArrayList();
 
         String query = "select * from Deliveries where dlv_id = " + id + "";
 
@@ -65,32 +67,33 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Deliveries(resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Deliveries> findBysite(Integer site) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Deliveries> findBysite(Integer site) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Deliveries> rs = FXCollections.observableArrayList();
+
+        ObservableList<Deliveries> rs = FXCollections.observableArrayList();
 
         String query = "select * from Deliveries where dlv_site = " + site + "";
 
@@ -98,32 +101,33 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Deliveries(resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Deliveries> findBystart(java.sql.Timestamp start) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Deliveries> findBystart(java.sql.Timestamp start) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Deliveries> rs = FXCollections.observableArrayList();
+
+        ObservableList<Deliveries> rs = FXCollections.observableArrayList();
 
         String query = "select * from Deliveries where dlv_start = " + start + "";
 
@@ -131,32 +135,33 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Deliveries(resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Deliveries> findByend(java.sql.Timestamp end) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Deliveries> findByend(java.sql.Timestamp end) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Deliveries> rs = FXCollections.observableArrayList();
+
+        ObservableList<Deliveries> rs = FXCollections.observableArrayList();
 
         String query = "select * from Deliveries where dlv_end = " + end + "";
 
@@ -164,32 +169,33 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Deliveries(resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Deliveries> findByscheduling(Integer scheduling) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Deliveries> findByscheduling(Integer scheduling) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Deliveries> rs = FXCollections.observableArrayList();
+
+        ObservableList<Deliveries> rs = FXCollections.observableArrayList();
 
         String query = "select * from Deliveries where dlv_scheduling = " + scheduling + "";
 
@@ -197,26 +203,27 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Deliveries( resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Deliveries(resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public void insert(Deliveries ins) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public void insert(Deliveries ins) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return;
         }
@@ -231,11 +238,11 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
     }
@@ -266,5 +273,41 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
         }
 
         return ret;
+    }
+
+    public ObservableList<Deliveries> getFromDate(String comparator) throws SQLException {
+        DatabaseManager dbm = new DatabaseManager();
+        Connection connection = dbm.getConnection();
+        if (connection == null) {
+            System.out.println("Couldn't connect to database");
+            return null;
+        }
+        Statement statement = null;
+
+        ObservableList<Deliveries> rs = FXCollections.observableArrayList();
+
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
+
+        String query = "select * from Deliveries D where D.dlv_end " + comparator + " TO_DATE('" + currentDate + "' , 'yyyy-mm-dd hh24:mi:ss')";
+
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                rs.add(new Deliveries(resultSet.getInt("dlv_id"), resultSet.getInt("dlv_site"), resultSet.getTimestamp("dlv_start"), resultSet.getTimestamp("dlv_end"), resultSet.getInt("dlv_scheduling")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (statement != null) {
+            statement.close();
+        }
+
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
     }
 }

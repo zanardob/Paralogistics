@@ -20,45 +20,46 @@ public class SitesDAO {
         Connection connection = dbm.getConnection();
         ObservableList<Sites> cpns = FXCollections.observableArrayList();
 
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
 
-        String findAllQuery = "select * from Sites";
+        String findAllQuery = "SELECT * FROM Sites";
 
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(findAllQuery);
 
-            while(resultSet.next()) {
-                cpns.add(new Sites( resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
+            while (resultSet.next()) {
+                cpns.add(new Sites(resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
         return cpns;
     }
-public ObservableList<Sites> findByid(Integer id) throws SQLException {
+
+    public Sites findByid(Integer id) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
+
         Statement statement = null;
-		
-		ObservableList<Sites> rs = FXCollections.observableArrayList();
+        Sites rs = null;
 
         String query = "select * from Sites where site_id = " + id + "";
 
@@ -66,32 +67,33 @@ public ObservableList<Sites> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Sites( resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs = new Sites(resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Sites> findByname(String name) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Sites> findByname(String name) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Sites> rs = FXCollections.observableArrayList();
+
+        ObservableList<Sites> rs = FXCollections.observableArrayList();
 
         String query = "select * from Sites where site_name = '" + name + "'";
 
@@ -99,32 +101,33 @@ public ObservableList<Sites> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Sites( resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Sites(resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Sites> findBystreet(String street) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Sites> findBystreet(String street) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Sites> rs = FXCollections.observableArrayList();
+
+        ObservableList<Sites> rs = FXCollections.observableArrayList();
 
         String query = "select * from Sites where site_street = '" + street + "'";
 
@@ -132,32 +135,33 @@ public ObservableList<Sites> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Sites( resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Sites(resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Sites> findBynumber(Integer number) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Sites> findBynumber(Integer number) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Sites> rs = FXCollections.observableArrayList();
+
+        ObservableList<Sites> rs = FXCollections.observableArrayList();
 
         String query = "select * from Sites where site_number = " + number + "";
 
@@ -165,32 +169,33 @@ public ObservableList<Sites> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Sites( resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Sites(resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Sites> findBycity(String city) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Sites> findBycity(String city) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Sites> rs = FXCollections.observableArrayList();
+
+        ObservableList<Sites> rs = FXCollections.observableArrayList();
 
         String query = "select * from Sites where site_city = '" + city + "'";
 
@@ -198,32 +203,33 @@ public ObservableList<Sites> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Sites( resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Sites(resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Sites> findBystate(String state) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Sites> findBystate(String state) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Sites> rs = FXCollections.observableArrayList();
+
+        ObservableList<Sites> rs = FXCollections.observableArrayList();
 
         String query = "select * from Sites where site_state = '" + state + "'";
 
@@ -231,32 +237,33 @@ public ObservableList<Sites> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Sites( resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Sites(resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Sites> findByzip(String zip) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Sites> findByzip(String zip) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Sites> rs = FXCollections.observableArrayList();
+
+        ObservableList<Sites> rs = FXCollections.observableArrayList();
 
         String query = "select * from Sites where site_zip = '" + zip + "'";
 
@@ -264,32 +271,33 @@ public ObservableList<Sites> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Sites( resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Sites(resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public ObservableList<Sites> findBycompany(String company) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public ObservableList<Sites> findBycompany(String company) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return null;
         }
         Statement statement = null;
-		
-		ObservableList<Sites> rs = FXCollections.observableArrayList();
+
+        ObservableList<Sites> rs = FXCollections.observableArrayList();
 
         String query = "select * from Sites where site_company = '" + company + "'";
 
@@ -297,26 +305,27 @@ public ObservableList<Sites> findByid(Integer id) throws SQLException {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-			while(resultSet.next()) {
-				rs.add(new Sites( resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            while (resultSet.next()) {
+                rs.add(new Sites(resultSet.getInt("site_id"), resultSet.getString("site_name"), resultSet.getString("site_street"), resultSet.getInt("site_number"), resultSet.getString("site_city"), resultSet.getString("site_state"), resultSet.getString("site_zip"), resultSet.getString("site_company")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		if(statement != null){
-			statement.close();
-		}
+        if (statement != null) {
+            statement.close();
+        }
 
-		if(connection != null) {
-			connection.close();
-		}
-		return rs;
-	}
-	public void insert(Sites ins) throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+        return rs;
+    }
+
+    public void insert(Sites ins) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
-        if(connection == null) {
+        if (connection == null) {
             System.out.println("Couldn't connect to database");
             return;
         }
@@ -334,11 +343,11 @@ public ObservableList<Sites> findByid(Integer id) throws SQLException {
             e.printStackTrace();
         }
 
-        if(statement != null){
+        if (statement != null) {
             statement.close();
         }
 
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
     }
