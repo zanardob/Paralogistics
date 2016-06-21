@@ -7,6 +7,8 @@ import model.viewtables.Schedulings;
 import oracle.jdbc.OracleTypes;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -247,9 +249,15 @@ public ObservableList<Deliveries> findByid(Integer id) throws SQLException {
             System.out.println("Couldn't connect to database");
             return null;
         }
-        String query = "begin insert into Deliveries( dlv_id, dlv_site, dlv_start, dlv_end, dlv_scheduling) values (" + ins.getId() +
-                ", " + ins.getSite() + ", " + ins.getStart() + ", " + ins.getEnd() + ", " + ins.getScheduling() + ")" +
-                "returning dlv_id int ?; end;";
+        
+        String startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ins.getStart());
+        String endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ins.getEnd());
+
+        String query = "begin insert into Deliveries(dlv_id, dlv_site, dlv_start, dlv_end, dlv_scheduling) values (" + ins.getId() +
+                ", " + ins.getSite() + ", TO_DATE('" + startTime + "' , 'yyyy-mm-dd hh24:mi:ss') , TO_DATE('" + endTime + "' , 'yyyy-mm-dd hh24:mi:ss') , " + ins.getScheduling() + ") " +
+                "returning dlv_id into ?; end;";
+
+        System.out.println(query);
         CallableStatement cs = connection.prepareCall(query);
         cs.registerOutParameter(1, OracleTypes.NUMBER);
         cs.execute();
