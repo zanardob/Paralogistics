@@ -178,7 +178,7 @@ public class SchedulingsDAO {
             System.out.println("Couldn't connect to database");
             return null;
         }
-        String query = "begin insert into Schedulings( sch_id, sch_company) values (" + ins.getId() + ", " +
+        String query = "begin insert into Schedulings(sch_company) values (" +
                 ins.getCompany() + ") returning sch_id into ?; end;";
         CallableStatement cs = connection.prepareCall(query);
         cs.registerOutParameter(1, OracleTypes.NUMBER);

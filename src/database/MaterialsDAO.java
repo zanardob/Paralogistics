@@ -194,7 +194,7 @@ public class MaterialsDAO {
             return;
         }
         Statement statement = null;
-        String query = "insert into Materials( mtr_id, mtr_description, mtr_weight, mtr_dimension) values (" + ins.getId() + ", '" + ins.getDescription() + "', " + ins.getWeight() + ", '" + ins.getDimension() + "')";
+        String query = "insert into Materials(mtr_description, mtr_weight, mtr_dimension) values ('" + ins.getDescription() + "', " + ins.getWeight() + ", '" + ins.getDimension() + "')";
 
         try {
             statement = connection.createStatement();

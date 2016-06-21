@@ -156,7 +156,7 @@ public ObservableList<Deliverers> findBycpf(String cpf) throws SQLException {
             return;
         }
         Statement statement = null;
-        String query = "insert into Deliverers( dlvr_cpf, dlvr_name, dlvr_rg) values ('" + ins.getCpf() + "', '" + ins.getName() + "', '" + ins.getRg() + "')";
+        String query = "insert into Deliverers(dlvr_cpf, dlvr_name, dlvr_rg) values ('" + ins.getCpf() + "', '" + ins.getName() + "', '" + ins.getRg() + "')";
 
         try {
             statement = connection.createStatement();

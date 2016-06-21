@@ -330,9 +330,7 @@ public class SitesDAO {
             return;
         }
         Statement statement = null;
-        String query = "insert into Sites( site_id, site_name, site_street, site_number, site_city, site_state" +
-                ", site_zip, site_company) values (" + ins.getId() + ", '" + ins.getName() + "', '" + ins.getStreet() +
-                "', " + ins.getNumber() + ", '" + ins.getCity() + "', '" + ins.getState() + "', '" + ins.getZip() + "', '" +
+        String query = "insert into Sites(site_name, site_street, site_number, site_city, site_state, site_zip, site_company) values ('" + ins.getName() + "', '" + ins.getStreet() + "', " + ins.getNumber() + ", '" + ins.getCity() + "', '" + ins.getState() + "', '" + ins.getZip() + "', '" +
                 ins.getCompany() + "')";
 
         try {
