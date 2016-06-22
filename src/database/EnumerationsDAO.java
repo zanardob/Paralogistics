@@ -175,6 +175,7 @@ public class EnumerationsDAO {
         }
     }
 
+    //Returns all Materials of a certain delivery using the "Id"
     public ObservableList<MaterialQuantity> getMaterials(Integer delivery) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();

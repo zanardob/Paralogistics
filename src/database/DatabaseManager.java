@@ -9,8 +9,11 @@ public class DatabaseManager {
     private static final String USERNAME = "g8937458";
     private static final String PASSWORD = "g8937458";
 
+    //Creates the connection with the oracle database
+    //Must be called every time the database needs to be accessed
     public Connection getConnection() {
         Connection connection = null;
+        //Test Driver
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (ClassNotFoundException e) {
@@ -18,6 +21,7 @@ public class DatabaseManager {
             e.printStackTrace();
         }
 
+        //Test connection
         try {
             connection = DriverManager.getConnection(CONNECTION, USERNAME, PASSWORD);
         } catch (SQLException e) {

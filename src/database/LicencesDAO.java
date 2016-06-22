@@ -175,6 +175,8 @@ public class LicencesDAO {
         }
     }
 
+    //Returns a list of "LicenceDeliverer"s of a scheduling searched by it's id.
+    //Query used to get all the names of the deliveries
     public ObservableList<LicenceDeliverer> getDeliverersVehicles(Integer scheduling) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();

@@ -173,6 +173,7 @@ public class CompaniesDAO {
         }
     }
 
+    //Returns the "company" with the biggest amount of "deliveries" and how many it is
     public Pair<Companies, Integer> getMostDeliveries() throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
@@ -210,6 +211,8 @@ public class CompaniesDAO {
         return pair;
     }
 
+    //Returns the "company" with that delivered the biggest mass of materials
+    //sum of all quantity of the material delivered * weight of the material
     public Pair<Companies, Integer> getHeaviest() throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
