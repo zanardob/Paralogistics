@@ -114,6 +114,7 @@ public class SuppliesDAO {
         return rs;
     }
 
+    //Returns the "Materials" of a supplied by certain company
     public ObservableList<Materials> getMaterials(String company) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();

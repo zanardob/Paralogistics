@@ -214,6 +214,7 @@ public class DeliveriesDAO {
         return rs;
     }
 
+    //Returns the list of "deliveries" at an "site"(Id) with the "end" date - all the deliveries of the day
     public ObservableList<Deliveries> findBySiteAndEnd(Integer site, Timestamp end) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
@@ -277,6 +278,7 @@ public class DeliveriesDAO {
         }
     }
 
+    //Inserts the "Deliveries" and returns the automatically generated "Id" by the database
     public Integer insertReturnId(Deliveries ins) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
@@ -310,6 +312,7 @@ public class DeliveriesDAO {
         return ret;
     }
 
+    //Returns the "deliveries" in reationship with the current date defined by the parameter "comparator"
     public ObservableList<Deliveries> getFromDate(String comparator) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();

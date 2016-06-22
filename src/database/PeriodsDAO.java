@@ -207,6 +207,7 @@ public class PeriodsDAO {
         }
     }
 
+    //Returns the receiver of a "Periods"
     public Receivers getReceiver(Integer site, Timestamp start, Timestamp end) throws SQLException {
         DatabaseManager dbm = new DatabaseManager();
         Connection connection = dbm.getConnection();
