@@ -35,18 +35,10 @@ public class DeliveryEnumerations extends Deliveries {
         enumerations.add(e);
         if (enumerations.size() > 1) {
             Integer MaterialID = enumerations.get(enumerations.size() - 1).getMaterial();
-            // PEGA O NOME DO MATERIAL DO ID ACIMA
-            // Materials m = ??? SQL
-            // String materialName = m.getName();
-            // materials_string = materials_string + ", " + materialName;
             materials_string = materials_string + ", material " + enumerations.get(enumerations.size() - 1).getMaterial();
         }
         else {
             Integer MaterialID = enumerations.get(enumerations.size() - 1).getMaterial();
-            // PEGA O NOME DO MATERIAL DO ID ACIMA
-            // Materials m = ??? SQL
-            // String materialName = m.getName();
-            // materials_string = materialName;
             materials_string = "material " + enumerations.get(enumerations.size() - 1).getMaterial();
         }
     }

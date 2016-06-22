@@ -1,0 +1,2 @@
+This folder contains all the controllers used on the "View Tables" section of the application.
+As such, they are pretty simple and only call the respective DataAccessObjects to fetch a "select * from table" selection.

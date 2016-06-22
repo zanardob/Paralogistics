@@ -11,6 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // Main class, only used for setting the initial scene for the UI
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/mainmenu.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();

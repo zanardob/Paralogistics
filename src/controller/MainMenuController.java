@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+// This class is used to manage the UI's scene transitions when the user clicks on the different options
 public class MainMenuController implements Initializable {
     @FXML
     BorderPane mainPane;

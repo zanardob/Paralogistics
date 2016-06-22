@@ -1,0 +1,2 @@
+This folder contains all the models for the basic tables on the database.
+They translate more or less directly from the SQL that defines each of them, and contain the attributes as well as all the necessary getters and setters.

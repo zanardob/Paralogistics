@@ -5,10 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseManager {
+    // These variables are used to connect to the Oracle Database; change them if you need
     private static final String CONNECTION = "jdbc:oracle:thin:@grad.icmc.usp.br:15215:orcl";
     private static final String USERNAME = "g8937458";
     private static final String PASSWORD = "g8937458";
 
+    // Connect to the database and return the java.sql.Connection object
     public Connection getConnection() {
         Connection connection = null;
         try {

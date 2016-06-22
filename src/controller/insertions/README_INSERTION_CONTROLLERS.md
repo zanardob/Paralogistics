@@ -1,0 +1,2 @@
+This folder contains all the controllers used on the "New Scheduling" section of the application.
+Here you are able to insert a new scheduling on the database, complete with all licences and deliveries associated (they are also inserted).
